@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stones — Strategic Model</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --green:      #506B56;
+      --green-dark: #3A5040;
+      --green-mid:  #617E68;
+      --green-light:#EBF0EC;
+      --willow:     #CECE9C;
+      --cream:      #F4F1EA;
+      --terracotta: #BE796C;
+      --clay:       #DAB4A4;
+      --wave-dark:  #255C9B;
+      --wave-light: #D1E1F5;
+      --sunset:     #FFDE73;
+      --off-white:  #FCFAFA;
+      --black:      #3C3C3B;
+      --concrete:   #878786;
+      --grey:       #C6C6C5;
+      --dark-bg:    #2A2A29;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: var(--cream);
+      color: var(--black);
+      padding: 48px 56px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    /* ── HEADER ── */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 48px;
+      padding-bottom: 24px;
+      border-bottom: 2px solid var(--green);
+    }
+    .header-left h1 {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 6px;
+    }
+    .header-left h2 {
+      font-size: 32px;
+      font-weight: 700;
+      color: var(--black);
+      line-height: 1.1;
+    }
+    .header-left p {
+      font-size: 15px;
+      color: var(--concrete);
+      margin-top: 8px;
+      font-weight: 400;
+    }
+    .header-right {
+      text-align: right;
+    }
+    .header-right .tag {
+      display: inline-block;
+      background: var(--green);
+      color: white;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 3px;
+    }
+    .header-right .date {
+      font-size: 12px;
+      color: var(--concrete);
+      margin-top: 6px;
+    }
+
+    /* ── SECTION LABELS ── */
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--concrete);
+      margin-bottom: 16px;
+    }
+
+    /* ── ARCHITECTURE BLOCK ── */
+    .architecture {
+      margin-bottom: 40px;
+    }
+
+    /* Top layer: App + Amplifiers */
+    .top-layer {
+      display: grid;
+      grid-template-columns: 1fr 1.4fr 1fr;
+      gap: 3px;
+      margin-bottom: 3px;
+    }
+
+    .amplifier-card {
+      background: var(--off-white);
+      border: 1.5px solid var(--grey);
+      border-radius: 8px 8px 0 0;
+      padding: 22px 20px 20px;
+    }
+    .amplifier-card.community { border-radius: 8px 0 0 0; }
+    .amplifier-card.experiences { border-radius: 0 8px 0 0; }
+
+    .app-card {
+      background: white;
+      border: 2px solid var(--green);
+      border-bottom: none;
+      border-radius: 8px 8px 0 0;
+      padding: 24px 24px 20px;
+      position: relative;
+    }
+    .app-card::before {
+      content: 'THE INTERFACE';
+      position: absolute;
+      top: -1px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--green);
+      color: white;
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      padding: 3px 10px;
+      border-radius: 0 0 4px 4px;
+    }
+
+    .layer-tag {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--concrete);
+      margin-bottom: 8px;
+    }
+    .card-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--black);
+      margin-bottom: 10px;
+    }
+    .card-desc {
+      font-size: 12px;
+      color: var(--concrete);
+      line-height: 1.5;
+      margin-bottom: 10px;
+    }
+    .bullet-list {
+      list-style: none;
+      padding: 0;
+    }
+    .bullet-list li {
+      font-size: 12px;
+      color: var(--black);
+      padding: 3px 0 3px 14px;
+      position: relative;
+      line-height: 1.4;
+    }
+    .bullet-list li::before {
+      content: '—';
+      position: absolute;
+      left: 0;
+      color: var(--green);
+      font-size: 10px;
+    }
+
+    /* Intelligence Layer */
+    .intelligence-layer {
+      background: var(--green);
+      padding: 28px 28px 24px;
+      position: relative;
+    }
+    .intelligence-layer .layer-heading {
+      color: rgba(255,255,255,0.65);
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+    .intelligence-layer h3 {
+      color: white;
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .intelligence-layer .sub {
+      color: rgba(255,255,255,0.75);
+      font-size: 12px;
+      margin-bottom: 20px;
+      font-style: italic;
+    }
+    .intel-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+    .intel-component {
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 6px;
+      padding: 14px 14px 12px;
+    }
+    .intel-component .ic-number {
+      font-size: 22px;
+      font-weight: 800;
+      color: rgba(255,255,255,0.25);
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .intel-component .ic-title {
+      font-size: 12px;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 5px;
+      line-height: 1.3;
+    }
+    .intel-component .ic-desc {
+      font-size: 11px;
+      color: rgba(255,255,255,0.7);
+      line-height: 1.4;
+    }
+
+    /* Foundation layer */
+    .foundation-layer {
+      background: var(--dark-bg);
+      padding: 22px 28px;
+      border-radius: 0 0 8px 8px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+    }
+    .foundation-pillar {
+      padding: 0 16px 0 0;
+      border-right: 1px solid rgba(255,255,255,0.1);
+    }
+    .foundation-pillar:last-child { border-right: none; padding-right: 0; padding-left: 16px; }
+    .foundation-pillar:first-child { padding-left: 0; }
+    .foundation-pillar:not(:first-child):not(:last-child) { padding: 0 16px; }
+    .fp-label {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      margin-bottom: 5px;
+    }
+    .fp-title {
+      font-size: 12px;
+      font-weight: 600;
+      color: white;
+      margin-bottom: 3px;
+      line-height: 1.3;
+    }
+    .fp-desc {
+      font-size: 11px;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.4;
+    }
+
+    /* ── FLYWHEEL ── */
+    .flywheel-section {
+      margin-bottom: 40px;
+    }
+    .flywheel-grid {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr auto 1fr;
+      align-items: center;
+      gap: 0;
+      background: var(--off-white);
+      border: 1.5px solid var(--grey);
+      border-radius: 8px;
+      padding: 28px 32px;
+    }
+    .audience-card {
+      text-align: center;
+      padding: 0 16px;
+    }
+    .audience-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      margin: 0 auto 10px;
+    }
+    .audience-card.d2c .audience-icon { background: var(--green-light); }
+    .audience-card.b2b .audience-icon { background: #F0E8E6; }
+    .audience-card.partners .audience-icon { background: #EAF0F8; }
+    .audience-label {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--concrete);
+      margin-bottom: 4px;
+    }
+    .audience-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--black);
+      margin-bottom: 6px;
+    }
+    .audience-desc {
+      font-size: 11px;
+      color: var(--concrete);
+      line-height: 1.4;
+    }
+    .flywheel-arrow {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      padding: 0 8px;
+    }
+    .flywheel-arrow svg { color: var(--green); }
+    .flywheel-arrow span {
+      font-size: 10px;
+      color: var(--green);
+      font-weight: 600;
+      text-align: center;
+      line-height: 1.3;
+      max-width: 80px;
+    }
+    .flywheel-note {
+      text-align: center;
+      margin-top: 16px;
+      font-size: 12px;
+      color: var(--concrete);
+      font-style: italic;
+    }
+
+    /* ── TWO-COLUMN LOWER SECTIONS ── */
+    .lower-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-bottom: 40px;
+    }
+
+    /* ── MOATS ── */
+    .moats-section {}
+    .moat-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .moat-item {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+      background: var(--off-white);
+      border: 1.5px solid var(--grey);
+      border-radius: 6px;
+      padding: 14px 16px;
+    }
+    .moat-number {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--green);
+      line-height: 1;
+      min-width: 24px;
+    }
+    .moat-content .moat-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--black);
+      margin-bottom: 3px;
+    }
+    .moat-content .moat-desc {
+      font-size: 11px;
+      color: var(--concrete);
+      line-height: 1.4;
+    }
+    .moat-item.highlight {
+      border-color: var(--green);
+      background: var(--green-light);
+    }
+
+    /* ── EXIT PATHWAYS ── */
+    .exit-section {}
+    .exit-timeline {
+      position: relative;
+      padding-top: 8px;
+    }
+    .exit-line {
+      position: absolute;
+      top: 28px;
+      left: 20px;
+      right: 20px;
+      height: 2px;
+      background: var(--grey);
+      z-index: 0;
+    }
+    .exit-paths {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      position: relative;
+      z-index: 1;
+    }
+    .exit-path {
+      text-align: center;
+    }
+    .exit-dot {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      font-weight: 800;
+      margin: 0 auto 10px;
+      border: 2px solid var(--grey);
+      background: var(--cream);
+      color: var(--concrete);
+    }
+    .exit-path.primary .exit-dot {
+      background: var(--green);
+      border-color: var(--green);
+      color: white;
+    }
+    .exit-path.open .exit-dot {
+      background: var(--off-white);
+      border-color: var(--green);
+      color: var(--green);
+    }
+    .exit-timeframe {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--concrete);
+      margin-bottom: 4px;
+    }
+    .exit-name {
+      font-size: 12px;
+      font-weight: 700;
+      color: var(--black);
+      margin-bottom: 3px;
+      line-height: 1.3;
+    }
+    .exit-value {
+      font-size: 11px;
+      color: var(--green);
+      font-weight: 600;
+      margin-bottom: 4px;
+    }
+    .exit-desc {
+      font-size: 10px;
+      color: var(--concrete);
+      line-height: 1.4;
+    }
+
+    /* ── VALUE PROPS ── */
+    .value-props {
+      background: var(--green);
+      border-radius: 8px;
+      padding: 28px 32px;
+      margin-bottom: 40px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+    .vp-item {
+      border-left: 2px solid rgba(255,255,255,0.25);
+      padding-left: 16px;
+    }
+    .vp-claim {
+      font-size: 13px;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 6px;
+      line-height: 1.3;
+    }
+    .vp-why {
+      font-size: 11px;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.5;
+    }
+
+    /* ── CONNECTOR ARROWS ── */
+    .connector {
+      display: flex;
+      justify-content: center;
+      padding: 6px 0;
+      color: var(--green);
+    }
+
+    /* ── PROOF POINTS ── */
+    .proof-bar {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      background: var(--grey);
+      border: 1.5px solid var(--grey);
+      border-radius: 8px;
+      overflow: hidden;
+      margin-bottom: 40px;
+    }
+    .proof-item {
+      background: var(--off-white);
+      text-align: center;
+      padding: 16px 12px;
+    }
+    .proof-number {
+      font-size: 28px;
+      font-weight: 800;
+      color: var(--green);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .proof-label {
+      font-size: 11px;
+      color: var(--concrete);
+      line-height: 1.3;
+    }
+
+    /* ── FOOTER ── */
+    .footer {
+      border-top: 1px solid var(--grey);
+      padding-top: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .footer p {
+      font-size: 11px;
+      color: var(--concrete);
+    }
+    .footer strong {
+      color: var(--green);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-left">
+      <h1>Stones</h1>
+      <h2>Strategic Model</h2>
+      <p>Investor and Stakeholder Briefing — June 2026</p>
+    </div>
+    <div class="header-right">
+      <div class="tag">Confidential</div>
+      <div class="date">Pre-revenue &nbsp;·&nbsp; Building toward $1M ARR</div>
+    </div>
+  </div>
+
+  <!-- ARCHITECTURE -->
+  <div class="architecture">
+    <div class="section-label">The Model — Three Layers</div>
+
+    <!-- TOP: App + Amplifiers -->
+    <div class="top-layer">
+      <div class="amplifier-card community">
+        <div class="layer-tag">Amplifier 1</div>
+        <div class="card-title">Community</div>
+        <div class="card-desc">The practice becomes shared. Leaders find out they are not alone in what they are navigating.</div>
+        <ul class="bullet-list">
+          <li>Leadership Exchange sessions</li>
+          <li>Peer accountability loops</li>
+          <li>Expert Q&amp;A and office hours</li>
+          <li>Cohort-based shared practice</li>
+        </ul>
+      </div>
+
+      <div class="app-card">
+        <div class="layer-tag" style="margin-top:12px;">Always-on &nbsp;·&nbsp; Self-determined &nbsp;·&nbsp; Moment of need</div>
+        <div class="card-title" style="font-size:17px;">The App</div>
+        <div class="card-desc">The pocket companion. Surfaces the right support at the right moment — not when it suits the programme.</div>
+        <ul class="bullet-list">
+          <li>Situation-to-solution pathways</li>
+          <li>Behaviour-change practice loops</li>
+          <li>Pocket coach — 26+ coaches in one</li>
+          <li>Proactive prompts, not passive library</li>
+        </ul>
+      </div>
+
+      <div class="amplifier-card experiences">
+        <div class="layer-tag">Amplifier 2</div>
+        <div class="card-title">Experiences</div>
+        <div class="card-desc">The practice becomes transformative. Leaders step away, reset, and return differently.</div>
+        <ul class="bullet-list">
+          <li>Open Ground (retreat)</li>
+          <li>Pathfinder annual event</li>
+          <li>Intimate leadership dinners</li>
+          <li>Co-facilitated partner events</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- CONNECTOR -->
+    <div class="connector">
+      <svg width="24" height="16" viewBox="0 0 24 16" fill="none">
+        <path d="M12 0L12 12M12 12L6 6M12 12L18 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </div>
+
+    <!-- MIDDLE: Intelligence Layer -->
+    <div class="intelligence-layer">
+      <div class="layer-heading">The Core Product</div>
+      <h3>Stones Intelligence Layer</h3>
+      <div class="sub">An adaptive system that learns each leader over time — not a tool that responds to prompts</div>
+      <div class="intel-grid">
+        <div class="intel-component">
+          <div class="ic-number">01</div>
+          <div class="ic-title">Leader Context Engine</div>
+          <div class="ic-desc">Persistent, evolving model of each leader — challenges, history, development trajectory. Gets smarter with every session.</div>
+        </div>
+        <div class="intel-component">
+          <div class="ic-number">02</div>
+          <div class="ic-title">Adaptive Pathway Engine</div>
+          <div class="ic-desc">Dynamic sequencing based on what happened in real life, not what was clicked. Behaviour change science embedded.</div>
+        </div>
+        <div class="intel-component">
+          <div class="ic-number">03</div>
+          <div class="ic-title">Outcome Capture Loop</div>
+          <div class="ic-desc">After every real-world application: how did it go? What shifted? Closes the loop. Builds the evidence base.</div>
+        </div>
+        <div class="intel-component">
+          <div class="ic-number">04</div>
+          <div class="ic-title">Moment-of-Need Detection</div>
+          <div class="ic-desc">Calendar signals, usage patterns, leader-flagged situations. Stones shows up before the hard moment, not after.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BOTTOM: Foundation -->
+    <div class="foundation-layer">
+      <div class="foundation-pillar">
+        <div class="fp-label">Foundation 1</div>
+        <div class="fp-title">Organisational Psychology Methodology</div>
+        <div class="fp-desc">Evidence-based framework underlying every pathway and intervention</div>
+      </div>
+      <div class="foundation-pillar">
+        <div class="fp-label">Foundation 2</div>
+        <div class="fp-title">Expert Content Corpus</div>
+        <div class="fp-desc">26+ specialist coaches. Structured, owned, and tagged to behaviour outcomes — not a library</div>
+      </div>
+      <div class="foundation-pillar">
+        <div class="fp-label">Foundation 3</div>
+        <div class="fp-title">ANZ Cultural Specificity</div>
+        <div class="fp-desc">Local context, employment law, cultural values. No global AI platform builds this without our data</div>
+      </div>
+      <div class="foundation-pillar">
+        <div class="fp-label">Foundation 4</div>
+        <div class="fp-title">Behaviour Change Science</div>
+        <div class="fp-desc">Deliberate practice, spaced repetition, outcome tracking. Not content delivery — capability building</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- VALUE PROPOSITIONS -->
+  <div class="value-props">
+    <div class="vp-item">
+      <div class="vp-claim">"Support in the moment leadership actually happens."</div>
+      <div class="vp-why">Every competitor delivers support before or after the moment. Stones is built for the moment itself.</div>
+    </div>
+    <div class="vp-item">
+      <div class="vp-claim">"Many coaches, one experience."</div>
+      <div class="vp-why">One coach is expensive and scheduled. Generic AI has no expertise. Stones delivers 26+ specialist coaches contextually — at the cost of a gym membership.</div>
+    </div>
+    <div class="vp-item">
+      <div class="vp-claim">"A leadership practice, not an event."</div>
+      <div class="vp-why">The entire leadership development industry is built on events. Stones names that as the problem — and no competitor can say this without contradicting their own model.</div>
+    </div>
+  </div>
+
+  <!-- LOWER GRID: Flywheel + Moats -->
+  <div class="lower-grid">
+
+    <!-- AUDIENCE FLYWHEEL -->
+    <div class="flywheel-section">
+      <div class="section-label">The Audience Flywheel</div>
+      <div class="flywheel-grid">
+        <div class="audience-card d2c">
+          <div class="audience-icon">👤</div>
+          <div class="audience-label">D2C</div>
+          <div class="audience-title">Individual Leaders</div>
+          <div class="audience-desc">Managers 2–15 years into leadership. Entry point via Emily's content and partner networks.</div>
+        </div>
+
+        <div class="flywheel-arrow">
+          <svg width="28" height="16" viewBox="0 0 28 16" fill="none">
+            <path d="M0 8H24M24 8L18 2M24 8L18 14" stroke="#506B56" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span>Leaders refer HR buyers</span>
+        </div>
+
+        <div class="audience-card b2b" style="text-align:center;">
+          <div class="audience-icon" style="background:#F0E8E6;">🏢</div>
+          <div class="audience-label">B2B</div>
+          <div class="audience-title">HR &amp; L&amp;D Buyers</div>
+          <div class="audience-desc">50–500 person orgs in ANZ. 90-day pilot to contract. Reporting that justifies L&amp;D spend.</div>
+        </div>
+
+        <div class="flywheel-arrow">
+          <svg width="28" height="16" viewBox="0 0 28 16" fill="none">
+            <path d="M0 8H24M24 8L18 2M24 8L18 14" stroke="#506B56" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <span>Orgs attract partners</span>
+        </div>
+
+        <div class="audience-card partners" style="text-align:center;">
+          <div class="audience-icon" style="background:#EAF0F8;">🤝</div>
+          <div class="audience-label">Partners</div>
+          <div class="audience-title">Expert Coaches</div>
+          <div class="audience-desc">26+ specialist coaches. Content creators and distribution engine. Referral and trust flywheel.</div>
+        </div>
+      </div>
+      <div class="flywheel-note">Partners reach leaders → leaders bring in orgs → orgs attract more partners. Not engineered — it emerges.</div>
+    </div>
+
+    <!-- THE FOUR MOATS -->
+    <div class="moats-section">
+      <div class="section-label">Why This Is Defensible — The Four Moats</div>
+      <div class="moat-list">
+        <div class="moat-item highlight">
+          <div class="moat-number">1</div>
+          <div class="moat-content">
+            <div class="moat-title">Longitudinal Behavioural Data</div>
+            <div class="moat-desc">After 12 months of active use, Stones knows more about a specific leader's development trajectory than any tool in existence. No enterprise AI starts fresh every session and builds this.</div>
+          </div>
+        </div>
+        <div class="moat-item">
+          <div class="moat-number">2</div>
+          <div class="moat-content">
+            <div class="moat-title">Expert Content Corpus — Structured and Owned</div>
+            <div class="moat-desc">Content tagged to specific moments, development stages, and behaviour outcomes. This is the training data for the Intelligence Layer. Not replicable without the partner network and the methodology.</div>
+          </div>
+        </div>
+        <div class="moat-item">
+          <div class="moat-number">3</div>
+          <div class="moat-content">
+            <div class="moat-title">ANZ Cultural Specificity</div>
+            <div class="moat-desc">Local context, employment law, and cultural relevance no global platform builds without local data. Specific claim no US or UK competitor can credibly make.</div>
+          </div>
+        </div>
+        <div class="moat-item">
+          <div class="moat-number">4</div>
+          <div class="moat-content">
+            <div class="moat-title">Behaviour Change Pathways — Not Advice Delivery</div>
+            <div class="moat-desc">Enterprise AI is optimised for task productivity, not leader behaviour change. Different product goal. Different architecture. Not a path they are investing in.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EXIT PATHWAYS -->
+  <div class="exit-section">
+    <div class="section-label">The Long-Term Approach — Building Toward Path 4</div>
+    <div style="background: var(--off-white); border: 1.5px solid var(--grey); border-radius: 8px; padding: 28px 32px;">
+      <p style="font-size:12px; color:var(--concrete); margin-bottom:24px; max-width:680px;">
+        Paths 1–3 are not alternatives to Path 4. They are optionality that opens at each milestone if we build correctly. The architectural decisions made now — API-first design, structured content corpus, outcome capture — are cheap today and expensive to retrofit in Year 3.
+      </p>
+      <div class="exit-timeline">
+        <div class="exit-line"></div>
+        <div class="exit-paths">
+          <div class="exit-path open">
+            <div class="exit-dot">Now<br><span style="font-size:9px;">Y2</span></div>
+            <div class="exit-timeframe">Now — Year 2</div>
+            <div class="exit-name">Build the Foundation Right</div>
+            <div class="exit-value">Milestone: 500+ leaders, first enterprise pilot with outcome data</div>
+            <div class="exit-desc">Intelligence Layer built. Outcome capture in from day one. API-first architecture confirmed. Partner content restructured.</div>
+          </div>
+          <div class="exit-path open">
+            <div class="exit-dot">P3<br><span style="font-size:9px;">opens</span></div>
+            <div class="exit-timeframe">Year 2–3</div>
+            <div class="exit-name">Prove the Model</div>
+            <div class="exit-value">Path 3 opens: licensing conversation possible</div>
+            <div class="exit-desc">$500K–$1M ARR. First enterprise contract. Series A preparation. Licensing play explored as parallel revenue stream.</div>
+          </div>
+          <div class="exit-path open">
+            <div class="exit-dot">P1<br><span style="font-size:9px;">P2</span></div>
+            <div class="exit-timeframe">Year 3–5</div>
+            <div class="exit-name">Paths 1 &amp; 2 Available</div>
+            <div class="exit-value">$10–100M acquisition optionality opens</div>
+            <div class="exit-desc">$2–5M ARR. Multiple enterprise contracts. International expansion started. Use acquisition interest as Series B leverage — or accept the right offer.</div>
+          </div>
+          <div class="exit-path primary">
+            <div class="exit-dot">P4</div>
+            <div class="exit-timeframe">Year 5–10</div>
+            <div class="exit-name">Path 4 — Independent Scale</div>
+            <div class="exit-value">$100M+ &nbsp;·&nbsp; Leadership OS category won</div>
+            <div class="exit-desc">$10M+ ARR. English-speaking world. Flywheel at scale. The business that changes how leadership is practised globally.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <p><strong>Stones</strong> &nbsp;·&nbsp; leadwithstones.com &nbsp;·&nbsp; Confidential — for shareholder and investor use</p>
+    <p>The Leadership OS &nbsp;·&nbsp; ANZ-first &nbsp;·&nbsp; June 2026</p>
+  </div>
+
+</body>
+</html>
