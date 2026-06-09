@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your AI Agent Business — Start Here</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --black:     #1C1C1B;
+      --white:     #FFFFFF;
+      --cream:     #F4F1EA;
+      --green:     #3A5C40;
+      --green-mid: #506B56;
+      --green-pale:#E8EFE9;
+      --orange:    #E88434;
+      --sunset:    #FFDE73;
+      --concrete:  #6B6B6A;
+      --grey-light:#E8E8E7;
+      --wave:      #255C9B;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: var(--white);
+      color: var(--black);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ── HERO ─────────────────────────────────── */
+
+    .hero {
+      background: var(--black);
+      color: var(--white);
+      padding: 72px 24px 80px;
+      text-align: center;
+    }
+
+    .hero-label {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--sunset);
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      font-size: clamp(36px, 6vw, 64px);
+      font-weight: 800;
+      line-height: 1.08;
+      max-width: 720px;
+      margin: 0 auto 24px;
+    }
+
+    .hero h1 span { color: var(--sunset); }
+
+    .hero p {
+      font-size: clamp(16px, 2.2vw, 20px);
+      font-weight: 400;
+      line-height: 1.65;
+      max-width: 600px;
+      margin: 0 auto 40px;
+      color: rgba(255,255,255,0.75);
+    }
+
+    .hero-stats {
+      display: flex;
+      justify-content: center;
+      gap: 48px;
+      flex-wrap: wrap;
+    }
+
+    .hero-stat strong {
+      display: block;
+      font-size: 32px;
+      font-weight: 800;
+      color: var(--sunset);
+    }
+
+    .hero-stat span {
+      font-size: 13px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.55);
+      letter-spacing: 0.04em;
+    }
+
+    /* ── SECTION WRAPPER ─────────────────────── */
+
+    .section {
+      padding: 80px 24px;
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--green-mid);
+      margin-bottom: 12px;
+    }
+
+    .section h2 {
+      font-size: clamp(26px, 4vw, 40px);
+      font-weight: 800;
+      line-height: 1.15;
+      margin-bottom: 16px;
+    }
+
+    .section-intro {
+      font-size: 17px;
+      line-height: 1.65;
+      color: var(--concrete);
+      max-width: 660px;
+      margin-bottom: 56px;
+    }
+
+    /* ── TALENT GRID ─────────────────────────── */
+
+    .talent-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 20px;
+    }
+
+    .talent-card {
+      background: var(--cream);
+      border-radius: 16px;
+      padding: 28px 28px 24px;
+    }
+
+    .talent-icon {
+      font-size: 28px;
+      margin-bottom: 14px;
+    }
+
+    .talent-card h3 {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    .talent-card p {
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--concrete);
+    }
+
+    /* ── IDEAS SECTION ───────────────────────── */
+
+    .ideas-section {
+      background: var(--cream);
+      padding: 80px 24px;
+    }
+
+    .ideas-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+
+    .ideas-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 20px;
+    }
+
+    .idea-card {
+      background: var(--white);
+      border-radius: 16px;
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .idea-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 32px rgba(0,0,0,0.09);
+    }
+
+    .idea-number {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--concrete);
+    }
+
+    .idea-card h3 {
+      font-size: 17px;
+      font-weight: 700;
+      line-height: 1.3;
+    }
+
+    .idea-card p {
+      font-size: 14px;
+      line-height: 1.6;
+      color: var(--concrete);
+      flex: 1;
+    }
+
+    .idea-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 4px;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .idea-price {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--green);
+      background: var(--green-pale);
+      padding: 4px 10px;
+      border-radius: 100px;
+    }
+
+    .idea-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .tag {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      padding: 3px 9px;
+      border-radius: 100px;
+      background: rgba(0,0,0,0.06);
+      color: var(--concrete);
+    }
+
+    /* ── PLAYBOOK ────────────────────────────── */
+
+    .playbook-section {
+      padding: 80px 24px;
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+
+    .playbook-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 24px;
+      margin-top: 48px;
+    }
+
+    .step-block {
+      border-radius: 20px;
+      padding: 36px 32px;
+      color: var(--white);
+    }
+
+    .step-block.validate { background: var(--green); }
+    .step-block.build    { background: var(--wave); }
+    .step-block.sell     { background: var(--orange); }
+
+    .step-number {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      opacity: 0.7;
+      margin-bottom: 8px;
+    }
+
+    .step-block h3 {
+      font-size: 24px;
+      font-weight: 800;
+      margin-bottom: 20px;
+    }
+
+    .step-block ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .step-block li {
+      font-size: 14px;
+      line-height: 1.55;
+      padding-left: 20px;
+      position: relative;
+      opacity: 0.92;
+    }
+
+    .step-block li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 8px;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.6);
+    }
+
+    .step-insight {
+      margin-top: 24px;
+      padding-top: 20px;
+      border-top: 1px solid rgba(255,255,255,0.25);
+      font-size: 13px;
+      font-style: italic;
+      opacity: 0.8;
+      line-height: 1.5;
+    }
+
+    /* ── TOOLS STRIP ─────────────────────────── */
+
+    .tools-section {
+      background: var(--cream);
+      padding: 64px 24px;
+    }
+
+    .tools-inner {
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+
+    .tools-section h2 {
+      font-size: clamp(22px, 3vw, 32px);
+      font-weight: 800;
+      margin-bottom: 8px;
+    }
+
+    .tools-section .section-intro {
+      margin-bottom: 40px;
+    }
+
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 14px;
+    }
+
+    .tool-pill {
+      background: var(--white);
+      border-radius: 12px;
+      padding: 18px 20px;
+    }
+
+    .tool-pill strong {
+      display: block;
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .tool-pill span {
+      font-size: 12px;
+      color: var(--concrete);
+      line-height: 1.4;
+    }
+
+    /* ── CLOSING CALLOUT ─────────────────────── */
+
+    .closing {
+      background: var(--black);
+      color: var(--white);
+      padding: 80px 24px;
+      text-align: center;
+    }
+
+    .closing h2 {
+      font-size: clamp(26px, 4vw, 44px);
+      font-weight: 800;
+      line-height: 1.15;
+      max-width: 640px;
+      margin: 0 auto 20px;
+    }
+
+    .closing h2 span { color: var(--sunset); }
+
+    .closing p {
+      font-size: 17px;
+      line-height: 1.65;
+      color: rgba(255,255,255,0.65);
+      max-width: 540px;
+      margin: 0 auto;
+    }
+
+    /* ── DIVIDER ─────────────────────────────── */
+
+    .divider {
+      border: none;
+      border-top: 1px solid var(--grey-light);
+      max-width: 1080px;
+      margin: 0 auto;
+    }
+
+    /* ── RESPONSIVE ──────────────────────────── */
+
+    @media (max-width: 600px) {
+      .hero { padding: 56px 20px 64px; }
+      .hero-stats { gap: 32px; }
+      .section { padding: 60px 20px; }
+      .ideas-section { padding: 60px 20px; }
+      .playbook-section { padding: 60px 20px; }
+      .tools-section { padding: 48px 20px; }
+      .closing { padding: 60px 20px; }
+      .step-block { padding: 28px 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-label">Your first business</div>
+    <h1>You're already <span>wired for this</span></h1>
+    <p>Building an AI agent business as a teenager is one of the best opportunities in a generation. Here's how your specific strengths point directly at it — and the 10 ideas to consider.</p>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <strong>10</strong>
+        <span>agent ideas</span>
+      </div>
+      <div class="hero-stat">
+        <strong>3</strong>
+        <span>steps to your first sale</span>
+      </div>
+      <div class="hero-stat">
+        <strong>&lt;$50</strong>
+        <span>to build a real version</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY YOU -->
+  <section class="section">
+    <div class="section-label">Why you</div>
+    <h2>Your strengths are the business.</h2>
+    <p class="section-intro">This isn't about having a computer science degree. The people building AI businesses right now are winning on judgement, consistency, and real-world problem solving — which is exactly what you already have.</p>
+
+    <div class="talent-grid">
+
+      <div class="talent-card">
+        <div class="talent-icon">🏀</div>
+        <h3>The training mindset</h3>
+        <p>Athletes who win aren't always the most talented — they're the most consistent. Basketball gave you the reps mentality. Building a business is identical. Small consistent actions every day beat occasional bursts of effort every time.</p>
+      </div>
+
+      <div class="talent-card">
+        <div class="talent-icon">📐</div>
+        <h3>Maths and problem solving</h3>
+        <p>AI agents are logic problems at their core. You don't need to code — but thinking in systems, spotting the gap, and breaking problems into steps is exactly what maths trains you for. This gives you an edge most people don't have.</p>
+      </div>
+
+      <div class="talent-card">
+        <div class="talent-icon">📸</div>
+        <h3>Photography and video</h3>
+        <p>You already understand visual storytelling. That's rare. Some of the most commercially useful AI agents right now help businesses produce content, captions, and media assets. You know what good looks like — most people trying to build those agents don't.</p>
+      </div>
+
+      <div class="talent-card">
+        <div class="talent-icon">🤝</div>
+        <h3>Social skills and kindness</h3>
+        <p>The hardest part of selling a product isn't building it. It's having the conversation that gets someone to pay for it. You naturally put people at ease, which means finding your first five customers will be significantly easier than it is for most people starting out.</p>
+      </div>
+
+      <div class="talent-card">
+        <div class="talent-icon">🧭</div>
+        <h3>Taking charge and organisation</h3>
+        <p>Most ideas die in the gap between "this could work" and "I shipped something." Your initiative means you close that gap. Your organisation means you don't lose momentum once you start. That combination is genuinely rare at any age.</p>
+      </div>
+
+      <div class="talent-card">
+        <div class="talent-icon">⚡</div>
+        <h3>Being 15</h3>
+        <p>Seriously. You have almost no downside. If something doesn't work you've lost a few weeks and learned everything. The compounding effect of starting now — skills, network, confidence — is enormous. Most people wish they'd started younger. You are younger.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <hr class="divider">
+
+  <!-- 10 IDEAS -->
+  <section class="ideas-section">
+    <div class="ideas-inner">
+      <div class="section-label">The ideas</div>
+      <h2>10 agents worth building.</h2>
+      <p class="section-intro">Each one is buildable with no deep coding experience, solves a real problem someone will pay to fix, and connects to things you already know and care about.</p>
+
+      <div class="ideas-grid">
+
+        <div class="idea-card">
+          <div class="idea-number">01</div>
+          <h3>Sports highlight reel agent</h3>
+          <p>Takes raw game footage uploads, pulls the best moments, adds captions and music. Sell to school sports teams, local clubs, and parents who want a polished package.</p>
+          <div class="idea-footer">
+            <span class="idea-price">$25–$75 per event</span>
+            <div class="idea-tags">
+              <span class="tag">Sports</span>
+              <span class="tag">Video</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="idea-card">
+          <div class="idea-number">02</div>
+          <h3>Youth athlete recruitment profile builder</h3>
+          <p>Generates a polished written profile, stat summary, and social-ready highlight package for young athletes applying to clubs or college programmes. High perceived value.</p>
+          <div class="idea-footer">
+            <span class="idea-price">$50–$100 one-time</span>
+            <div class="idea-tags">
+              <span class="tag">Sports</span>
+              <span class="tag">Maths</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="idea-card">
+          <div class="idea-number">03</div>
+          <h3>Local sports club social media agent</h3>
+          <p>Writes Instagram and Facebook posts, match day previews, and result announcements from a short input form. Clubs hate doing this. You can automate the whole thing.</p>
+          <div class="idea-footer">
+            <span class="idea-price">$30–$60/month</span>
+            <div class="idea-tags">
+              <span class="tag">Sports</span>
+              <span class="tag">Photography</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="idea-card">
+          <div class="idea-number">04</div>
+          <h3>Photography client workflow agent</h3>
+          <p>Automates booking confirmations, delivery reminders, gallery links, and follow-up emails for photographers. Saves freelancers hours every week on admin they hate doing.</p>
+          <div class="idea-footer">
+            <span class="idea-price">$20–$40/month</span>
+            <div class="idea-tags">
+              <span class="tag">Photography</span>
+              <span class="tag">Organisation</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="idea-card">
+          <div class="idea-number">05</div>
+          <h3>School sports statistics tracker</h3>
+          <p>Takes game score and stat inputs after matches, generates a season summary, player rankings, and a shareable team report. Coaches and school sports coordinators will pay for this.</p>
+          <div class="idea-footer">
+            <span class="idea-price">$30–$50/month</span>
+            <div class="idea-tags">
+              <span class="tag">Sports</span>
+              <span class="tag">Maths</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="idea-card">
+          <div class="idea-number">06</div>
+          <h3>Youth fitness training planner</h3>
+          <p>Builds personalised weekly training programmes from a short intake form covering sport, position, and goals. Sell direct to players, parents, or coaches as a one-time or monthly tool.</p>
+          <div class="idea-footer">
+            <span class="idea-price">$15–$35/month</span>
+            <div class="idea-tags">
+              <span class="tag">Sports</span>
+              <span class="tag">Problem solving</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="idea-card">
+          <div class="idea-number">07</div>
+          <h3>Event recap agent</h3>
+          <p>Give it photos and a few notes from a sports match, school event, or community gathering — it produces a written recap ready to post or send as a newsletter. Schools and PTAs love this.</p>
+          <div class="idea-footer">
+            <span class="idea-price">$20–$50 per event</span>
+            <div class="idea-tags">
+              <span class="tag">Photography</span>
+              <span class="tag">Social skills</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="idea-card">
+          <div class="idea-number">08</div>
+          <h3>Maths tutoring agent</h3>
+          <p>Personalised practice problems and clear step-by-step explanations tailored to a student's year level and weak spots. You actually understand maths — which means you can make this better than a generic version.</p>
+          <div class="idea-footer">
+            <span class="idea-price">$15–$25/month</span>
+            <div class="idea-tags">
+              <span class="tag">Maths</span>
+              <span class="tag">Kindness</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="idea-card">
+          <div class="idea-number">09</div>
+          <h3>Team organisation agent</h3>
+          <p>Handles scheduling, availability polls, and duty rosters for sports teams — then sends reminders automatically. The person running team admin for a local club will love you for this.</p>
+          <div class="idea-footer">
+            <span class="idea-price">$20–$40/month</span>
+            <div class="idea-tags">
+              <span class="tag">Sports</span>
+              <span class="tag">Organisation</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="idea-card">
+          <div class="idea-number">10</div>
+          <h3>Business photography content agent</h3>
+          <p>Takes a set of photos from a shoot and writes Instagram captions, a website blurb, and an email announcement. Local businesses who do product or event photography need this and don't know it yet.</p>
+          <div class="idea-footer">
+            <span class="idea-price">$30–$60 per shoot</span>
+            <div class="idea-tags">
+              <span class="tag">Photography</span>
+              <span class="tag">Social skills</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- PLAYBOOK -->
+  <section class="playbook-section">
+    <div class="section-label">The playbook</div>
+    <h2>Three steps. In this order.</h2>
+    <p class="section-intro">Most people skip straight to building. That's why most ideas fail. Do these three steps in sequence and you'll be ahead of 90% of first-time builders.</p>
+
+    <div class="playbook-steps">
+
+      <div class="step-block validate">
+        <div class="step-number">Step 01</div>
+        <h3>Validate</h3>
+        <ul>
+          <li>Pick the idea that excites you most from the list above.</li>
+          <li>Find 5 real potential buyers — a local coach, a club admin, a photographer, a small business owner. Not friends or parents.</li>
+          <li>Have a 15-minute conversation. Ask: what's annoying about this right now? What do you already pay for?</li>
+          <li>Check if anything similar already exists. Google it. Look on Gumroad and Product Hunt. If it does, that's good — it means demand is proven.</li>
+          <li>Test willingness to pay. Don't ask "would you use this?" Ask: "I'm building this — would you pay $20 for early access and give me feedback?"</li>
+        </ul>
+        <div class="step-insight">A yes with money attached is a real yes. Anything else is just polite encouragement.</div>
+      </div>
+
+      <div class="step-block build">
+        <div class="step-number">Step 02</div>
+        <h3>Build</h3>
+        <ul>
+          <li>Map the workflow on paper first. What goes in? What comes out? What steps happen in between?</li>
+          <li>Build the simplest version that actually works. Do not add extra features yet.</li>
+          <li>Use Make.com or Zapier to connect a form to an AI model and send the output. No coding needed to start.</li>
+          <li>Test with 2–3 real users. Fix what breaks. Improve what's slow or confusing.</li>
+          <li>Package it so someone else can use it without your help.</li>
+        </ul>
+        <div class="step-insight">The whole first version should cost under $50 NZD to build and run for a month.</div>
+      </div>
+
+      <div class="step-block sell">
+        <div class="step-number">Step 03</div>
+        <h3>Sell</h3>
+        <ul>
+          <li>Direct outreach first. Your biggest advantage is that you're good with people. Message 20 local clubs, schools, or small businesses.</li>
+          <li>Offer a free trial in exchange for honest feedback and a testimonial if they like it.</li>
+          <li>Create a simple Gumroad page for one-time sales or subscriptions. No technical setup required.</li>
+          <li>Show the before and after on Instagram or TikTok. "I built this in a weekend" content gets real attention.</li>
+          <li>Your sports and school network is your warmest audience. Start there before going cold.</li>
+        </ul>
+        <div class="step-insight">First goal: 5 paying customers. Not 500. Five tells you everything the research couldn't.</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- TOOLS -->
+  <section class="tools-section">
+    <div class="tools-inner">
+      <div class="section-label">Your toolkit</div>
+      <h2>What to actually use.</h2>
+      <p class="section-intro">All free to start. You'll only need to pay once you're making money.</p>
+      <div class="tools-grid">
+        <div class="tool-pill">
+          <strong>Claude API</strong>
+          <span>The AI brain. Free to test, cheap to run at small scale.</span>
+        </div>
+        <div class="tool-pill">
+          <strong>Make.com</strong>
+          <span>Connects your form to the AI and sends the output. No code.</span>
+        </div>
+        <div class="tool-pill">
+          <strong>Tally</strong>
+          <span>Simple intake forms for collecting information from users.</span>
+        </div>
+        <div class="tool-pill">
+          <strong>Gumroad</strong>
+          <span>Sell one-time or recurring digital products. Dead simple setup.</span>
+        </div>
+        <div class="tool-pill">
+          <strong>Lovable</strong>
+          <span>Builds a real-looking app with AI help. No coding experience needed.</span>
+        </div>
+        <div class="tool-pill">
+          <strong>Cursor</strong>
+          <span>If you want to write actual code, this AI-assisted editor makes it approachable.</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CLOSING -->
+  <section class="closing">
+    <h2>The skills that make this work aren't <span>technical.</span></h2>
+    <p>They're the ones you already have. Showing up consistently. Being organised. Following through. Talking to people. The AI does the hard part. You do the human part. That's the whole thing.</p>
+  </section>
+
+</body>
+</html>
