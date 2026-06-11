@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Journey Page — Desktop Design Guideline</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --green:      #506B56;
+      --green-dark: #3A5040;
+      --green-light:#EBF0EC;
+      --cream:      #F4F1EA;
+      --terracotta: #BE796C;
+      --off-white:  #FCFAFA;
+      --black:      #3C3C3B;
+      --concrete:   #878786;
+      --grey:       #C6C6C5;
+      --dark-bg:    #18181a;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--dark-bg);
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+      -webkit-font-smoothing: antialiased;
+      padding: 48px 40px 100px;
+      min-width: 1300px;
+    }
+
+    /* ── Spec header ── */
+    .spec-header {
+      max-width: 1200px;
+      margin: 0 auto 40px;
+      padding-bottom: 28px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+    }
+
+    .spec-title {
+      font-size: 20px;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 10px;
+      letter-spacing: -0.02em;
+    }
+
+    .spec-tags { display: flex; gap: 8px; }
+
+    .spec-tag {
+      display: inline-block;
+      background: rgba(80,107,86,0.25);
+      color: #8db994;
+      border-radius: 4px;
+      font-size: 11px;
+      font-weight: 600;
+      padding: 3px 9px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .spec-tag.neutral {
+      background: rgba(255,255,255,0.07);
+      color: rgba(255,255,255,0.4);
+    }
+
+    .spec-link {
+      font-size: 13px;
+      color: rgba(255,255,255,0.35);
+      text-decoration: none;
+    }
+
+    /* ── Browser frame ── */
+    .browser-frame {
+      max-width: 1200px;
+      margin: 0 auto;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow:
+        0 40px 80px rgba(0,0,0,0.6),
+        0 0 0 1px rgba(255,255,255,0.06);
+    }
+
+    .browser-chrome {
+      background: #2a2a2c;
+      padding: 12px 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .browser-dots { display: flex; gap: 6px; flex-shrink: 0; }
+
+    .browser-dot { width: 12px; height: 12px; border-radius: 50%; }
+    .dot-red    { background: #ff5f57; }
+    .dot-yellow { background: #febc2e; }
+    .dot-green  { background: #28c840; }
+
+    .browser-url {
+      background: rgba(255,255,255,0.07);
+      border-radius: 6px;
+      padding: 5px 14px;
+      font-size: 13px;
+      color: rgba(255,255,255,0.45);
+      flex: 1;
+      text-align: center;
+    }
+
+    /* ── App shell ── */
+    .app {
+      display: flex;
+      height: 820px;
+      background: var(--cream);
+      overflow: hidden;
+    }
+
+    /* ── Sidebar ── */
+    .sidebar {
+      width: 220px;
+      flex-shrink: 0;
+      background: var(--green-dark);
+      display: flex;
+      flex-direction: column;
+      padding: 28px 0;
+    }
+
+    .sidebar-logo {
+      padding: 0 20px 24px;
+      font-size: 22px;
+      font-weight: 800;
+      color: rgba(255,255,255,0.92);
+      letter-spacing: -0.03em;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      margin-bottom: 12px;
+    }
+
+    .sidebar-logo span {
+      display: block;
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      margin-top: 3px;
+    }
+
+    .sidebar-nav {
+      flex: 1;
+      padding: 8px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .nav-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 9px 12px;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: 500;
+      color: rgba(255,255,255,0.45);
+      cursor: default;
+    }
+
+    .nav-item.active {
+      background: rgba(255,255,255,0.1);
+      color: rgba(255,255,255,0.92);
+    }
+
+    .nav-icon {
+      width: 17px;
+      height: 17px;
+      flex-shrink: 0;
+    }
+
+    .sidebar-footer {
+      padding: 16px 20px 0;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .user-avatar {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.14);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 700;
+      color: rgba(255,255,255,0.8);
+      flex-shrink: 0;
+    }
+
+    .user-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: rgba(255,255,255,0.8);
+      line-height: 1.2;
+    }
+
+    .user-role {
+      font-size: 11px;
+      color: rgba(255,255,255,0.35);
+    }
+
+    /* ── Main content ── */
+    .main {
+      flex: 1;
+      overflow-y: auto;
+      scrollbar-width: none;
+      background: var(--cream);
+    }
+
+    .main::-webkit-scrollbar { display: none; }
+
+    .main-inner {
+      padding: 32px 36px 60px;
+    }
+
+    /* Page header */
+    .page-header {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      margin-bottom: 24px;
+    }
+
+    .page-eyebrow {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--concrete);
+      margin-bottom: 4px;
+    }
+
+    .page-title {
+      font-size: 30px;
+      font-weight: 700;
+      color: var(--black);
+      letter-spacing: -0.03em;
+      line-height: 1;
+    }
+
+    .page-subtitle {
+      font-size: 13px;
+      color: var(--concrete);
+      margin-top: 5px;
+    }
+
+    .btn-outline {
+      background: var(--off-white);
+      border: 1px solid var(--grey);
+      border-radius: 8px;
+      padding: 8px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--black);
+      cursor: default;
+      font-family: inherit;
+    }
+
+    /* Section header row */
+    .section-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 13px;
+    }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--concrete);
+    }
+
+    .option-badge {
+      font-size: 9px;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: rgba(135,135,134,0.5);
+      background: rgba(135,135,134,0.1);
+      padding: 2px 6px;
+      border-radius: 3px;
+    }
+
+    /* ── Option 1: Identity Anchor ── */
+    .identity-card {
+      background: var(--green);
+      border-radius: 16px;
+      padding: 22px 28px;
+      margin-bottom: 18px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      gap: 28px;
+    }
+
+    .identity-card::before {
+      content: '\201C';
+      position: absolute;
+      top: -28px;
+      left: 16px;
+      font-size: 120px;
+      color: rgba(255,255,255,0.06);
+      font-family: Georgia, serif;
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .identity-quote {
+      font-size: 15px;
+      line-height: 1.65;
+      color: rgba(255,255,255,0.88);
+      font-style: italic;
+      flex: 1;
+      position: relative;
+    }
+
+    .identity-meta {
+      font-size: 11px;
+      color: rgba(255,255,255,0.35);
+      flex-shrink: 0;
+      text-align: right;
+      max-width: 110px;
+      line-height: 1.5;
+    }
+
+    /* ── Three-column grid ── */
+    .three-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 14px;
+      margin-bottom: 14px;
+      align-items: start;
+    }
+
+    .col-card {
+      background: var(--off-white);
+      border-radius: 14px;
+      padding: 18px;
+    }
+
+    /* Signature */
+    .signature-card {
+      background: rgba(80,107,86,0.07);
+      border: 1px solid rgba(80,107,86,0.16);
+      border-radius: 10px;
+      padding: 12px 14px;
+      margin-bottom: 10px;
+    }
+
+    .signature-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 5px;
+    }
+
+    .signature-text {
+      font-size: 13px;
+      color: var(--black);
+      line-height: 1.55;
+      font-style: italic;
+    }
+
+    /* Strength cards */
+    .strength-card {
+      background: var(--cream);
+      border-radius: 10px;
+      padding: 11px 13px;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .strength-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--green);
+      border-radius: 50%;
+      margin-top: 5px;
+      flex-shrink: 0;
+    }
+
+    .strength-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--black);
+      line-height: 1.3;
+    }
+
+    .tag-row {
+      display: flex;
+      gap: 4px;
+      flex-wrap: wrap;
+      margin-top: 4px;
+    }
+
+    .domain-tag {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--green);
+      background: rgba(80,107,86,0.1);
+      padding: 1px 6px;
+      border-radius: 20px;
+    }
+
+    .status-tag {
+      font-size: 10px;
+      font-weight: 500;
+      color: var(--concrete);
+      background: rgba(198,198,197,0.35);
+      padding: 1px 6px;
+      border-radius: 20px;
+    }
+
+    /* Dev cards */
+    .dev-card {
+      background: var(--cream);
+      border-radius: 10px;
+      padding: 11px 13px;
+      margin-bottom: 8px;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+    }
+
+    .dev-dot {
+      width: 6px;
+      height: 6px;
+      background: var(--terracotta);
+      border-radius: 50%;
+      margin-top: 5px;
+      flex-shrink: 0;
+    }
+
+    .dev-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--black);
+      line-height: 1.3;
+    }
+
+    .dev-tag {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      background: rgba(190,121,108,0.1);
+      padding: 1px 6px;
+      border-radius: 20px;
+    }
+
+    /* Reflection prompt */
+    .reflection {
+      border-left: 2px solid var(--green);
+      border-radius: 0 8px 8px 0;
+      padding: 11px 13px;
+      margin-top: 12px;
+      background: rgba(80,107,86,0.05);
+    }
+
+    .reflection.dev {
+      border-left-color: var(--terracotta);
+      background: rgba(190,121,108,0.05);
+    }
+
+    .reflection-q {
+      font-size: 12px;
+      line-height: 1.6;
+      color: var(--black);
+    }
+
+    .reflection-cta {
+      display: inline-block;
+      margin-top: 8px;
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--green);
+    }
+
+    .reflection-cta.dev { color: var(--terracotta); }
+
+    /* Domain tiles */
+    .domain-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+    }
+
+    .domain-tile {
+      background: var(--cream);
+      border-radius: 10px;
+      padding: 12px;
+    }
+
+    .domain-tile.on-mind {
+      background: rgba(80,107,86,0.08);
+      border: 1px solid rgba(80,107,86,0.18);
+    }
+
+    .on-mind-flag {
+      font-size: 9px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--green);
+      margin-bottom: 3px;
+      display: block;
+    }
+
+    .domain-name {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--black);
+      margin-bottom: 9px;
+    }
+
+    .conf-track {
+      height: 5px;
+      background: #E5E2DB;
+      border-radius: 3px;
+      overflow: hidden;
+      margin-bottom: 6px;
+    }
+
+    .conf-fill         { height: 100%; border-radius: 3px; background: var(--green); }
+    .conf-fill.mid     { background: #83a489; }
+    .conf-fill.low     { background: var(--grey); }
+
+    .conf-label { font-size: 11px; color: var(--concrete); }
+
+    /* ── Focus map ── */
+    .focus-map {
+      background: var(--off-white);
+      border-radius: 14px;
+      padding: 18px;
+      margin-bottom: 14px;
+    }
+
+    .priority-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 24px;
+    }
+
+    .priority-heading {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--concrete);
+      margin-bottom: 9px;
+    }
+
+    .pills { display: flex; flex-wrap: wrap; gap: 6px; }
+
+    .pill {
+      font-size: 12px;
+      font-weight: 500;
+      padding: 5px 11px;
+      border-radius: 20px;
+    }
+
+    .pill-build   { background: rgba(80,107,86,0.12); color: var(--black); }
+    .pill-develop { background: rgba(190,121,108,0.12); color: var(--black); }
+    .pill-maintain{ background: rgba(198,198,197,0.3); color: var(--concrete); }
+
+    /* ── Bottom row ── */
+    .bottom-row {
+      display: grid;
+      grid-template-columns: 1.6fr 1fr;
+      gap: 14px;
+    }
+
+    .bottom-card {
+      background: var(--off-white);
+      border-radius: 14px;
+      padding: 18px;
+    }
+
+    /* Arc */
+    .arc-timeline {
+      display: flex;
+      align-items: flex-start;
+      margin-bottom: 18px;
+    }
+
+    .arc-node {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .arc-dot {
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      border: 2px solid var(--grey);
+      background: var(--cream);
+    }
+
+    .arc-dot.done { background: var(--green); border-color: var(--green); }
+    .arc-dot.now  {
+      width: 16px; height: 16px;
+      background: var(--green); border-color: var(--green);
+      box-shadow: 0 0 0 4px rgba(80,107,86,0.18);
+    }
+    .arc-dot.next { border-style: dashed; }
+
+    .arc-line      { flex: 1; height: 2px; background: var(--grey); margin-top: 5px; }
+    .arc-line.done { background: var(--green); }
+
+    .arc-label {
+      font-size: 11px;
+      color: var(--concrete);
+      text-align: center;
+      line-height: 1.45;
+      max-width: 80px;
+    }
+
+    .arc-label strong { display: block; font-size: 12px; font-weight: 600; color: var(--black); }
+    .arc-label.muted strong { color: var(--grey); }
+    .arc-label.muted { color: var(--grey); }
+
+    .arc-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+    .arc-stat {
+      background: var(--cream);
+      border-radius: 10px;
+      padding: 14px;
+      text-align: center;
+    }
+
+    .arc-stat-number {
+      font-size: 30px;
+      font-weight: 700;
+      color: var(--green);
+      letter-spacing: -0.03em;
+      line-height: 1;
+    }
+
+    .arc-stat-label {
+      font-size: 12px;
+      color: var(--concrete);
+      margin-top: 4px;
+      line-height: 1.35;
+    }
+
+    /* Challenge */
+    .challenge-statement {
+      font-size: 15px;
+      line-height: 1.65;
+      color: var(--black);
+    }
+
+    .challenge-statement em { font-style: normal; font-weight: 600; }
+
+    .challenge-note {
+      font-size: 13px;
+      color: var(--concrete);
+      line-height: 1.6;
+      margin-top: 12px;
+      font-style: italic;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="spec-header">
+    <div>
+      <div class="spec-title">Journey Page — Desktop Design Guideline</div>
+      <div class="spec-tags" style="margin-top:10px;">
+        <span class="spec-tag">For Campbell</span>
+        <span class="spec-tag neutral">Stones App · Web</span>
+        <span class="spec-tag neutral">June 2026</span>
+      </div>
+    </div>
+    <a class="spec-link" href="journey-page-guideline.html">View mobile guideline with data annotations &rarr;</a>
+  </div>
+
+  <div class="browser-frame">
+
+    <!-- Browser chrome -->
+    <div class="browser-chrome">
+      <div class="browser-dots">
+        <div class="browser-dot dot-red"></div>
+        <div class="browser-dot dot-yellow"></div>
+        <div class="browser-dot dot-green"></div>
+      </div>
+      <div class="browser-url">app.leadwithstones.com/journey</div>
+    </div>
+
+    <!-- App shell -->
+    <div class="app">
+
+      <!-- Sidebar -->
+      <nav class="sidebar">
+        <div class="sidebar-logo">
+          Stones
+          <span>Leadership OS</span>
+        </div>
+
+        <div class="sidebar-nav">
+
+          <div class="nav-item">
+            <svg class="nav-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 10.5L10 4l7 6.5V17a1 1 0 01-1 1H4a1 1 0 01-1-1v-6.5z"/></svg>
+            Home
+          </div>
+
+          <div class="nav-item active">
+            <svg class="nav-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M4 15V9l6-6 6 6v6a1 1 0 01-1 1h-3v-4H8v4H5a1 1 0 01-1-1z"/></svg>
+            Journey
+          </div>
+
+          <div class="nav-item">
+            <svg class="nav-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="10" cy="10" r="7"/><circle cx="10" cy="10" r="2.5"/><line x1="10" y1="3" x2="10" y2="1.5" stroke-linecap="round"/><line x1="10" y1="17" x2="10" y2="18.5" stroke-linecap="round"/><line x1="3" y1="10" x2="1.5" y2="10" stroke-linecap="round"/><line x1="17" y1="10" x2="18.5" y2="10" stroke-linecap="round"/></svg>
+            Compass
+          </div>
+
+          <div class="nav-item">
+            <svg class="nav-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="4" width="14" height="13" rx="2"/><path d="M7 4V2.5M13 4V2.5M3 9h14" stroke-linecap="round"/></svg>
+            Practices
+          </div>
+
+          <div class="nav-item">
+            <svg class="nav-icon" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M10 2C6.13 2 3 5.13 3 9c0 2.38 1.19 4.47 3 5.74V17l2-1 2 1V14.74A7 7 0 0010 2z"/></svg>
+            Community
+          </div>
+
+        </div>
+
+        <div class="sidebar-footer">
+          <div class="user-avatar">SK</div>
+          <div>
+            <div class="user-name">Sarah K.</div>
+            <div class="user-role">People Lead</div>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Main content -->
+      <main class="main">
+        <div class="main-inner">
+
+          <!-- Page header -->
+          <div class="page-header">
+            <div>
+              <div class="page-eyebrow">Your</div>
+              <div class="page-title">Journey</div>
+              <div class="page-subtitle">Started 3 March 2026</div>
+            </div>
+            <button class="btn-outline">Update Compass</button>
+          </div>
+
+          <!-- Option 1: Identity Anchor -->
+          <div class="section-header">
+            <div class="section-label">A moment at your best</div>
+            <span class="option-badge">Option 1</span>
+          </div>
+          <div class="identity-card">
+            <div class="identity-quote">
+              I stayed calm when everything could have gone wrong. I asked the right questions, and the team came out with a plan they actually owned. That felt like leadership.
+            </div>
+            <div class="identity-meta">Your words<br>Added when you joined</div>
+          </div>
+
+          <!-- Three columns -->
+          <div class="three-col">
+
+            <!-- Option 2: Where you lead from -->
+            <div class="col-card">
+              <div class="section-header">
+                <div class="section-label">Where you lead from</div>
+                <span class="option-badge">Option 2</span>
+              </div>
+
+              <div class="signature-card">
+                <div class="signature-label">Your leadership signature</div>
+                <div class="signature-text">"Staying calm under pressure. People come to me because they know I won't panic."</div>
+              </div>
+
+              <div class="strength-card">
+                <div class="strength-dot"></div>
+                <div>
+                  <div class="strength-name">Knowing Yourself</div>
+                  <div class="tag-row">
+                    <span class="domain-tag">Self-Leadership</span>
+                    <span class="status-tag">Build on this</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="strength-card">
+                <div class="strength-dot"></div>
+                <div>
+                  <div class="strength-name">Communication &amp; Influence</div>
+                  <div class="tag-row">
+                    <span class="domain-tag">People Leadership</span>
+                    <span class="status-tag">Build on this</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="strength-card">
+                <div class="strength-dot"></div>
+                <div>
+                  <div class="strength-name">Planning &amp; Organisation</div>
+                  <div class="tag-row">
+                    <span class="domain-tag">Operational</span>
+                    <span class="status-tag">Leverage and maintain</span>
+                  </div>
+                </div>
+              </div>
+
+              <div class="reflection">
+                <div class="reflection-q">Strengths grow through use, and sometimes quietly shape blind spots too. Are there moments where leaning on these might be putting a ceiling on your impact?</div>
+                <span class="reflection-cta">Reflect on this</span>
+              </div>
+            </div>
+
+            <!-- Option 4: Domain profile -->
+            <div class="col-card">
+              <div class="section-header">
+                <div class="section-label">Across four domains</div>
+                <span class="option-badge">Option 4</span>
+              </div>
+
+              <div class="domain-grid">
+
+                <div class="domain-tile">
+                  <div class="domain-name">Self</div>
+                  <div class="conf-track"><div class="conf-fill" style="width:78%"></div></div>
+                  <div class="conf-label">Feeling settled</div>
+                </div>
+
+                <div class="domain-tile on-mind">
+                  <span class="on-mind-flag">On your mind</span>
+                  <div class="domain-name">People</div>
+                  <div class="conf-track"><div class="conf-fill mid" style="width:46%"></div></div>
+                  <div class="conf-label">Still building</div>
+                </div>
+
+                <div class="domain-tile">
+                  <div class="domain-name">Operational</div>
+                  <div class="conf-track"><div class="conf-fill" style="width:70%"></div></div>
+                  <div class="conf-label">Feeling settled</div>
+                </div>
+
+                <div class="domain-tile">
+                  <div class="domain-name">Strategic</div>
+                  <div class="conf-track"><div class="conf-fill low" style="width:28%"></div></div>
+                  <div class="conf-label">Early days</div>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Option 3: Growth edge -->
+            <div class="col-card">
+              <div class="section-header">
+                <div class="section-label">Where you're building</div>
+                <span class="option-badge">Option 3</span>
+              </div>
+
+              <div class="dev-card">
+                <div class="dev-dot"></div>
+                <div>
+                  <div class="dev-name">Coaching &amp; Growing People</div>
+                  <div class="tag-row"><span class="dev-tag">People Leadership</span></div>
+                </div>
+              </div>
+
+              <div class="dev-card">
+                <div class="dev-dot"></div>
+                <div>
+                  <div class="dev-name">Navigating Conflict</div>
+                  <div class="tag-row"><span class="dev-tag">People Leadership</span></div>
+                </div>
+              </div>
+
+              <div class="reflection dev">
+                <div class="reflection-q">Growth tends to feel uncomfortable before it feels natural. Which of these feels most out of reach right now? That might be worth exploring. We can help with that.</div>
+                <span class="reflection-cta dev">Find a Practice</span>
+              </div>
+            </div>
+
+          </div><!-- /three-col -->
+
+          <!-- Option 5: Focus map -->
+          <div class="focus-map">
+            <div class="section-header">
+              <div class="section-label">Your focus map</div>
+              <span class="option-badge">Option 5</span>
+            </div>
+            <div class="priority-row">
+              <div>
+                <div class="priority-heading">Confident and a priority to keep building</div>
+                <div class="pills">
+                  <span class="pill pill-build">Knowing Yourself</span>
+                  <span class="pill pill-build">Communication &amp; Influence</span>
+                  <span class="pill pill-build">Staying Curious</span>
+                </div>
+              </div>
+              <div>
+                <div class="priority-heading">Your development focus</div>
+                <div class="pills">
+                  <span class="pill pill-develop">Coaching &amp; Growing People</span>
+                  <span class="pill pill-develop">Navigating Conflict</span>
+                </div>
+              </div>
+              <div>
+                <div class="priority-heading">Sitting steady, not the focus right now</div>
+                <div class="pills">
+                  <span class="pill pill-maintain">Risk &amp; Governance</span>
+                  <span class="pill pill-maintain">Commercial Acumen</span>
+                  <span class="pill pill-maintain">Vision &amp; Strategy</span>
+                  <span class="pill pill-maintain">Holding Standards</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Bottom row: Arc + Challenge -->
+          <div class="bottom-row">
+
+            <!-- Option 6: Arc -->
+            <div class="bottom-card">
+              <div class="section-header">
+                <div class="section-label">Your journey so far</div>
+                <span class="option-badge">Option 6</span>
+              </div>
+
+              <div class="arc-timeline">
+                <div class="arc-node">
+                  <div class="arc-dot done"></div>
+                  <div class="arc-label"><strong>Started</strong>3 Mar 2026</div>
+                </div>
+                <div class="arc-line done"></div>
+                <div class="arc-node">
+                  <div class="arc-dot now"></div>
+                  <div class="arc-label"><strong>Today</strong>12 Jun 2026</div>
+                </div>
+                <div class="arc-line"></div>
+                <div class="arc-node">
+                  <div class="arc-dot next"></div>
+                  <div class="arc-label muted"><strong>Next check-in</strong>Update Compass</div>
+                </div>
+              </div>
+
+              <div class="arc-stats">
+                <div class="arc-stat">
+                  <div class="arc-stat-number">7</div>
+                  <div class="arc-stat-label">Practices completed</div>
+                </div>
+                <div class="arc-stat">
+                  <div class="arc-stat-number">101</div>
+                  <div class="arc-stat-label">Days on your journey</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Option 7: Challenge orientation -->
+            <div class="bottom-card">
+              <div class="section-header">
+                <div class="section-label">How you tend to meet challenge</div>
+                <span class="option-badge">Option 7</span>
+              </div>
+              <div class="challenge-statement">
+                You told us you tend to treat hard moments as <em>data, something to learn from.</em>
+              </div>
+              <div class="challenge-note">
+                That might be worth remembering as you step into your growth edges. The discomfort ahead could feel more familiar than you expect.
+              </div>
+            </div>
+
+          </div><!-- /bottom-row -->
+
+        </div><!-- /main-inner -->
+      </main>
+
+    </div><!-- /app -->
+  </div><!-- /browser-frame -->
+
+</body>
+</html>
