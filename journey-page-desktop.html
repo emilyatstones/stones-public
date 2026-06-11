@@ -590,17 +590,39 @@
     .pill-develop { background: rgba(190,121,108,0.12); color: var(--black); }
     .pill-maintain{ background: rgba(198,198,197,0.3); color: var(--concrete); }
 
-    /* ── Bottom row ── */
-    .bottom-row {
-      display: grid;
-      grid-template-columns: 1.6fr 1fr;
-      gap: 14px;
+    /* ── Option 6: What you've built ── */
+    .celebration-card {
+      background: var(--off-white);
+      border-radius: 16px;
+      padding: 24px 28px;
+      margin-bottom: 18px;
+      display: flex;
+      gap: 40px;
+      align-items: center;
     }
 
-    .bottom-card {
+    .celebration-left { flex: 1; min-width: 0; }
+    .celebration-right { flex: 1; min-width: 0; }
+
+    .celebration-line {
+      font-size: 15px;
+      line-height: 1.65;
+      color: var(--black);
+      margin-bottom: 20px;
+    }
+
+    .arc-stats-four {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    /* ── Option 7: Challenge card (standalone) ── */
+    .challenge-standalone {
       background: var(--off-white);
       border-radius: 14px;
-      padding: 18px;
+      padding: 20px 24px;
+      max-width: 520px;
     }
 
     /* Arc */
@@ -791,6 +813,53 @@
             <div class="identity-meta">Your words<br>Added when you joined</div>
           </div>
 
+          <!-- Option 6: What you've built (position 2) -->
+          <div class="section-header">
+            <div class="section-label">What you've built</div>
+            <span class="option-badge">Option 6</span>
+          </div>
+          <div class="celebration-card">
+            <div class="celebration-left">
+              <div class="celebration-line">Seven Practices. Fourteen stories. 101 days. This is what the work looks like.</div>
+              <div class="arc-timeline">
+                <div class="arc-node">
+                  <div class="arc-dot done"></div>
+                  <div class="arc-label"><strong>Started</strong>3 Mar 2026</div>
+                </div>
+                <div class="arc-line done"></div>
+                <div class="arc-node">
+                  <div class="arc-dot now"></div>
+                  <div class="arc-label"><strong>Today</strong>12 Jun 2026</div>
+                </div>
+                <div class="arc-line"></div>
+                <div class="arc-node">
+                  <div class="arc-dot next"></div>
+                  <div class="arc-label muted"><strong>Next check-in</strong>Update Compass</div>
+                </div>
+              </div>
+            </div>
+            <div class="celebration-right">
+              <div class="arc-stats-four">
+                <div class="arc-stat">
+                  <div class="arc-stat-number">7</div>
+                  <div class="arc-stat-label">Practices completed</div>
+                </div>
+                <div class="arc-stat">
+                  <div class="arc-stat-number">14</div>
+                  <div class="arc-stat-label">Stories and Guides read</div>
+                </div>
+                <div class="arc-stat">
+                  <div class="arc-stat-number">101</div>
+                  <div class="arc-stat-label">Days on your journey</div>
+                </div>
+                <div class="arc-stat">
+                  <div class="arc-stat-number">3</div>
+                  <div class="arc-stat-label">of 4 domains explored</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
           <!-- Three columns -->
           <div class="three-col">
 
@@ -947,60 +1016,19 @@
             </div>
           </div>
 
-          <!-- Bottom row: Arc + Challenge -->
-          <div class="bottom-row">
-
-            <!-- Option 6: Arc -->
-            <div class="bottom-card">
-              <div class="section-header">
-                <div class="section-label">Your journey so far</div>
-                <span class="option-badge">Option 6</span>
-              </div>
-
-              <div class="arc-timeline">
-                <div class="arc-node">
-                  <div class="arc-dot done"></div>
-                  <div class="arc-label"><strong>Started</strong>3 Mar 2026</div>
-                </div>
-                <div class="arc-line done"></div>
-                <div class="arc-node">
-                  <div class="arc-dot now"></div>
-                  <div class="arc-label"><strong>Today</strong>12 Jun 2026</div>
-                </div>
-                <div class="arc-line"></div>
-                <div class="arc-node">
-                  <div class="arc-dot next"></div>
-                  <div class="arc-label muted"><strong>Next check-in</strong>Update Compass</div>
-                </div>
-              </div>
-
-              <div class="arc-stats">
-                <div class="arc-stat">
-                  <div class="arc-stat-number">7</div>
-                  <div class="arc-stat-label">Practices completed</div>
-                </div>
-                <div class="arc-stat">
-                  <div class="arc-stat-number">101</div>
-                  <div class="arc-stat-label">Days on your journey</div>
-                </div>
-              </div>
+          <!-- Option 7: Challenge orientation -->
+          <div class="challenge-standalone">
+            <div class="section-header">
+              <div class="section-label">How you tend to meet challenge</div>
+              <span class="option-badge">Option 7</span>
             </div>
-
-            <!-- Option 7: Challenge orientation -->
-            <div class="bottom-card">
-              <div class="section-header">
-                <div class="section-label">How you tend to meet challenge</div>
-                <span class="option-badge">Option 7</span>
-              </div>
-              <div class="challenge-statement">
-                You told us you tend to treat hard moments as <em>data, something to learn from.</em>
-              </div>
-              <div class="challenge-note">
-                That might be worth remembering as you step into your growth edges. The discomfort ahead could feel more familiar than you expect.
-              </div>
+            <div class="challenge-statement">
+              You told us you tend to treat hard moments as <em>data, something to learn from.</em>
             </div>
-
-          </div><!-- /bottom-row -->
+            <div class="challenge-note">
+              That might be worth remembering as you step into your growth edges. The discomfort ahead could feel more familiar than you expect.
+            </div>
+          </div>
 
         </div><!-- /main-inner -->
       </main>
