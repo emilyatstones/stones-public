@@ -1,0 +1,859 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Partner Directory — Design Spec</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --green:        #506B56;
+      --green-dark:   #3A5040;
+      --green-light:  #EBF0EC;
+      --terracotta:   #BE796C;
+      --terra-light:  #F5EDE9;
+      --clay:         #DAB4A4;
+      --willow:       #CECE9C;
+      --wave-dark:    #255C9B;
+      --wave-light:   #D1E1F5;
+      --forest:       #578E4E;
+      --forest-light: #EBF5E9;
+      --cream:        #F4F1EA;
+      --off-white:    #FCFAFA;
+      --black:        #3C3C3B;
+      --concrete:     #878786;
+      --grey:         #C6C6C5;
+      --grey-light:   #EBEBEA;
+      --dark-bg:      #18181a;
+
+      /* Domain colour system */
+      --self-bg:       #F4F1E4;
+      --self-text:     #6B6330;
+      --self-border:   #D6CF9A;
+      --people-bg:     #F5EDE9;
+      --people-text:   #9B5C51;
+      --people-border: #D4A79E;
+      --ops-bg:        #D1E1F5;
+      --ops-text:      #1A3F6F;
+      --ops-border:    #A0BDD8;
+      --strat-bg:      #EBF5E9;
+      --strat-text:    #3A6232;
+      --strat-border:  #9FC49A;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--dark-bg);
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      padding: 48px 32px 100px;
+    }
+
+    /* ─── SPEC WRAPPER ─── */
+
+    .spec-wrapper { max-width: 1160px; margin: 0 auto; }
+
+    .spec-header {
+      margin-bottom: 40px;
+      padding-bottom: 32px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .spec-eyebrow {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.14em;
+      text-transform: uppercase; color: #6B9FD4; margin-bottom: 10px;
+    }
+
+    .spec-title {
+      font-size: 24px; font-weight: 700; color: #fff;
+      letter-spacing: -0.02em; margin-bottom: 10px;
+    }
+
+    .spec-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+
+    .spec-tag {
+      display: inline-block;
+      background: rgba(37,92,155,0.22);
+      color: #6B9FD4;
+      border-radius: 4px;
+      font-size: 11px; font-weight: 600;
+      padding: 3px 9px; letter-spacing: 0.06em; text-transform: uppercase;
+    }
+
+    .spec-tag.neutral {
+      background: rgba(255,255,255,0.07);
+      color: rgba(255,255,255,0.4);
+    }
+
+    .spec-meta {
+      font-size: 13px; color: rgba(255,255,255,0.4);
+      line-height: 1.7; max-width: 720px;
+    }
+
+    .spec-notes {
+      margin-top: 20px;
+      display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px;
+    }
+
+    .spec-note {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 8px; padding: 14px 16px;
+    }
+
+    .spec-note-label {
+      font-size: 10px; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: #6B9FD4; margin-bottom: 6px;
+    }
+
+    .spec-note p { font-size: 12.5px; color: rgba(255,255,255,0.5); line-height: 1.6; }
+
+    /* ─── APP FRAME ─── */
+
+    .app-frame {
+      background: var(--off-white);
+      border-radius: 16px;
+      overflow: hidden;
+      box-shadow: 0 32px 80px rgba(0,0,0,0.5);
+    }
+
+    /* ─── TOP BAR ─── */
+
+    .topbar {
+      background: white;
+      border-bottom: 1px solid var(--grey-light);
+      padding: 16px 32px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      position: sticky;
+      top: 0;
+      z-index: 20;
+    }
+
+    .topbar-back {
+      width: 32px; height: 32px;
+      background: var(--grey-light);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; flex-shrink: 0;
+    }
+
+    .topbar-title-block { flex: 1; }
+
+    .topbar-title {
+      font-size: 16px; font-weight: 700;
+      color: var(--black); letter-spacing: -0.01em;
+    }
+
+    .topbar-sub {
+      font-size: 12px; color: var(--concrete); margin-top: 1px;
+    }
+
+    .topbar-search {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--grey-light);
+      border-radius: 8px;
+      padding: 8px 14px;
+      width: 260px;
+    }
+
+    .topbar-search input {
+      background: transparent;
+      border: none;
+      outline: none;
+      font-family: inherit;
+      font-size: 13.5px;
+      color: var(--black);
+      width: 100%;
+    }
+
+    .topbar-search input::placeholder { color: var(--concrete); }
+
+    /* ─── FILTER SECTION ─── */
+
+    .filter-section {
+      background: white;
+      border-bottom: 1px solid var(--grey-light);
+      padding: 16px 32px 0;
+    }
+
+    .domain-tabs {
+      display: flex;
+      gap: 0;
+      margin-bottom: 0;
+    }
+
+    .domain-tab {
+      display: flex;
+      align-items: center;
+      gap: 7px;
+      padding: 10px 18px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--concrete);
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      margin-bottom: -1px;
+      transition: all 0.15s;
+    }
+
+    .domain-tab.active {
+      color: var(--black);
+      border-bottom-color: var(--green);
+    }
+
+    .domain-tab.active.people  { border-bottom-color: var(--terracotta); }
+    .domain-tab.active.ops     { border-bottom-color: var(--wave-dark); }
+    .domain-tab.active.strat   { border-bottom-color: var(--forest); }
+
+    .tab-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .dot-self    { background: #BFB860; }
+    .dot-people  { background: var(--terracotta); }
+    .dot-ops     { background: var(--wave-dark); }
+    .dot-strat   { background: var(--forest); }
+
+    .subdomain-chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      padding: 12px 0 14px;
+      border-top: 1px solid var(--grey-light);
+      margin-top: 4px;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: var(--cream);
+      border: 1px solid var(--grey);
+      border-radius: 20px;
+      padding: 4px 11px;
+      font-size: 12px;
+      font-weight: 500;
+      color: var(--concrete);
+      cursor: pointer;
+    }
+
+    .chip.active {
+      background: var(--green-light);
+      border-color: var(--green);
+      color: var(--green-dark);
+      font-weight: 600;
+    }
+
+    .chip.all {
+      background: var(--black);
+      border-color: var(--black);
+      color: white;
+      font-weight: 600;
+    }
+
+    /* ─── RESULTS HEADER ─── */
+
+    .results-header {
+      padding: 20px 32px 4px;
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+    }
+
+    .results-count {
+      font-size: 13px;
+      color: var(--concrete);
+    }
+
+    .results-count strong {
+      color: var(--black);
+      font-weight: 700;
+    }
+
+    .sort-label {
+      font-size: 12.5px;
+      font-weight: 500;
+      color: var(--concrete);
+    }
+
+    /* ─── PARTNER GRID ─── */
+
+    .partner-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      padding: 16px 32px 48px;
+    }
+
+    /* ─── PARTNER CARD ─── */
+
+    .partner-card {
+      background: white;
+      border: 1px solid var(--grey-light);
+      border-radius: 12px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      transition: box-shadow 0.15s;
+    }
+
+    .partner-card:hover {
+      box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+    }
+
+    .card-header {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .partner-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      font-weight: 700;
+      color: white;
+      flex-shrink: 0;
+      background: var(--green);
+    }
+
+    .partner-avatar.terra   { background: var(--terracotta); }
+    .partner-avatar.wave    { background: var(--wave-dark); }
+    .partner-avatar.forest  { background: var(--forest); }
+    .partner-avatar.willow  { background: #A8A84A; }
+    .partner-avatar.clay    { background: #B08065; }
+
+    .card-name-block { flex: 1; min-width: 0; }
+
+    .card-name {
+      font-size: 14.5px;
+      font-weight: 700;
+      color: var(--black);
+      letter-spacing: -0.01em;
+      line-height: 1.2;
+    }
+
+    .card-title {
+      font-size: 12px;
+      color: var(--concrete);
+      margin-top: 3px;
+      line-height: 1.3;
+    }
+
+    .premium-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--green);
+      margin-top: 6px;
+      flex-shrink: 0;
+      box-shadow: 0 0 0 2px var(--green-light);
+    }
+
+    .card-domains {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      margin-bottom: 12px;
+    }
+
+    .domain-tag {
+      display: inline-block;
+      font-size: 10.5px;
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      padding: 2px 8px;
+      border-radius: 4px;
+    }
+
+    .tag-self   { background: var(--self-bg);   color: var(--self-text);   border: 1px solid var(--self-border); }
+    .tag-people { background: var(--people-bg); color: var(--people-text); border: 1px solid var(--people-border); }
+    .tag-ops    { background: var(--ops-bg);    color: var(--ops-text);    border: 1px solid var(--ops-border); }
+    .tag-strat  { background: var(--strat-bg);  color: var(--strat-text);  border: 1px solid var(--strat-border); }
+
+    .card-bio {
+      font-size: 12.5px;
+      color: var(--concrete);
+      line-height: 1.55;
+      margin-bottom: 14px;
+      flex: 1;
+
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .card-footer {
+      padding-top: 12px;
+      border-top: 1px solid var(--grey-light);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+    }
+
+    .card-meta {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .card-meta-item {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      font-size: 11.5px;
+      color: var(--concrete);
+    }
+
+    .card-meta-item svg { opacity: 0.5; }
+
+    .card-links {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .link-btn {
+      width: 28px; height: 28px;
+      background: var(--grey-light);
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .link-btn:hover { background: var(--cream); }
+
+    .view-profile-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: var(--green-light);
+      color: var(--green-dark);
+      font-size: 12px;
+      font-weight: 600;
+      padding: 6px 12px;
+      border-radius: 6px;
+      cursor: pointer;
+      border: none;
+      margin-left: auto;
+    }
+
+    /* ─── LOAD MORE ─── */
+
+    .load-more {
+      padding: 0 32px 32px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .load-more-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: white;
+      border: 1px solid var(--grey);
+      border-radius: 8px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--concrete);
+      padding: 10px 20px;
+      cursor: pointer;
+    }
+
+    /* ─── ANNOTATION ─── */
+
+    .annotation {
+      background: rgba(255, 222, 115, 0.08);
+      border: 1px solid rgba(255, 222, 115, 0.2);
+      border-radius: 8px;
+      padding: 12px 16px;
+      margin-top: 16px;
+      font-size: 12.5px;
+      color: rgba(255,255,255,0.5);
+      line-height: 1.6;
+    }
+
+    .annotation strong { color: #FFDE73; font-weight: 600; }
+
+    svg { display: block; }
+  </style>
+</head>
+<body>
+<div class="spec-wrapper">
+
+  <!-- ── Spec Header ── -->
+  <div class="spec-header">
+    <div class="spec-eyebrow">Stones — Design Spec</div>
+    <div class="spec-title">Partner Directory — Leader View</div>
+    <div class="spec-tags">
+      <span class="spec-tag">In-App Page</span>
+      <span class="spec-tag">Leader-Facing</span>
+      <span class="spec-tag neutral">For Campbell + Mike</span>
+      <span class="spec-tag neutral">June 2026</span>
+    </div>
+    <div class="spec-meta">
+      The in-app partner index, visible to all leaders. Filterable by domain and subdomain. Each card shows the partner's expertise, a short bio, their Stones content count, and direct links to their LinkedIn and website. Partners do not appear here unless they have at least one published piece of content.
+    </div>
+    <div class="spec-notes">
+      <div class="spec-note">
+        <div class="spec-note-label">Filter logic</div>
+        <p>Domain tabs filter the subdomain chip row below. Selecting a subdomain chip filters the card grid. "All" shows every partner. Multiple subdomain chips can be selected simultaneously.</p>
+      </div>
+      <div class="spec-note">
+        <div class="spec-note-label">Card ordering</div>
+        <p>Default sort: most active content this quarter first. Secondary sort: alphabetical. Premium partners (active remuneration) shown with a green dot indicator. Leaders can sort by A–Z or content recency.</p>
+      </div>
+      <div class="spec-note">
+        <div class="spec-note-label">Enquiry flow</div>
+        <p>LinkedIn and website links open in browser. No in-app enquiry form — Stones surfaces the partner; the relationship is theirs to close. "View Profile" shows the partner's full bio and all their content.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── App Frame ── -->
+  <div class="app-frame">
+
+    <!-- Top Bar -->
+    <div class="topbar">
+      <div class="topbar-back">
+        <svg width="14" height="14" fill="none" stroke="#878786" stroke-width="2.5" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      </div>
+      <div class="topbar-title-block">
+        <div class="topbar-title">Partner Network</div>
+        <div class="topbar-sub">Expert coaches and consultants behind your Stones content</div>
+      </div>
+      <div class="topbar-search">
+        <svg width="14" height="14" fill="none" stroke="#878786" stroke-width="2" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+        <input type="text" placeholder="Search by name or expertise…">
+      </div>
+    </div>
+
+    <!-- Filter Section -->
+    <div class="filter-section">
+      <div class="domain-tabs">
+        <div class="domain-tab active">
+          <span class="tab-dot dot-self"></span>
+          All
+        </div>
+        <div class="domain-tab">
+          <span class="tab-dot dot-self"></span>
+          Self-Leadership
+        </div>
+        <div class="domain-tab people">
+          <span class="tab-dot dot-people"></span>
+          People Leadership
+        </div>
+        <div class="domain-tab ops">
+          <span class="tab-dot dot-ops"></span>
+          Operational
+        </div>
+        <div class="domain-tab strat">
+          <span class="tab-dot dot-strat"></span>
+          Strategic
+        </div>
+      </div>
+      <div class="subdomain-chips">
+        <div class="chip all">All expertise</div>
+        <div class="chip">Knowing Yourself</div>
+        <div class="chip">Managing Your Reactions</div>
+        <div class="chip">Showing Up Authentically</div>
+        <div class="chip">Sustaining Yourself</div>
+        <div class="chip active">Communication &amp; Influence</div>
+        <div class="chip">Navigating Conflict</div>
+        <div class="chip">Coaching &amp; Growing People</div>
+        <div class="chip">Building High-Performing Teams</div>
+        <div class="chip">Holding Standards</div>
+        <div class="chip">Supporting People's Wellbeing</div>
+        <div class="chip">Getting the Right Things Done</div>
+        <div class="chip">Making Sound Decisions</div>
+        <div class="chip">Leading Through Uncertainty</div>
+        <div class="chip">Vision &amp; Strategy</div>
+        <div class="chip">Stakeholder Relationships</div>
+        <div class="chip">Innovation &amp; Adaptation</div>
+      </div>
+    </div>
+
+    <!-- Results Header -->
+    <div class="results-header">
+      <div class="results-count">Showing <strong>26</strong> expert partners</div>
+      <div class="sort-label">Sorted by: Most active</div>
+    </div>
+
+    <!-- Partner Grid -->
+    <div class="partner-grid">
+
+      <!-- Card 1: Sarah Mitchell -->
+      <div class="partner-card">
+        <div class="card-header">
+          <div class="partner-avatar terra">SM</div>
+          <div class="card-name-block">
+            <div class="card-name">Sarah Mitchell</div>
+            <div class="card-title">Communication &amp; Influence Coach, Auckland</div>
+          </div>
+          <div class="premium-dot" title="Premium Partner"></div>
+        </div>
+        <div class="card-domains">
+          <span class="domain-tag tag-people">Communication &amp; Influence</span>
+          <span class="domain-tag tag-people">Navigating Conflict</span>
+        </div>
+        <div class="card-bio">
+          15 years helping leaders and teams communicate with clarity and confidence. Specialises in high-stakes conversations, influence without authority, and building trust through honest dialogue.
+        </div>
+        <div class="card-footer">
+          <div class="card-meta">
+            <div class="card-meta-item">
+              <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+              2 pieces
+            </div>
+          </div>
+          <div class="card-links">
+            <a class="link-btn" title="LinkedIn">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="#255C9B"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+            </a>
+            <a class="link-btn" title="Website">
+              <svg width="13" height="13" fill="none" stroke="#878786" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>
+            </a>
+            <button class="view-profile-btn">
+              View Profile
+              <svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 2: James Okafor -->
+      <div class="partner-card">
+        <div class="card-header">
+          <div class="partner-avatar wave">JO</div>
+          <div class="card-name-block">
+            <div class="card-name">James Okafor</div>
+            <div class="card-title">Executive Coach &amp; Strategy Advisor, Wellington</div>
+          </div>
+          <div class="premium-dot" title="Premium Partner"></div>
+        </div>
+        <div class="card-domains">
+          <span class="domain-tag tag-strat">Vision &amp; Strategy</span>
+          <span class="domain-tag tag-strat">Stakeholder Relationships</span>
+        </div>
+        <div class="card-bio">
+          Former GM turned executive coach. Works with senior leaders navigating growth, complexity, and organisational politics. Known for helping leaders build genuine influence across their organisation.
+        </div>
+        <div class="card-footer">
+          <div class="card-meta">
+            <div class="card-meta-item">
+              <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+              2 pieces
+            </div>
+          </div>
+          <div class="card-links">
+            <a class="link-btn" title="LinkedIn">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="#255C9B"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+            </a>
+            <a class="link-btn" title="Website">
+              <svg width="13" height="13" fill="none" stroke="#878786" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>
+            </a>
+            <button class="view-profile-btn">
+              View Profile
+              <svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3: Priya Sharma -->
+      <div class="partner-card">
+        <div class="card-header">
+          <div class="partner-avatar forest">PS</div>
+          <div class="card-name-block">
+            <div class="card-name">Dr Priya Sharma</div>
+            <div class="card-title">Organisational Psychologist, Sydney</div>
+          </div>
+          <div class="premium-dot" title="Premium Partner"></div>
+        </div>
+        <div class="card-domains">
+          <span class="domain-tag tag-people">Building High-Performing Teams</span>
+          <span class="domain-tag tag-people">Creating an Inclusive Culture</span>
+          <span class="domain-tag tag-people">Wellbeing</span>
+        </div>
+        <div class="card-bio">
+          Organisational psychologist with a focus on team dynamics, psychological safety, and inclusive cultures. Brings rigorous research into practical frameworks leaders can apply immediately.
+        </div>
+        <div class="card-footer">
+          <div class="card-meta">
+            <div class="card-meta-item">
+              <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+              3 pieces
+            </div>
+          </div>
+          <div class="card-links">
+            <a class="link-btn" title="LinkedIn">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="#255C9B"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+            </a>
+            <a class="link-btn" title="Website">
+              <svg width="13" height="13" fill="none" stroke="#878786" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>
+            </a>
+            <button class="view-profile-btn">
+              View Profile
+              <svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 4: Marcus Reid -->
+      <div class="partner-card">
+        <div class="card-header">
+          <div class="partner-avatar">MR</div>
+          <div class="card-name-block">
+            <div class="card-name">Marcus Reid</div>
+            <div class="card-title">High-Performance Coach, Christchurch</div>
+          </div>
+          <div class="premium-dot" title="Premium Partner"></div>
+        </div>
+        <div class="card-domains">
+          <span class="domain-tag tag-self">Sustaining Yourself</span>
+          <span class="domain-tag tag-self">Managing Your Reactions</span>
+        </div>
+        <div class="card-bio">
+          Sports psychologist and leadership coach. Helps leaders manage pressure, regulate under stress, and build the personal resilience that makes sustained high performance possible over the long run.
+        </div>
+        <div class="card-footer">
+          <div class="card-meta">
+            <div class="card-meta-item">
+              <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+              2 pieces
+            </div>
+          </div>
+          <div class="card-links">
+            <a class="link-btn" title="LinkedIn">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="#255C9B"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+            </a>
+            <a class="link-btn" title="Website">
+              <svg width="13" height="13" fill="none" stroke="#878786" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>
+            </a>
+            <button class="view-profile-btn">
+              View Profile
+              <svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 5: Helen Tait -->
+      <div class="partner-card">
+        <div class="card-header">
+          <div class="partner-avatar clay">HT</div>
+          <div class="card-name-block">
+            <div class="card-name">Helen Tait</div>
+            <div class="card-title">Leadership &amp; Operations Consultant, Melbourne</div>
+          </div>
+          <div class="premium-dot" title="Premium Partner"></div>
+        </div>
+        <div class="card-domains">
+          <span class="domain-tag tag-ops">Getting the Right Things Done</span>
+          <span class="domain-tag tag-ops">Making Sound Decisions</span>
+          <span class="domain-tag tag-ops">Leading Through Uncertainty</span>
+        </div>
+        <div class="card-bio">
+          Specialist in operational leadership and decision-making in ambiguity. Helps leaders build clarity, structure, and sound judgment when the path forward is unclear or the stakes are high.
+        </div>
+        <div class="card-footer">
+          <div class="card-meta">
+            <div class="card-meta-item">
+              <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+              1 piece
+            </div>
+          </div>
+          <div class="card-links">
+            <a class="link-btn" title="LinkedIn">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="#255C9B"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+            </a>
+            <a class="link-btn" title="Website">
+              <svg width="13" height="13" fill="none" stroke="#878786" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>
+            </a>
+            <button class="view-profile-btn">
+              View Profile
+              <svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 6: David Chen -->
+      <div class="partner-card">
+        <div class="card-header">
+          <div class="partner-avatar willow">DC</div>
+          <div class="card-name-block">
+            <div class="card-name">David Chen</div>
+            <div class="card-title">Strategy &amp; Innovation Advisor, Auckland</div>
+          </div>
+          <div class="premium-dot" title="Premium Partner"></div>
+        </div>
+        <div class="card-domains">
+          <span class="domain-tag tag-strat">Vision &amp; Strategy</span>
+          <span class="domain-tag tag-strat">Reading the Landscape</span>
+          <span class="domain-tag tag-strat">Innovation &amp; Adaptation</span>
+        </div>
+        <div class="card-bio">
+          Works with leadership teams translating strategic intent into practical direction. Background in growth strategy and innovation; brings a mix of analytical rigour and pragmatic execution thinking.
+        </div>
+        <div class="card-footer">
+          <div class="card-meta">
+            <div class="card-meta-item">
+              <svg width="12" height="12" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+              2 pieces
+            </div>
+          </div>
+          <div class="card-links">
+            <a class="link-btn" title="LinkedIn">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="#255C9B"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+            </a>
+            <a class="link-btn" title="Website">
+              <svg width="13" height="13" fill="none" stroke="#878786" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>
+            </a>
+            <button class="view-profile-btn">
+              View Profile
+              <svg width="10" height="10" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+            </button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+    <!-- /partner-grid -->
+
+    <div class="load-more">
+      <button class="load-more-btn">
+        Show more partners (20 remaining)
+        <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"/></svg>
+      </button>
+    </div>
+
+  </div>
+  <!-- /app-frame -->
+
+  <div class="annotation">
+    <strong>Design notes for Campbell + Mike</strong> — This is the leader-facing view; it uses the standard Stones green accent (not the partner-portal blue). Domain colour coding is consistent across the app: Self = Willow/gold, People = Terracotta, Operational = Wave Blue, Strategic = Forest Green. The premium dot (small green circle, top-right of card) appears only for Premium Partners. Partners with no published content are not shown. "View Profile" leads to a full partner profile page (not mocked here) showing their complete bio, all Stones content, and contact links. Filter chips in the subdomain row should be dynamically generated from the 23 subdomains in the content architecture.
+  </div>
+
+</div>
+</body>
+</html>
