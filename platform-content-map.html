@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stones — Platform Content Map</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --green:       #506B56;
+      --green-dark:  #3A5040;
+      --green-light: #EBF0EC;
+      --forest:      #578E4E;
+      --willow:      #CECE9C;
+      --cream:       #F4F1EA;
+      --terracotta:  #BE796C;
+      --clay:        #DAB4A4;
+      --wave-dark:   #255C9B;
+      --wave-light:  #D1E1F5;
+      --sunset:      #FFDE73;
+      --off-white:   #FCFAFA;
+      --black:       #3C3C3B;
+      --concrete:    #878786;
+      --grey:        #C6C6C5;
+      --dark-bg:     #2A2A29;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--cream);
+      color: var(--black);
+      padding: 48px 56px 80px;
+      max-width: 1200px;
+      margin: 0 auto;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* HEADER */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 48px;
+      padding-bottom: 24px;
+      border-bottom: 2px solid var(--green);
+    }
+    .header-left .eyebrow {
+      display: block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 8px;
+    }
+    .header-left h1 {
+      font-size: 34px;
+      font-weight: 700;
+      color: var(--black);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+    .header-left .subtitle {
+      font-size: 15px;
+      color: var(--concrete);
+      margin-top: 8px;
+      font-weight: 400;
+    }
+    .header-right { text-align: right; }
+    .tag {
+      display: inline-block;
+      background: var(--green);
+      color: white;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 3px;
+    }
+    .tag.blue { background: var(--wave-dark); }
+    .header-date {
+      font-size: 12px;
+      color: var(--concrete);
+      margin-top: 6px;
+      display: block;
+    }
+
+    /* INTRO BLOCK */
+    .intro {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+      margin-bottom: 48px;
+      background: var(--green-dark);
+      border-radius: 12px;
+      overflow: hidden;
+    }
+    .intro-left {
+      padding: 36px 40px;
+    }
+    .intro-right {
+      padding: 36px 40px;
+      border-left: 1px solid rgba(255,255,255,0.1);
+    }
+    .intro-statement {
+      font-size: 21px;
+      font-weight: 700;
+      line-height: 1.38;
+      letter-spacing: -0.01em;
+      color: white;
+    }
+    .intro-statement em {
+      color: var(--sunset);
+      font-style: normal;
+    }
+    .intro-detail {
+      font-size: 14px;
+      line-height: 1.72;
+      color: rgba(255,255,255,0.68);
+    }
+    .intro-detail p + p { margin-top: 12px; }
+
+    /* SECTION LABEL */
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--concrete);
+      margin-bottom: 20px;
+    }
+
+    /* APP STRUCTURE */
+    .app-structure { margin-bottom: 48px; }
+    .app-nav {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+    }
+    .nav-tab {
+      border-radius: 10px;
+      padding: 22px 22px 18px;
+      background: white;
+      border: 1.5px solid var(--grey);
+      position: relative;
+    }
+    .nav-tab.discover {
+      border-color: var(--green);
+      background: var(--green-light);
+    }
+    .nav-indicator {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--grey);
+      position: absolute;
+      top: 22px;
+      right: 22px;
+    }
+    .nav-tab.discover .nav-indicator { background: var(--green); }
+    .nav-tab-name {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--black);
+      margin-bottom: 6px;
+    }
+    .nav-tab-desc {
+      font-size: 12.5px;
+      color: var(--concrete);
+      line-height: 1.55;
+    }
+    .nav-tab-home {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 8px;
+    }
+
+    /* ZONES */
+    .content-types-section { margin-bottom: 48px; }
+    .zones { display: flex; flex-direction: column; gap: 20px; }
+
+    .zone {
+      border-radius: 12px;
+      border: 1px solid var(--grey);
+      background: white;
+      overflow: hidden;
+    }
+    .zone-header {
+      padding: 14px 22px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .zone-pip {
+      width: 9px;
+      height: 9px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+    .zone-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+    .zone-where {
+      font-size: 11.5px;
+      color: var(--concrete);
+      margin-left: auto;
+    }
+    .zone-cards {
+      display: grid;
+      padding: 4px 16px 16px;
+      gap: 12px;
+    }
+    .zone-cards.two   { grid-template-columns: 1fr 1fr; }
+    .zone-cards.three { grid-template-columns: 1fr 1fr 1fr; }
+    .zone-cards.one   { grid-template-columns: 1fr; }
+
+    .type-card {
+      background: var(--cream);
+      border-radius: 8px;
+      padding: 20px 22px;
+      border: 1px solid #e5e2db;
+    }
+    .type-card.featured {
+      background: var(--wave-light);
+      border-color: #b8cde8;
+    }
+    .type-name {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--black);
+      margin-bottom: 3px;
+    }
+    .type-formerly {
+      font-size: 11px;
+      color: var(--concrete);
+      margin-bottom: 12px;
+      font-style: italic;
+    }
+    .type-what {
+      font-size: 13px;
+      color: var(--black);
+      line-height: 1.58;
+      margin-bottom: 12px;
+    }
+    .type-impact {
+      font-size: 12.5px;
+      color: var(--concrete);
+      line-height: 1.52;
+      padding-top: 12px;
+      border-top: 1px solid #dedad4;
+    }
+    .type-impact strong {
+      color: var(--black);
+      font-weight: 600;
+    }
+
+    /* ZONE COLOUR CODING */
+    .zone.orientation .zone-header  { background: #edf2ee; }
+    .zone.orientation .zone-pip     { background: var(--green-dark); }
+    .zone.orientation .zone-label   { color: var(--green-dark); }
+
+    .zone.skill .zone-header        { background: #eff4f0; }
+    .zone.skill .zone-pip           { background: var(--green); }
+    .zone.skill .zone-label         { color: var(--green); }
+
+    .zone.intelligence .zone-header { background: #e8edf5; }
+    .zone.intelligence .zone-pip    { background: var(--wave-dark); }
+    .zone.intelligence .zone-label  { color: var(--wave-dark); }
+
+    .zone.practical .zone-header    { background: #f5f5e7; }
+    .zone.practical .zone-pip       { background: #8a8a3a; }
+    .zone.practical .zone-label     { color: #8a8a3a; }
+
+    .zone.connection .zone-header   { background: #f5ede9; }
+    .zone.connection .zone-pip      { background: var(--terracotta); }
+    .zone.connection .zone-label    { color: var(--terracotta); }
+
+    /* BRIEFINGS SPOTLIGHT */
+    .briefings-section {
+      margin-bottom: 48px;
+      background: var(--wave-dark);
+      border-radius: 12px;
+      padding: 40px 44px;
+      color: white;
+    }
+    .briefings-section .section-label { color: rgba(255,255,255,0.45); }
+    .briefings-section h2 {
+      font-size: 27px;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 10px;
+      letter-spacing: -0.01em;
+    }
+    .briefings-desc {
+      font-size: 15px;
+      color: rgba(255,255,255,0.72);
+      line-height: 1.68;
+      max-width: 700px;
+      margin-bottom: 32px;
+    }
+    .briefings-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 14px;
+    }
+    .bc {
+      background: rgba(255,255,255,0.09);
+      border-radius: 8px;
+      padding: 20px 22px;
+      border: 1px solid rgba(255,255,255,0.13);
+    }
+    .bc-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--wave-light);
+      margin-bottom: 8px;
+    }
+    .bc-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: white;
+      margin-bottom: 10px;
+      line-height: 1.35;
+    }
+    .bc-body {
+      font-size: 13px;
+      color: rgba(255,255,255,0.62);
+      line-height: 1.58;
+    }
+
+    /* WRITING GUIDE */
+    .writing-guide { margin-bottom: 48px; }
+    .guide-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .gc {
+      border-radius: 10px;
+      padding: 26px 28px;
+      border: 1px solid var(--grey);
+    }
+    .gc.light { background: white; }
+    .gc.dark  { background: var(--dark-bg); border-color: var(--dark-bg); }
+    .gc h3 {
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 14px;
+    }
+    .gc.light h3 { color: var(--black); }
+    .gc.dark  h3 { color: white; }
+    .gc ul { list-style: none; }
+    .gc ul li {
+      font-size: 13px;
+      line-height: 1.55;
+      padding: 7px 0 7px 16px;
+      border-bottom: 1px solid;
+      position: relative;
+    }
+    .gc ul li:last-child { border-bottom: none; }
+    .gc ul li::before {
+      content: '';
+      display: block;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      position: absolute;
+      left: 0;
+      top: 13px;
+    }
+    .gc.light ul li { color: var(--concrete); border-bottom-color: #f0eeea; }
+    .gc.light ul li::before { background: var(--green); }
+    .gc.dark  ul li { color: rgba(255,255,255,0.6); border-bottom-color: rgba(255,255,255,0.07); }
+    .gc.dark  ul li::before { background: var(--sunset); }
+
+    /* SOURCES */
+    .sources-section {
+      background: white;
+      border-radius: 12px;
+      padding: 32px 36px;
+      border: 1px solid var(--grey);
+      margin-bottom: 48px;
+    }
+    .sources-section .sources-intro {
+      font-size: 14px;
+      color: var(--concrete);
+      line-height: 1.6;
+      margin-top: 6px;
+      margin-bottom: 24px;
+    }
+    .sources-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .sg h4 {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--concrete);
+      margin-bottom: 12px;
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--grey);
+    }
+    .sg ul { list-style: none; }
+    .sg ul li {
+      font-size: 13px;
+      color: var(--black);
+      padding: 4px 0;
+      line-height: 1.45;
+    }
+
+    /* FOOTER */
+    .footer {
+      padding-top: 24px;
+      border-top: 1px solid var(--grey);
+      font-size: 12px;
+      color: var(--concrete);
+      display: flex;
+      justify-content: space-between;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-left">
+      <span class="eyebrow">Stones — Internal Reference</span>
+      <h1>Platform Content Map</h1>
+      <p class="subtitle">What we build, what it does, and where Briefings fits in the ecosystem.</p>
+    </div>
+    <div class="header-right">
+      <span class="tag blue">Newsroom</span>
+      <span class="header-date">June 2026</span>
+    </div>
+  </div>
+
+  <!-- INTRO -->
+  <div class="intro">
+    <div class="intro-left">
+      <div class="intro-statement">
+        Stones is the first self-determined <em>leadership OS</em> — an always-on companion that makes great leadership continuous, effortless, and deeply human.
+      </div>
+    </div>
+    <div class="intro-right">
+      <div class="intro-detail">
+        <p>Leaders don't struggle because they lack content. They struggle because they lack support in the moment leadership actually happens — between meetings, before a hard conversation, on a Sunday night when anxiety about Monday is rising.</p>
+        <p>Stones exists in those moments. Not an LMS. Not a coaching tool. Not a one-off programme. A companion that meets leaders where they are and helps them grow continuously, not episodically.</p>
+        <p>Every piece of content in the ecosystem has a job. Understanding how your work fits the whole is what makes it land.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- APP STRUCTURE -->
+  <div class="app-structure">
+    <p class="section-label">How the app is organised — four tabs, four jobs</p>
+    <div class="app-nav">
+      <div class="nav-tab">
+        <div class="nav-indicator"></div>
+        <div class="nav-tab-name">Companion</div>
+        <div class="nav-tab-desc">The daily home screen. AI chat interface. Surfaced content, activity summary, and leadership nudges. The leader's default entry point every time they open Stones.</div>
+      </div>
+      <div class="nav-tab">
+        <div class="nav-indicator"></div>
+        <div class="nav-tab-name">Journey</div>
+        <div class="nav-tab-desc">The leader's personal development track. Where Compass (self-assessment), Practices (learning loops), and Goals (milestones) all live. Inward-facing and self-directed.</div>
+      </div>
+      <div class="nav-tab discover">
+        <div class="nav-indicator"></div>
+        <div class="nav-tab-home">Briefings live here</div>
+        <div class="nav-tab-name">Discover</div>
+        <div class="nav-tab-desc">The content library. Learning, Stories, Toolkits, Insights, and Briefings. What leaders find when they browse by topic, type, or moment. Outward-facing and exploratory.</div>
+      </div>
+      <div class="nav-tab">
+        <div class="nav-indicator"></div>
+        <div class="nav-tab-name">Community</div>
+        <div class="nav-tab-desc">Peer-to-peer and peer-to-expert connection. Discussion, mentoring, and shared experience. The antidote to leadership loneliness.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CONTENT TYPES -->
+  <div class="content-types-section">
+    <p class="section-label">Content types — what they are, what they do, what they aim to achieve</p>
+    <div class="zones">
+
+      <!-- Orientation zone -->
+      <div class="zone orientation">
+        <div class="zone-header">
+          <div class="zone-pip"></div>
+          <div class="zone-label">Orientation — knowing yourself and your direction</div>
+          <div class="zone-where">Journey tab</div>
+        </div>
+        <div class="zone-cards two">
+          <div class="type-card">
+            <div class="type-name">Compass</div>
+            <div class="type-formerly">Formerly: self-assessment / reflection questionnaire</div>
+            <div class="type-what">A self-assessment tool covering 23 leadership subdomains across four domains — Self, People, Operational, and Strategic. Leaders rate their current confidence and growth priorities to build a personal development picture. The foundation everything else builds on.</div>
+            <div class="type-impact"><strong>Impact aimed for:</strong> Clarity. A leader who has completed their Compass knows where they are strong, where they want to grow, and what to focus on next. They are no longer guessing about their development.</div>
+          </div>
+          <div class="type-card">
+            <div class="type-name">Goals</div>
+            <div class="type-formerly">North Star goal-setting and milestone tracking</div>
+            <div class="type-what">Leaders set their development goals and break them into milestones. Connected to Compass outcomes so goals reflect real priorities, not aspirational noise. Tracks progress over time so growth feels visible and accumulative.</div>
+            <div class="type-impact"><strong>Impact aimed for:</strong> Direction and accountability. A leader can see where they are headed and feel themselves making progress, week by week.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Skill-building zone -->
+      <div class="zone skill">
+        <div class="zone-header">
+          <div class="zone-pip"></div>
+          <div class="zone-label">Skill-building — structured growth in leadership capabilities</div>
+          <div class="zone-where">Journey tab + Discover tab</div>
+        </div>
+        <div class="zone-cards three">
+          <div class="type-card">
+            <div class="type-name">Practices</div>
+            <div class="type-formerly">Formerly: Pathways / Learning pathways</div>
+            <div class="type-what">Behavioural learning loops designed for moments of need. A leader struggling with something specific enters a Practice that surfaces expert video, lessons, a practical tool, a reflection prompt, and a follow-up nudge. The loop builds the skill through action and reflection, not passive consumption.</div>
+            <div class="type-impact"><strong>Impact aimed for:</strong> Felt progress. A leader comes out of a Practice with something to show for it — a skill touched, a behaviour shifted, confidence that the work is building.</div>
+          </div>
+          <div class="type-card">
+            <div class="type-name">Learning</div>
+            <div class="type-formerly">Formerly: Modules</div>
+            <div class="type-what">Curated expert content on specific leadership topics. Deeper than a Briefing, more structured than a Story. Grounded in research. Built largely by Stones' expert partners — coaches, facilitators, and consultants with deep subject expertise in their field.</div>
+            <div class="type-impact"><strong>Impact aimed for:</strong> Understanding. A leader finishes a piece of Learning with a conceptual grounding in a topic and a clear sense of how to apply it — not just awareness, but something they can draw on.</div>
+          </div>
+          <div class="type-card">
+            <div class="type-name">Stories</div>
+            <div class="type-formerly">Formerly: Lessons from Leaders</div>
+            <div class="type-what">First-person accounts from leaders who have navigated real challenges. Not expert advice — lived experience. What happened, what was hard, what they learned, and what they would do differently. Honest, specific, and human in a way that expert content rarely is.</div>
+            <div class="type-impact"><strong>Impact aimed for:</strong> Connection. The "someone else has been here" moment. Leaders feel less alone, more seen, and more willing to act when they know others have navigated the same territory.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Intelligence zone -->
+      <div class="zone intelligence">
+        <div class="zone-header">
+          <div class="zone-pip"></div>
+          <div class="zone-label">Intelligence — what's happening in the world and what it means</div>
+          <div class="zone-where">Discover tab</div>
+        </div>
+        <div class="zone-cards two">
+          <div class="type-card featured">
+            <div class="type-name">Briefings</div>
+            <div class="type-formerly">Formerly: Newsroom / News — this is where your work lives</div>
+            <div class="type-what">Curated topical intelligence from outside the organisation — law changes, macroeconomic signals, workforce trends, global research, and emerging shifts in leadership practice. Each Briefing surfaces what is happening, why it matters in an ANZ context, and what leaders should be thinking about or doing differently as a result. Not skill-building. Landscape intelligence.</div>
+            <div class="type-impact"><strong>Impact aimed for:</strong> Awareness and preparedness. A leader who reads a Briefing understands what is shifting around them, how it might affect them or their team, and where to go for more. They feel more informed, less caught off guard, and more confident in the conversations they need to have.</div>
+          </div>
+          <div class="type-card">
+            <div class="type-name">Insights</div>
+            <div class="type-formerly">Formerly: Tuesday Briefing (as in-app content)</div>
+            <div class="type-what">Emily's newsletter editions republished as evergreen in-app content. Each Insight takes a single leadership topic, grounds it in research, and gives leaders something specific and practical to do with it. Warm, direct, and distinctly Emily's voice — inward-facing rather than outward-scanning.</div>
+            <div class="type-impact"><strong>Impact aimed for:</strong> A shift in thinking. An Insight reframes rather than just informs. A leader reads it and sees something they already knew slightly differently, or finds words for something they have been experiencing without being able to name.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Practical zone -->
+      <div class="zone practical">
+        <div class="zone-header">
+          <div class="zone-pip"></div>
+          <div class="zone-label">Practical — ready-to-use tools and templates</div>
+          <div class="zone-where">Discover tab</div>
+        </div>
+        <div class="zone-cards one">
+          <div class="type-card">
+            <div class="type-name">Toolkits</div>
+            <div class="type-formerly">Formerly: Practical tools</div>
+            <div class="type-what">Templates, scripts, frameworks, and guides that leaders pick up and use directly. Not content to read — things to deploy. A conversation framework for a performance review. A script for a difficult feedback conversation. A planning template for a team offsite. Designed to close the gap between knowing what to do and actually doing it.</div>
+            <div class="type-impact"><strong>Impact aimed for:</strong> Action. A leader with a Toolkit in hand is ready to do the thing, not just know about the thing. This is the practical "how" to the conceptual "what" that Learning provides.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Connection zone -->
+      <div class="zone connection">
+        <div class="zone-header">
+          <div class="zone-pip"></div>
+          <div class="zone-label">Connection — not navigating leadership alone</div>
+          <div class="zone-where">Community tab</div>
+        </div>
+        <div class="zone-cards one">
+          <div class="type-card">
+            <div class="type-name">Community</div>
+            <div class="type-formerly">Peer-to-peer and peer-to-expert forum</div>
+            <div class="type-what">A structured peer forum where leaders ask questions, share experience, and learn from each other and from Stones' expert partners. Not a social media feed. A space for real questions about real situations — moderated, purposeful, and anchored to leadership topics and moments of need.</div>
+            <div class="type-impact"><strong>Impact aimed for:</strong> Belonging. The antidote to leadership loneliness. A leader who asks a question and gets a real, considered response from a peer or expert feels the shift from isolated to supported.</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- BRIEFINGS SPOTLIGHT -->
+  <div class="briefings-section">
+    <p class="section-label">Your role in the ecosystem</p>
+    <h2>The Briefings brief</h2>
+    <p class="briefings-desc">Briefings is the intelligence layer of Stones. Where everything else helps leaders grow their skills, Briefings helps leaders keep their heads up — aware of what is shifting in the world around them and ready to interpret it for their team. This is not skill-building content. It is landscape intelligence, written for people who are too busy to do the scanning themselves.</p>
+    <div class="briefings-grid">
+      <div class="bc">
+        <div class="bc-label">What makes it a Briefing</div>
+        <div class="bc-title">Something has changed. A leader needs to know.</div>
+        <div class="bc-body">A law has been passed. Research has been released. A global trend has reached ANZ shores. A macro shift is starting to show up in how organisations operate. The trigger is always external — something out in the world — and the job is to bring it into the leader's frame.</div>
+      </div>
+      <div class="bc">
+        <div class="bc-label">The angle that matters</div>
+        <div class="bc-title">Not what happened. What it means for how I lead.</div>
+        <div class="bc-body">Leaders are not reading for general awareness. They are reading to understand whether this affects them, their team, or their organisation — and what to think or do about it. Every Briefing must answer: so what? What does a leader in ANZ need to consider or do differently as a result?</div>
+      </div>
+      <div class="bc">
+        <div class="bc-label">What you bring</div>
+        <div class="bc-title">The translation layer.</div>
+        <div class="bc-body">You are not the subject matter expert. Your role is the bridge — between what a source says and what a leader can actually use. Emily and the Stones team provide the leadership lens. You bring writing craft, clarity, and the discipline to make it land in 300 words without losing the nuance that matters.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WRITING GUIDE -->
+  <div class="writing-guide">
+    <p class="section-label">What a strong Briefing looks like</p>
+    <div class="guide-grid">
+      <div class="gc dark">
+        <h3>Structure of a Briefing</h3>
+        <ul>
+          <li>A headline that names the shift — not the source</li>
+          <li>One short paragraph establishing what has happened and where it comes from</li>
+          <li>Two to three paragraphs connecting it to leadership in ANZ — what it means, who it affects, what has changed</li>
+          <li>One to two practical implications — what a leader might do differently, think about, or ask of their team</li>
+          <li>Source citation and link to the original</li>
+        </ul>
+      </div>
+      <div class="gc dark">
+        <h3>Tone to aim for</h3>
+        <ul>
+          <li>Calm and clear — not alarmist, not dismissive</li>
+          <li>Direct — state the implication plainly, do not bury it in the final paragraph</li>
+          <li>ANZ-grounded — what applies here, in this context, specifically</li>
+          <li>Practical before inspirational — what to do, not how to feel</li>
+          <li>250 to 400 words per Briefing, no more</li>
+          <li>NZ English spelling. No em dashes.</li>
+        </ul>
+      </div>
+      <div class="gc light">
+        <h3>What makes it land</h3>
+        <ul>
+          <li>The reader feels informed, not overwhelmed</li>
+          <li>The ANZ angle is specific — not "this is a global trend" but "here is what it means in your context"</li>
+          <li>At least one practical implication a leader could act on or ask about</li>
+          <li>The source is credible and the headline accurately reflects it</li>
+          <li>It adds external context, not internal skill-building — Briefings do not overlap with Learning or Practices</li>
+        </ul>
+      </div>
+      <div class="gc light">
+        <h3>What to avoid</h3>
+        <ul>
+          <li>Generic summaries of someone else's article — the leader can read that themselves</li>
+          <li>Overreaching on the leadership angle — flag to Emily when you need her input</li>
+          <li>Burying the "so what" — it should be visible within the first two paragraphs</li>
+          <li>Topics already covered in skill-building content — Briefings are external, not internal</li>
+          <li>Alarmism or hyperbole — Stones' voice is grounded and calm, not reactive</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- SOURCES -->
+  <div class="sources-section">
+    <p class="section-label">Credible sources for Briefings</p>
+    <p class="sources-intro">These are the publications and institutions Stones trusts and references. The list is not exhaustive — if a source is credible and relevant, it counts. But start here when scanning for new content.</p>
+    <div class="sources-grid">
+      <div class="sg">
+        <h4>Global Research and Leadership</h4>
+        <ul>
+          <li>Harvard Business Review (HBR)</li>
+          <li>MIT Sloan Management Review</li>
+          <li>McKinsey &amp; Company</li>
+          <li>Deloitte Insights</li>
+          <li>Gallup</li>
+          <li>World Economic Forum</li>
+          <li>SHRM / CIPD</li>
+          <li>Stanford Social Innovation Review</li>
+          <li>The Economist</li>
+        </ul>
+      </div>
+      <div class="sg">
+        <h4>ANZ Local and Regional</h4>
+        <ul>
+          <li>NBR (NZ Business Review)</li>
+          <li>BusinessDesk NZ</li>
+          <li>NZ Herald — business and employment</li>
+          <li>Stuff — business and policy</li>
+          <li>MBIE (employment relations, legislation)</li>
+          <li>WorkSafe New Zealand</li>
+          <li>The Treasury / Stats NZ</li>
+          <li>AFR (Australian Financial Review)</li>
+          <li>EMA / Business NZ</li>
+        </ul>
+      </div>
+      <div class="sg">
+        <h4>Workforce and Future of Work</h4>
+        <ul>
+          <li>OECD Workforce Reports</li>
+          <li>LinkedIn Workforce Report</li>
+          <li>Edelman Trust Barometer</li>
+          <li>Mercer / Aon (HR and workforce trends)</li>
+          <li>Future Forum (Slack research)</li>
+          <li>AUT Work Research Institute</li>
+          <li>Victoria / Waikato University NZ research</li>
+          <li>CAANZ (Chartered Accountants ANZ)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <span>Stones — Internal. Not for external distribution.</span>
+    <span>June 2026 &middot; leadwithstones.com</span>
+  </div>
+
+</body>
+</html>
