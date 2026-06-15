@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stones — What You Get</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --green:       #506B56;
+      --green-dark:  #3A5040;
+      --green-light: #EBF0EC;
+      --forest:      #578E4E;
+      --willow:      #CECE9C;
+      --terracotta:  #BE796C;
+      --clay:        #DAB4A4;
+      --wave-dark:   #255C9B;
+      --wave-light:  #D1E1F5;
+      --sunset:      #FFDE73;
+      --cream:       #F4F1EA;
+      --off-white:   #FCFAFA;
+      --black:       #3C3C3B;
+      --concrete:    #878786;
+      --grey:        #C6C6C5;
+      --dark-bg:     #2A2A29;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--cream);
+      color: var(--black);
+      padding: 48px 56px 80px;
+      max-width: 1160px;
+      margin: 0 auto;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* HEADER */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 48px;
+      padding-bottom: 24px;
+      border-bottom: 2px solid var(--green);
+    }
+    .header-left .eyebrow {
+      display: block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 8px;
+    }
+    .header-left h1 {
+      font-size: 34px;
+      font-weight: 700;
+      color: var(--black);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+    .header-left .subtitle {
+      font-size: 15px;
+      color: var(--concrete);
+      margin-top: 8px;
+    }
+    .header-right { text-align: right; }
+    .tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 3px;
+    }
+    .tag.green { background: var(--green); color: white; }
+    .header-date { font-size: 12px; color: var(--concrete); margin-top: 6px; display: block; }
+
+    /* SECTION LABEL */
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--concrete);
+      margin-bottom: 20px;
+    }
+
+    /* HERO */
+    .hero {
+      background: var(--green-dark);
+      border-radius: 12px;
+      padding: 48px 52px;
+      margin-bottom: 48px;
+    }
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: start;
+    }
+    .hero-statement {
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 1.38;
+      letter-spacing: -0.01em;
+      color: white;
+    }
+    .hero-statement em {
+      color: var(--willow);
+      font-style: normal;
+    }
+    .hero-right {
+      padding-top: 4px;
+    }
+    .hero-body {
+      font-size: 14.5px;
+      color: rgba(255,255,255,0.68);
+      line-height: 1.72;
+    }
+    .hero-body p + p { margin-top: 14px; }
+
+    /* THREE THINGS */
+    .three-things {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 48px;
+    }
+    .thing-card {
+      background: white;
+      border-radius: 10px;
+      padding: 26px 28px;
+      border: 1px solid var(--grey);
+    }
+    .thing-card.accent {
+      background: var(--green-light);
+      border-color: #c3d0c5;
+    }
+    .thing-eyebrow {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 10px;
+    }
+    .thing-title {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--black);
+      margin-bottom: 10px;
+      line-height: 1.3;
+    }
+    .thing-body {
+      font-size: 13px;
+      color: var(--concrete);
+      line-height: 1.65;
+    }
+
+    /* PRODUCT GROUPS */
+    .product-section { margin-bottom: 48px; }
+    .groups { display: flex; flex-direction: column; gap: 20px; }
+
+    .group {
+      border-radius: 12px;
+      border: 1px solid var(--grey);
+      background: white;
+      overflow: hidden;
+    }
+    .group-header {
+      padding: 14px 22px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .group-pip { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
+    .group-label { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+    .group-desc { font-size: 12px; color: var(--concrete); margin-left: auto; }
+    .group-cards { display: grid; padding: 4px 16px 16px; gap: 12px; }
+    .group-cards.two   { grid-template-columns: 1fr 1fr; }
+    .group-cards.three { grid-template-columns: 1fr 1fr 1fr; }
+    .group-cards.one   { grid-template-columns: 1fr; }
+
+    .item-card {
+      background: var(--cream);
+      border-radius: 8px;
+      padding: 20px 22px;
+      border: 1px solid #e5e2db;
+    }
+    .item-name {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--black);
+      margin-bottom: 2px;
+    }
+    .item-hook {
+      font-size: 12px;
+      color: var(--green);
+      font-weight: 600;
+      margin-bottom: 12px;
+    }
+    .item-body {
+      font-size: 13px;
+      color: var(--black);
+      line-height: 1.6;
+      margin-bottom: 12px;
+    }
+    .item-feel {
+      font-size: 12.5px;
+      color: var(--concrete);
+      line-height: 1.52;
+      padding-top: 12px;
+      border-top: 1px solid #dedad4;
+      font-style: italic;
+    }
+
+    /* GROUP COLOURS */
+    .group.foundation .group-header { background: #edf2ee; }
+    .group.foundation .group-pip    { background: var(--green-dark); }
+    .group.foundation .group-label  { color: var(--green-dark); }
+
+    .group.moment .group-header     { background: #eff4f0; }
+    .group.moment .group-pip        { background: var(--green); }
+    .group.moment .group-label      { color: var(--green); }
+
+    .group.grow .group-header       { background: #f2f6f3; }
+    .group.grow .group-pip          { background: var(--forest); }
+    .group.grow .group-label        { color: var(--forest); }
+
+    /* WHAT CHANGES */
+    .outcomes {
+      background: var(--dark-bg);
+      border-radius: 12px;
+      padding: 40px 44px;
+      margin-bottom: 48px;
+    }
+    .outcomes .section-label { color: rgba(255,255,255,0.4); }
+    .outcomes h2 {
+      font-size: 26px;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 10px;
+      letter-spacing: -0.01em;
+    }
+    .outcomes-intro {
+      font-size: 15px;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.65;
+      max-width: 640px;
+      margin-bottom: 32px;
+    }
+    .outcomes-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    .outcome-card {
+      background: rgba(255,255,255,0.07);
+      border-radius: 8px;
+      padding: 22px 24px;
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    .outcome-card .oc-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--willow);
+      margin-bottom: 8px;
+    }
+    .outcome-card .oc-title {
+      font-size: 15px;
+      font-weight: 600;
+      color: white;
+      margin-bottom: 8px;
+      line-height: 1.35;
+    }
+    .outcome-card .oc-body {
+      font-size: 13px;
+      color: rgba(255,255,255,0.58);
+      line-height: 1.58;
+    }
+
+    /* CTA */
+    .cta-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-bottom: 48px;
+    }
+    .cta-card {
+      border-radius: 10px;
+      padding: 30px 32px;
+    }
+    .cta-card.primary { background: var(--green); }
+    .cta-card.secondary { background: white; border: 1px solid var(--grey); }
+    .cta-card h3 {
+      font-size: 16px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    .cta-card.primary h3 { color: white; }
+    .cta-card.secondary h3 { color: var(--black); }
+    .cta-card p {
+      font-size: 14px;
+      line-height: 1.65;
+    }
+    .cta-card.primary p { color: rgba(255,255,255,0.78); }
+    .cta-card.secondary p { color: var(--concrete); }
+    .cta-link {
+      display: inline-block;
+      margin-top: 20px;
+      background: white;
+      color: var(--green);
+      font-size: 13px;
+      font-weight: 700;
+      padding: 10px 20px;
+      border-radius: 6px;
+      text-decoration: none;
+      letter-spacing: 0.02em;
+    }
+    .not-list {
+      list-style: none;
+      margin-top: 16px;
+    }
+    .not-list li {
+      font-size: 13px;
+      color: var(--concrete);
+      padding: 7px 0 7px 16px;
+      border-bottom: 1px solid #f0eeea;
+      position: relative;
+      line-height: 1.5;
+    }
+    .not-list li:last-child { border-bottom: none; }
+    .not-list li::before {
+      content: '';
+      display: block;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--green);
+      position: absolute;
+      left: 0;
+      top: 12px;
+    }
+
+    /* FOOTER */
+    .footer {
+      padding-top: 24px;
+      border-top: 1px solid var(--grey);
+      font-size: 12px;
+      color: var(--concrete);
+      display: flex;
+      justify-content: space-between;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-left">
+      <span class="eyebrow">Stones for Leaders</span>
+      <h1>What you get with Stones.</h1>
+      <p class="subtitle">An always-on leadership companion built for how leadership actually happens.</p>
+    </div>
+    <div class="header-right">
+      <span class="tag green">For Leaders</span>
+      <span class="header-date">June 2026</span>
+    </div>
+  </div>
+
+  <!-- HERO -->
+  <div class="hero">
+    <div class="hero-inner">
+      <div class="hero-statement">
+        Leadership is hard. It gets harder when you are doing it <em>without the right support</em> — and in the moments it matters most, that support is nowhere to be found.
+      </div>
+      <div class="hero-right">
+        <div class="hero-body">
+          <p>Most leaders are not failing. They are under-supported. The coaching is too expensive, the workshops are too infrequent, and the generic advice online is too disconnected from what they are actually facing right now.</p>
+          <p>Stones is built for that gap. Not for the curated version of leadership — the real one. The Sunday night before a hard week. The conversation you have been rehearsing and still do not feel ready for. The moment you are not sure if what you are doing is working.</p>
+          <p>Your development, on your terms, when you actually need it.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- THREE THINGS -->
+  <div class="three-things">
+    <div class="thing-card accent">
+      <div class="thing-eyebrow">Always on</div>
+      <div class="thing-title">Support in the moment leadership actually happens.</div>
+      <div class="thing-body">Not after a course. Not during a retreat. In the margins of the day — before a hard conversation, between meetings, on a Sunday night when anxiety is rising about Monday. Stones is there when it matters, not when it is convenient for a programme.</div>
+    </div>
+    <div class="thing-card">
+      <div class="thing-eyebrow">Self-determined</div>
+      <div class="thing-title">Your development, your priorities, your pace.</div>
+      <div class="thing-body">Nobody prescribes your path. You choose where to focus based on what you are facing and what you want to build. Stones follows your lead — which is the only way real development actually works.</div>
+    </div>
+    <div class="thing-card">
+      <div class="thing-eyebrow">Expert access</div>
+      <div class="thing-title">Many coaches. One experience. A fraction of the cost.</div>
+      <div class="thing-body">Stones brings you 26+ expert coaches, facilitators, and consultants — curated, contextual, and available whenever you need them. The guidance of 1:1 coaching without the scheduling, the cost, or the waiting.</div>
+    </div>
+  </div>
+
+  <!-- PRODUCT -->
+  <div class="product-section">
+    <p class="section-label">Everything included in your Stones subscription</p>
+    <div class="groups">
+
+      <!-- Your foundation -->
+      <div class="group foundation">
+        <div class="group-header">
+          <div class="group-pip"></div>
+          <div class="group-label">Your development foundation</div>
+          <div class="group-desc">Know where you are. Set where you are going.</div>
+        </div>
+        <div class="group-cards two">
+          <div class="item-card">
+            <div class="item-name">Compass</div>
+            <div class="item-hook">Know yourself first.</div>
+            <div class="item-body">A self-assessment across 23 leadership subdomains — Self, People, Operational, and Strategic. Not a personality test. A clear, honest picture of where you feel confident, where you want to grow, and what to focus on first. The foundation that makes everything else more useful.</div>
+            <div class="item-feel">You finish your Compass knowing exactly where to start — and why.</div>
+          </div>
+          <div class="item-card">
+            <div class="item-name">Goals</div>
+            <div class="item-hook">Set your direction. See yourself move.</div>
+            <div class="item-body">Set your development goals and break them into milestones. Progress is tracked over time so growth feels visible and real — not abstract or assumed. Connected to your Compass so your goals reflect what actually matters, not what sounds good.</div>
+            <div class="item-feel">You see yourself making progress, week by week. That matters more than most people admit.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Support in the moment -->
+      <div class="group moment">
+        <div class="group-header">
+          <div class="group-pip"></div>
+          <div class="group-label">Support in the moment</div>
+          <div class="group-desc">For when you need it, not when it is scheduled.</div>
+        </div>
+        <div class="group-cards three">
+          <div class="item-card">
+            <div class="item-name">Practices</div>
+            <div class="item-hook">Help when you are in the middle of something hard.</div>
+            <div class="item-body">Behavioural learning loops built for moments of need. Struggling with a specific situation — a performance conversation, managing self-doubt, a team in conflict? Enter a Practice. Expert video, a practical tool, a reflection prompt, and a follow-up nudge guide you through it. Not passive learning. A real loop of action and reflection.</div>
+            <div class="item-feel">You come out the other side with something to show for it — not just knowledge, but a skill you actually used.</div>
+          </div>
+          <div class="item-card">
+            <div class="item-name">Toolkits</div>
+            <div class="item-hook">Pick up and use today.</div>
+            <div class="item-body">Templates, scripts, conversation frameworks, and practical guides. Not things to read — things to use. The script for a feedback conversation you have been avoiding. The planning template for a team session. The framework for a decision you have been turning over. Ready when you are.</div>
+            <div class="item-feel">You stop staring at a blank page. You start the conversation. You run the session.</div>
+          </div>
+          <div class="item-card">
+            <div class="item-name">Community</div>
+            <div class="item-hook">Ask real questions. Get real answers.</div>
+            <div class="item-body">A peer forum where leaders ask the things they cannot ask inside their organisations and get honest responses from people who have been there. Alongside peers, Stones' expert partners are in the community — so you get both lived experience and specialist perspective, in the same place.</div>
+            <div class="item-feel">Leadership feels less lonely when you can actually name what you are struggling with and have someone respond.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Keep growing -->
+      <div class="group grow">
+        <div class="group-header">
+          <div class="group-pip"></div>
+          <div class="group-label">Keep building and learning</div>
+          <div class="group-desc">Depth, perspective, and staying informed.</div>
+        </div>
+        <div class="group-cards two">
+          <div class="item-card">
+            <div class="item-name">Learning</div>
+            <div class="item-hook">Go deeper on what matters most to you.</div>
+            <div class="item-body">Structured expert content on specific leadership topics — curated by ANZ coaches and practitioners with real experience in the domain. Not a content library to scroll through. Relevant, current, and searchable by what you are actually working on.</div>
+            <div class="item-feel">You develop conceptual depth, not just awareness — the kind that shows up in how you think and how you lead.</div>
+          </div>
+          <div class="item-card">
+            <div class="item-name">Stories</div>
+            <div class="item-hook">Learn from leaders who have been exactly where you are.</div>
+            <div class="item-body">First-person accounts from leaders about real challenges they navigated — what happened, what was hard, what they got wrong, and what they would do differently. Honest and specific in a way that expert content rarely is. Not sanitised. Not inspirational. Real.</div>
+            <div class="item-feel">The "someone else has been here" moment. Worth more than most development content ever delivers.</div>
+          </div>
+        </div>
+        <div class="group-cards two" style="margin-top: 0;">
+          <div class="item-card">
+            <div class="item-name">Briefings</div>
+            <div class="item-hook">Stay ahead of what is shifting around you.</div>
+            <div class="item-body">Curated intelligence on what is changing in the world beyond your organisation — employment law updates, workforce trend research, macroeconomic signals, global findings on leadership and teams. Each Briefing explains what has changed and what it means for you as a leader in ANZ right now.</div>
+            <div class="item-feel">You stop being caught off guard by changes you should have seen coming. You arrive in conversations already informed.</div>
+          </div>
+          <div class="item-card">
+            <div class="item-name">Insights</div>
+            <div class="item-hook">Fresh thinking on the topics leaders think about most.</div>
+            <div class="item-body">Short, evidence-based pieces on specific leadership topics — grounded in research and written directly for leaders who are too busy for academic language and too experienced for generic advice. Each Insight gives you something specific to reflect on or act on.</div>
+            <div class="item-feel">A shift in how you see something you already knew — which is often what changes how you lead.</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- WHAT CHANGES -->
+  <div class="outcomes">
+    <p class="section-label">What changes when you use Stones</p>
+    <h2>Development that compounds.</h2>
+    <p class="outcomes-intro">Stones is not an event. It is a practice. The leaders who use it consistently do not get one big insight — they get small things, regularly, that accumulate into something real over time.</p>
+    <div class="outcomes-grid">
+      <div class="outcome-card">
+        <div class="oc-label">Confidence</div>
+        <div class="oc-title">You feel more prepared for the moments that used to catch you off guard.</div>
+        <div class="oc-body">Not because you know more theory. Because you have practised. You have reflected. You have a framework for the hard conversations and words for the things you could not articulate before.</div>
+      </div>
+      <div class="outcome-card">
+        <div class="oc-label">Clarity</div>
+        <div class="oc-title">You know what you are working on and why it matters.</div>
+        <div class="oc-body">Most leaders develop in a fog — reacting to feedback, attending whatever programme is on offer, hoping something sticks. With Stones, your development is intentional. You chose your priorities. You can see them moving.</div>
+      </div>
+      <div class="outcome-card">
+        <div class="oc-label">Connection</div>
+        <div class="oc-title">Leadership feels less isolating.</div>
+        <div class="oc-body">You have peers asking the same questions. Experts who respond to yours. A space where the things you cannot say inside your organisation can be said honestly — and where someone who has navigated the same territory will respond.</div>
+      </div>
+      <div class="outcome-card">
+        <div class="oc-label">Capability</div>
+        <div class="oc-title">You show up differently in the moments that matter most.</div>
+        <div class="oc-body">The difficult conversation you used to avoid. The decision you used to sit on. The team dynamic you used to manage around. Small, consistent practice — over weeks, not one workshop — is what changes behaviour. That is what Stones is built to deliver.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- CTA -->
+  <div class="cta-section">
+    <div class="cta-card primary">
+      <h3>Start with Stones</h3>
+      <p>Your first step is completing your Compass — a self-assessment that takes around 10 minutes and gives you a clear picture of where to focus your development. Everything else builds from there.</p>
+      <a class="cta-link" href="https://leadwithstones.com">Get started at leadwithstones.com</a>
+    </div>
+    <div class="cta-card secondary">
+      <h3>What Stones is not</h3>
+      <ul class="not-list">
+        <li>Not a course with a start and end date — Stones is continuous, not episodic</li>
+        <li>Not a content library you scroll through hoping something fits</li>
+        <li>Not a coaching replacement — a coaching complement, accessible every day</li>
+        <li>Not a compliance or performance management tool — your development is yours</li>
+        <li>Not prescriptive — you choose your path, your pace, your priorities</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <span>Stones &mdash; leadwithstones.com</span>
+    <span>June 2026</span>
+  </div>
+
+</body>
+</html>

@@ -1,0 +1,856 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stones — Product Briefing for Organisations</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --green:       #506B56;
+      --green-dark:  #3A5040;
+      --green-light: #EBF0EC;
+      --terracotta:  #BE796C;
+      --terra-dark:  #9B5C51;
+      --terra-light: #F5EDE9;
+      --clay:        #DAB4A4;
+      --willow:      #CECE9C;
+      --wave-dark:   #255C9B;
+      --wave-light:  #D1E1F5;
+      --sunset:      #FFDE73;
+      --cream:       #F4F1EA;
+      --off-white:   #FCFAFA;
+      --black:       #3C3C3B;
+      --concrete:    #878786;
+      --grey:        #C6C6C5;
+      --dark-bg:     #2A2A29;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--cream);
+      color: var(--black);
+      padding: 48px 56px 80px;
+      max-width: 1200px;
+      margin: 0 auto;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* HEADER */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 48px;
+      padding-bottom: 24px;
+      border-bottom: 2px solid var(--terracotta);
+    }
+    .header-left .eyebrow {
+      display: block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      margin-bottom: 8px;
+    }
+    .header-left h1 {
+      font-size: 34px;
+      font-weight: 700;
+      color: var(--black);
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+    .header-left .subtitle {
+      font-size: 15px;
+      color: var(--concrete);
+      margin-top: 8px;
+    }
+    .header-right { text-align: right; }
+    .tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 3px;
+    }
+    .tag.terra  { background: var(--terracotta); color: white; }
+    .tag.light  { background: var(--terra-light); color: var(--terracotta); border: 1px solid var(--clay); }
+    .header-date { font-size: 12px; color: var(--concrete); margin-top: 6px; display: block; }
+
+    /* SECTION LABEL */
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--concrete);
+      margin-bottom: 20px;
+    }
+
+    /* HERO PROBLEM BLOCK */
+    .hero {
+      background: var(--dark-bg);
+      border-radius: 12px;
+      padding: 44px 48px;
+      margin-bottom: 48px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      align-items: start;
+    }
+    .hero-statement {
+      font-size: 23px;
+      font-weight: 700;
+      line-height: 1.38;
+      letter-spacing: -0.01em;
+      color: white;
+    }
+    .hero-statement em {
+      color: var(--clay);
+      font-style: normal;
+    }
+    .hero-stats {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .stat {
+      background: rgba(255,255,255,0.07);
+      border-radius: 8px;
+      padding: 16px 20px;
+      border-left: 3px solid var(--terracotta);
+    }
+    .stat-number {
+      font-size: 26px;
+      font-weight: 800;
+      color: white;
+      letter-spacing: -0.02em;
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+    .stat-label {
+      font-size: 12.5px;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.45;
+    }
+
+    /* WHAT STONES IS */
+    .what-stones {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 48px;
+    }
+    .ws-card {
+      background: white;
+      border-radius: 10px;
+      padding: 24px 26px;
+      border: 1px solid var(--grey);
+    }
+    .ws-card.accent {
+      background: var(--terra-light);
+      border-color: var(--clay);
+    }
+    .ws-icon {
+      font-size: 22px;
+      margin-bottom: 12px;
+    }
+    .ws-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--black);
+      margin-bottom: 8px;
+    }
+    .ws-body {
+      font-size: 13px;
+      color: var(--concrete);
+      line-height: 1.6;
+    }
+
+    /* NOT THIS */
+    .not-this {
+      background: var(--off-white);
+      border-radius: 10px;
+      padding: 28px 32px;
+      margin-bottom: 48px;
+      border: 1px solid var(--grey);
+    }
+    .not-this-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-top: 16px;
+    }
+    .not-item {
+      padding: 14px 16px;
+      background: white;
+      border-radius: 8px;
+      border: 1px solid var(--grey);
+    }
+    .not-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--concrete);
+      margin-bottom: 6px;
+    }
+    .not-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--black);
+      margin-bottom: 6px;
+    }
+    .not-why {
+      font-size: 12px;
+      color: var(--concrete);
+      line-height: 1.5;
+    }
+
+    /* PRODUCT ZONES */
+    .product-section { margin-bottom: 48px; }
+    .zones { display: flex; flex-direction: column; gap: 20px; }
+
+    .zone {
+      border-radius: 12px;
+      border: 1px solid var(--grey);
+      background: white;
+      overflow: hidden;
+    }
+    .zone-header {
+      padding: 14px 22px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .zone-pip { width: 9px; height: 9px; border-radius: 50%; flex-shrink: 0; }
+    .zone-label { font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; }
+    .zone-value { font-size: 12px; margin-left: auto; font-weight: 500; }
+    .zone-cards { display: grid; padding: 4px 16px 16px; gap: 12px; }
+    .zone-cards.two   { grid-template-columns: 1fr 1fr; }
+    .zone-cards.three { grid-template-columns: 1fr 1fr 1fr; }
+    .zone-cards.one   { grid-template-columns: 1fr; }
+
+    .type-card {
+      background: var(--cream);
+      border-radius: 8px;
+      padding: 20px 22px;
+      border: 1px solid #e5e2db;
+    }
+    .type-name { font-size: 15px; font-weight: 700; color: var(--black); margin-bottom: 2px; }
+    .type-sub  { font-size: 12px; color: var(--concrete); margin-bottom: 12px; font-style: italic; }
+    .type-what {
+      font-size: 13px;
+      color: var(--black);
+      line-height: 1.58;
+      margin-bottom: 12px;
+    }
+    .type-org {
+      font-size: 12.5px;
+      color: var(--terracotta);
+      line-height: 1.52;
+      padding-top: 12px;
+      border-top: 1px solid #dedad4;
+      font-weight: 500;
+    }
+    .type-org strong { color: var(--terra-dark); font-weight: 700; }
+
+    /* ZONE COLOURS — terracotta palette for org doc */
+    .zone.develop .zone-header  { background: #f2ede9; }
+    .zone.develop .zone-pip     { background: var(--terra-dark); }
+    .zone.develop .zone-label   { color: var(--terra-dark); }
+    .zone.develop .zone-value   { color: var(--terra-dark); }
+
+    .zone.learn .zone-header    { background: #f5f0ec; }
+    .zone.learn .zone-pip       { background: var(--terracotta); }
+    .zone.learn .zone-label     { color: var(--terracotta); }
+    .zone.learn .zone-value     { color: var(--terracotta); }
+
+    .zone.intel .zone-header    { background: #edf2ee; }
+    .zone.intel .zone-pip       { background: var(--green); }
+    .zone.intel .zone-label     { color: var(--green); }
+    .zone.intel .zone-value     { color: var(--green); }
+
+    .zone.tools .zone-header    { background: #f5f5e7; }
+    .zone.tools .zone-pip       { background: #8a8a3a; }
+    .zone.tools .zone-label     { color: #8a8a3a; }
+    .zone.tools .zone-value     { color: #8a8a3a; }
+
+    .zone.connect .zone-header  { background: #eef2f8; }
+    .zone.connect .zone-pip     { background: var(--wave-dark); }
+    .zone.connect .zone-label   { color: var(--wave-dark); }
+    .zone.connect .zone-value   { color: var(--wave-dark); }
+
+    /* ORG VISIBILITY BLOCK */
+    .org-sees {
+      background: var(--terracotta);
+      border-radius: 12px;
+      padding: 40px 44px;
+      margin-bottom: 48px;
+      color: white;
+    }
+    .org-sees .section-label { color: rgba(255,255,255,0.5); }
+    .org-sees h2 {
+      font-size: 26px;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 10px;
+      letter-spacing: -0.01em;
+    }
+    .org-sees .intro-text {
+      font-size: 15px;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.65;
+      max-width: 660px;
+      margin-bottom: 32px;
+    }
+    .visibility-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 14px;
+    }
+    .vis-card {
+      background: rgba(255,255,255,0.12);
+      border-radius: 8px;
+      padding: 20px 22px;
+      border: 1px solid rgba(255,255,255,0.18);
+    }
+    .vis-label {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--clay);
+      margin-bottom: 8px;
+    }
+    .vis-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: white;
+      margin-bottom: 8px;
+      line-height: 1.35;
+    }
+    .vis-body {
+      font-size: 13px;
+      color: rgba(255,255,255,0.65);
+      line-height: 1.55;
+    }
+
+    /* PILOT SECTION */
+    .pilot-section {
+      margin-bottom: 48px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+    }
+    .pilot-card {
+      background: white;
+      border-radius: 10px;
+      padding: 28px 30px;
+      border: 1px solid var(--grey);
+    }
+    .pilot-card.dark {
+      background: var(--dark-bg);
+      border-color: var(--dark-bg);
+    }
+    .pilot-card h3 {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+    .pilot-card.dark h3 { color: white; }
+    .pilot-card.light h3 { color: var(--black); }
+    .pilot-phases {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .phase {
+      display: flex;
+      gap: 14px;
+      align-items: flex-start;
+    }
+    .phase-num {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: var(--terracotta);
+      color: white;
+      font-size: 12px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+    .phase-content {}
+    .phase-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 3px;
+    }
+    .phase-desc {
+      font-size: 12.5px;
+      color: rgba(255,255,255,0.55);
+      line-height: 1.5;
+    }
+    .includes-list {
+      list-style: none;
+    }
+    .includes-list li {
+      font-size: 13px;
+      color: var(--concrete);
+      padding: 7px 0 7px 16px;
+      border-bottom: 1px solid #f0eeea;
+      position: relative;
+      line-height: 1.5;
+    }
+    .includes-list li:last-child { border-bottom: none; }
+    .includes-list li::before {
+      content: '';
+      display: block;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--terracotta);
+      position: absolute;
+      left: 0;
+      top: 12px;
+    }
+
+    /* DIFFERENTIATION */
+    .diff-section { margin-bottom: 48px; }
+    .diff-table {
+      width: 100%;
+      border-collapse: collapse;
+      background: white;
+      border-radius: 10px;
+      overflow: hidden;
+      border: 1px solid var(--grey);
+    }
+    .diff-table th {
+      background: var(--dark-bg);
+      color: rgba(255,255,255,0.5);
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 12px 20px;
+      text-align: left;
+    }
+    .diff-table th:first-child { color: rgba(255,255,255,0.3); }
+    .diff-table td {
+      padding: 14px 20px;
+      font-size: 13px;
+      color: var(--black);
+      border-bottom: 1px solid var(--grey);
+      vertical-align: top;
+      line-height: 1.5;
+    }
+    .diff-table tr:last-child td { border-bottom: none; }
+    .diff-table td:first-child { font-weight: 600; color: var(--concrete); }
+    .diff-table td.stones { color: var(--terracotta); font-weight: 600; }
+    .diff-table tr:hover td { background: #faf8f5; }
+
+    /* PROOF POINTS */
+    .proof-section {
+      background: var(--off-white);
+      border-radius: 12px;
+      padding: 32px 36px;
+      border: 1px solid var(--grey);
+      margin-bottom: 48px;
+    }
+    .proof-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 20px;
+      margin-top: 20px;
+    }
+    .proof-item {
+      text-align: center;
+      padding: 20px 12px;
+      background: white;
+      border-radius: 8px;
+      border: 1px solid var(--grey);
+    }
+    .proof-number {
+      font-size: 32px;
+      font-weight: 800;
+      color: var(--terracotta);
+      letter-spacing: -0.03em;
+      line-height: 1;
+      margin-bottom: 6px;
+    }
+    .proof-label {
+      font-size: 12px;
+      color: var(--concrete);
+      line-height: 1.45;
+    }
+
+    /* NEXT STEPS */
+    .next-steps {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-bottom: 48px;
+    }
+    .ns-card {
+      border-radius: 10px;
+      padding: 28px 30px;
+    }
+    .ns-card.terra { background: var(--terracotta); }
+    .ns-card.light { background: white; border: 1px solid var(--grey); }
+    .ns-card h3 {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .ns-card.terra h3 { color: white; }
+    .ns-card.light h3 { color: var(--black); }
+    .ns-card p {
+      font-size: 13.5px;
+      line-height: 1.65;
+    }
+    .ns-card.terra p { color: rgba(255,255,255,0.78); }
+    .ns-card.light p { color: var(--concrete); }
+    .ns-card .contact {
+      margin-top: 20px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(255,255,255,0.2);
+      font-size: 13px;
+      color: rgba(255,255,255,0.65);
+    }
+    .ns-card .contact strong { color: white; font-weight: 600; display: block; margin-bottom: 2px; }
+
+    /* FOOTER */
+    .footer {
+      padding-top: 24px;
+      border-top: 1px solid var(--grey);
+      font-size: 12px;
+      color: var(--concrete);
+      display: flex;
+      justify-content: space-between;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-left">
+      <span class="eyebrow">Stones for Organisations</span>
+      <h1>Product Overview</h1>
+      <p class="subtitle">What Stones is and what your leaders get.</p>
+    </div>
+    <div class="header-right">
+      <span class="tag terra">Confidential</span>
+      <span class="header-date">June 2026</span>
+    </div>
+  </div>
+
+  <!-- PROBLEM BLOCK -->
+  <div class="hero">
+    <div class="hero-statement">
+      Most organisations spend significant budget on leadership development. <em>Most of it doesn't stick.</em> Not because the content is wrong — but because the support stops the moment the programme ends.
+    </div>
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-number">10%</div>
+        <div class="stat-label">of leadership programmes deliver measurable ROI (HBR, 2023)</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">70%</div>
+        <div class="stat-label">of leaders report chronic stress or burnout</div>
+      </div>
+      <div class="stat">
+        <div class="stat-number">1 in 3</div>
+        <div class="stat-label">leaders feel unprepared for the breadth of their role</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- WHAT STONES IS -->
+  <div class="what-stones">
+    <div class="ws-card accent">
+      <div class="ws-title">Not a programme. A practice.</div>
+      <div class="ws-body">Stones is a leadership OS — an always-on companion that supports leaders in the actual moments leadership happens. Not during a retreat. Not in a scheduled session. In the margins of the working day, when it matters most.</div>
+    </div>
+    <div class="ws-card">
+      <div class="ws-title">Self-determined, not mandated.</div>
+      <div class="ws-body">Leaders choose their own development priorities. This is not an HR system with assigned modules. It is a companion that leaders want to use because it serves them directly — which is why engagement holds up week after week.</div>
+    </div>
+    <div class="ws-card">
+      <div class="ws-title">Expert content at scale.</div>
+      <div class="ws-body">Stones delivers access to 26+ expert practitioners — coaches, facilitators, and consultants — at a fraction of the cost of 1:1 coaching. Surfaced contextually when the leader needs it, not when it is convenient for the programme.</div>
+    </div>
+  </div>
+
+  <!-- NOT THIS -->
+  <div class="not-this">
+    <p class="section-label">What Stones is not</p>
+    <div class="not-this-grid">
+      <div class="not-item">
+        <div class="not-label">Not this</div>
+        <div class="not-name">An LMS</div>
+        <div class="not-why">No compliance tracking. No mandatory modules. No certification. Stones is self-determined — leaders engage because it serves them, not because it is required.</div>
+      </div>
+      <div class="not-item">
+        <div class="not-label">Not this</div>
+        <div class="not-name">A coaching platform</div>
+        <div class="not-why">Stones delivers the impact of coaching — expert guidance in real moments — at a fraction of the cost, continuously available rather than in scheduled 45-minute blocks.</div>
+      </div>
+      <div class="not-item">
+        <div class="not-label">Not this</div>
+        <div class="not-name">A content library</div>
+        <div class="not-why">Stones is not a catalogue leaders scroll through. Content surfaces contextually — when a leader is facing a specific moment, Stones gives them what they need right then.</div>
+      </div>
+      <div class="not-item">
+        <div class="not-label">Not this</div>
+        <div class="not-name">A one-off event</div>
+        <div class="not-why">Workshops and retreats build one moment of awareness. Stones builds a habit — continuous, daily, accumulative. The ROI compounds over time rather than fading within weeks.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PRODUCT -->
+  <div class="product-section">
+    <p class="section-label">What your leaders get — the full product</p>
+    <div class="zones">
+
+      <!-- Personal development -->
+      <div class="zone develop">
+        <div class="zone-header">
+          <div class="zone-pip"></div>
+          <div class="zone-label">Personal development — direction and goals</div>
+          <div class="zone-value">Leader-owned. HR-visible.</div>
+        </div>
+        <div class="zone-cards two">
+          <div class="type-card">
+            <div class="type-name">Compass</div>
+            <div class="type-sub">Self-assessment across 23 leadership subdomains</div>
+            <div class="type-what">Each leader completes a Compass self-assessment across four domains — Self, People, Operational, and Strategic leadership — identifying where they feel confident and where they want to grow. Creates a personal development picture from day one.</div>
+            <div class="type-org"><strong>What this means for you:</strong> Leaders arrive oriented. You get a cohort with clear development priorities rather than a group unsure where to start — higher engagement from the first session.</div>
+          </div>
+          <div class="type-card">
+            <div class="type-name">Goals</div>
+            <div class="type-sub">North Star goal-setting and milestone tracking</div>
+            <div class="type-what">Leaders set their own development goals, connected to their Compass outcomes. Progress is tracked via milestones over time — making growth visible and accumulative rather than invisible and assumed.</div>
+            <div class="type-org"><strong>What this means for you:</strong> Development is leader-driven and accountable. Leaders own their goals, which means you spend less time chasing engagement — and more time having the conversations that matter.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Skill-building -->
+      <div class="zone learn">
+        <div class="zone-header">
+          <div class="zone-pip"></div>
+          <div class="zone-label">Skill-building — capability that sticks</div>
+          <div class="zone-value">Expert content. Behaviour change.</div>
+        </div>
+        <div class="zone-cards three">
+          <div class="type-card">
+            <div class="type-name">Practices</div>
+            <div class="type-sub">Behavioural learning loops for moments of need</div>
+            <div class="type-what">When a leader is struggling with something specific — a performance conversation, managing self-doubt, navigating conflict — they enter a Practice. Expert video, a practical tool, a reflection exercise, and a follow-up nudge combine to build the skill through a real cycle of action and reflection.</div>
+            <div class="type-org"><strong>What this means for you:</strong> Your leaders build capability in the moments they need it most, not months later in a workshop. The loop creates behaviour change, not just awareness — and that is what shows up in how they lead their teams day to day.</div>
+          </div>
+          <div class="type-card">
+            <div class="type-name">Learning</div>
+            <div class="type-sub">Curated expert content by ANZ practitioners</div>
+            <div class="type-what">Structured expert content on specific leadership topics — curated by Stones' 26+ partner practitioners. Coaches, facilitators, and consultants with deep subject expertise create content grounded in real experience, not generic frameworks.</div>
+            <div class="type-org"><strong>What this means for you:</strong> Your leaders are learning from practitioners who work with organisations like yours every day. Not off-the-shelf global content — ANZ-relevant, current, and grounded in what actually works in your context.</div>
+          </div>
+          <div class="type-card">
+            <div class="type-name">Stories</div>
+            <div class="type-sub">First-person accounts from leaders who have been there</div>
+            <div class="type-what">Real leaders share what they navigated, what was hard, and what they learned. Specific, honest, and human in a way that expert content rarely is. Not prescriptive — lived experience that creates "someone else has been here" recognition.</div>
+            <div class="type-org"><strong>What this means for you:</strong> Leadership development that feels real, not curated. Leaders stay engaged with content that reflects the complexity they actually experience — rather than disengaging from advice that feels sanitised or inapplicable.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Intelligence -->
+      <div class="zone intel">
+        <div class="zone-header">
+          <div class="zone-pip"></div>
+          <div class="zone-label">Intelligence — staying ahead of what's changing</div>
+          <div class="zone-value">ANZ-relevant. Curated weekly.</div>
+        </div>
+        <div class="zone-cards two">
+          <div class="type-card">
+            <div class="type-name">Briefings</div>
+            <div class="type-sub">Topical intelligence from the world outside the organisation</div>
+            <div class="type-what">Curated intelligence on what is shifting in the external landscape — employment law changes, workforce trend research, macroeconomic signals, global leadership findings. Each Briefing explains what has changed and what it means for ANZ leaders and their teams.</div>
+            <div class="type-org"><strong>What this means for you:</strong> Your leaders are not caught off guard by shifts they should have seen coming. They arrive in conversations with you and their teams already informed — which changes the quality of those conversations.</div>
+          </div>
+          <div class="type-card">
+            <div class="type-name">Insights</div>
+            <div class="type-sub">Leadership thinking grounded in research</div>
+            <div class="type-what">Short, evidence-based pieces on specific leadership topics — each grounded in research and giving leaders something specific and practical to reflect on. Warm, direct, and written for leaders who are busy and sceptical of generic advice.</div>
+            <div class="type-org"><strong>What this means for you:</strong> Leaders develop the habit of thinking about their practice — not just managing the day-to-day. That reflective habit is one of the strongest predictors of sustained leadership growth.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Practical -->
+      <div class="zone tools">
+        <div class="zone-header">
+          <div class="zone-pip"></div>
+          <div class="zone-label">Practical tools — ready to use, not just to read</div>
+          <div class="zone-value">Close the knowing-doing gap.</div>
+        </div>
+        <div class="zone-cards one">
+          <div class="type-card">
+            <div class="type-name">Toolkits</div>
+            <div class="type-sub">Templates, scripts, frameworks, and guides</div>
+            <div class="type-what">The practical layer — conversation frameworks, planning templates, scripts for difficult situations, and guides that leaders pick up and use directly. Not content to read. Things to deploy in the actual moment they are needed.</div>
+            <div class="type-org"><strong>What this means for you:</strong> Leaders move from knowing what they should do to actually doing it — which is where every development investment fails if the practical bridge is missing. Toolkits close that gap without adding overhead to you or your team.</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Community -->
+      <div class="zone connect">
+        <div class="zone-header">
+          <div class="zone-pip"></div>
+          <div class="zone-label">Community — connection that costs you nothing to organise</div>
+          <div class="zone-value">Peer and expert connection. Built in.</div>
+        </div>
+        <div class="zone-cards one">
+          <div class="type-card">
+            <div class="type-name">Community Forum</div>
+            <div class="type-sub">Peer-to-peer and peer-to-expert discussion</div>
+            <div class="type-what">A structured forum where leaders ask questions, share experience, and get responses from peers and Stones' expert partners. Moderated and purposeful — anchored to leadership topics, not a social feed. The antidote to the isolation that most leaders feel but rarely name.</div>
+            <div class="type-org"><strong>What this means for you:</strong> Your leaders get the peer connection and external perspective that makes development stick — without you needing to organise cohort sessions, peer circles, or mentoring programmes. It's built into the product and it runs itself.</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- WHAT THE ORG SEES -->
+  <div class="org-sees">
+    <p class="section-label">What you see as the organisation</p>
+    <h2>Visibility without surveillance</h2>
+    <p class="intro-text">Stones gives you the engagement data and thematic signals that tell a story to your leadership team — without exposing individual leader conversations or development content. Privacy is a design principle, not an afterthought.</p>
+    <div class="visibility-grid">
+      <div class="vis-card">
+        <div class="vis-label">Engagement data</div>
+        <div class="vis-title">You see that leaders are using it — and how often.</div>
+        <div class="vis-body">Cohort-level engagement rates, weekly active use, and content interaction data. Enough to report to the executive team and hold the investment case. No individual-level exposure of what a leader is working on.</div>
+      </div>
+      <div class="vis-card">
+        <div class="vis-label">Thematic signals</div>
+        <div class="vis-title">You see what your leaders are working on, not what they're struggling with.</div>
+        <div class="vis-body">Aggregate theme data shows which practice areas your cohort is most engaged with — giving you early signal on where capability gaps exist across the team, without breaching individual trust.</div>
+      </div>
+      <div class="vis-card">
+        <div class="vis-label">Impact reporting</div>
+        <div class="vis-title">You have something to show the board.</div>
+        <div class="vis-body">Regular engagement summaries with cohort-level data, development themes, and qualitative feedback. Structured to make the internal case easy — and to give finance and the executive team something they can understand and act on.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- DIFFERENTIATION TABLE -->
+  <div class="diff-section">
+    <p class="section-label">How Stones compares</p>
+    <table class="diff-table">
+      <thead>
+        <tr>
+          <th>Compared to</th>
+          <th>What they do well</th>
+          <th>Where Stones is different</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>LMS / eLearning platforms</td>
+          <td>Large libraries. Scalable deployment. Compliance tracking.</td>
+          <td class="stones">Stones is self-determined — leaders choose their path. No mandatory modules, no compliance overhead. Engagement is higher because leaders feel served, not managed.</td>
+        </tr>
+        <tr>
+          <td>Executive coaching (BetterUp, CoachHub)</td>
+          <td>Deep 1:1 support. Personalised relationships.</td>
+          <td class="stones">Stones delivers the impact of many coaches at a fraction of the cost — continuously available in the moment rather than in scheduled 45-minute blocks. More leaders reached, more often.</td>
+        </tr>
+        <tr>
+          <td>LinkedIn Learning / Masterclass</td>
+          <td>High-quality content. Low cost. Wide library.</td>
+          <td class="stones">Stones surfaces what is relevant to the leader right now, not what is popular in a catalogue. Content is ANZ-relevant and contextual, not global and generic.</td>
+        </tr>
+        <tr>
+          <td>Workshops and retreats</td>
+          <td>Deep immersion. Peer connection. Memorable events.</td>
+          <td class="stones">Stones provides continuous practice rather than episodic events. The ROI compounds over time — leaders build habits, not just one-time insights that fade within weeks.</td>
+        </tr>
+        <tr>
+          <td>Generic AI tools</td>
+          <td>Fast, flexible, always available.</td>
+          <td class="stones">Stones' AI is grounded in organisational psychology, leadership science, and ANZ context — not generic internet-trained advice. It knows the leader's development priorities and responds accordingly.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- PROOF POINTS -->
+  <div class="proof-section">
+    <p class="section-label">Where Stones is today</p>
+    <div class="proof-grid">
+      <div class="proof-item">
+        <div class="proof-number">85+</div>
+        <div class="proof-label">active leaders using Stones today</div>
+      </div>
+      <div class="proof-item">
+        <div class="proof-number">26</div>
+        <div class="proof-label">expert partners creating content</div>
+      </div>
+      <div class="proof-item">
+        <div class="proof-number">50%</div>
+        <div class="proof-label">activation rate — double the industry average for digital L&D</div>
+      </div>
+      <div class="proof-item">
+        <div class="proof-number">3</div>
+        <div class="proof-label">beta organisations already using Stones</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- NEXT STEPS -->
+  <div class="next-steps">
+    <div class="ns-card terra">
+      <h3>Start with a conversation</h3>
+      <p>If you are exploring whether Stones is the right fit for your organisation, the best next step is a 30-minute conversation with Emily. No slide deck. No sales pitch. A direct conversation about what you are trying to achieve, what you have tried before, and whether Stones addresses the gap.</p>
+      <div class="contact">
+        <strong>Emily Rust — Co-founder and CEO</strong>
+        emily@leadwithstones.com &middot; leadwithstones.com
+      </div>
+    </div>
+    <div class="ns-card light">
+      <h3>Common questions</h3>
+      <ul class="includes-list">
+        <li>How do I make the internal case to finance and the exec team? We can provide a one-pager, objection FAQ, and board summary designed to make that conversation straightforward.</li>
+        <li>Will our leaders actually use it? The 50% activation rate exists because leaders choose to engage. Self-determination is the design principle that drives it.</li>
+        <li>What does ROI look like? We will help you define what success looks like from the outset and provide the engagement and thematic data to tell a clear story over time.</li>
+        <li>How is this different from what we already have? That is the right question, and it is worth a conversation. We would rather be honest about the fit than sell you something that overlaps with existing investment.</li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="footer">
+    <span>Confidential — prepared for private distribution only. Not for onward sharing without permission.</span>
+    <span>June 2026 &middot; leadwithstones.com</span>
+  </div>
+
+</body>
+</html>
