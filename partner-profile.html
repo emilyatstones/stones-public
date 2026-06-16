@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Partner Profile — Design Spec</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --green:        #506B56;
+      --green-dark:   #3A5040;
+      --green-light:  #EBF0EC;
+      --terracotta:   #BE796C;
+      --terra-light:  #F5EDE9;
+      --clay:         #DAB4A4;
+      --wave-dark:    #255C9B;
+      --wave-light:   #D1E1F5;
+      --forest:       #578E4E;
+      --forest-light: #EBF5E9;
+      --cream:        #F4F1EA;
+      --off-white:    #FCFAFA;
+      --black:        #3C3C3B;
+      --concrete:     #878786;
+      --grey:         #C6C6C5;
+      --grey-light:   #EBEBEA;
+      --dark-bg:      #18181a;
+
+      --people-bg:     #F5EDE9;
+      --people-text:   #9B5C51;
+      --people-border: #D4A79E;
+      --ops-bg:        #D1E1F5;
+      --ops-text:      #1A3F6F;
+      --ops-border:    #A0BDD8;
+      --strat-bg:      #EBF5E9;
+      --strat-text:    #3A6232;
+      --strat-border:  #9FC49A;
+      --self-bg:       #F4F1E4;
+      --self-text:     #6B6330;
+      --self-border:   #D6CF9A;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--dark-bg);
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      padding: 48px 32px 100px;
+    }
+
+    /* ─── SPEC WRAPPER ─── */
+
+    .spec-wrapper { max-width: 1160px; margin: 0 auto; }
+
+    .spec-header {
+      margin-bottom: 40px;
+      padding-bottom: 32px;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .spec-eyebrow { font-size: 11px; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: #6B9FD4; margin-bottom: 10px; }
+    .spec-title { font-size: 24px; font-weight: 700; color: #fff; letter-spacing: -0.02em; margin-bottom: 10px; }
+    .spec-tags { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 16px; }
+
+    .spec-tag {
+      display: inline-block; background: rgba(37,92,155,0.22); color: #6B9FD4;
+      border-radius: 4px; font-size: 11px; font-weight: 600;
+      padding: 3px 9px; letter-spacing: 0.06em; text-transform: uppercase;
+    }
+
+    .spec-tag.neutral { background: rgba(255,255,255,0.07); color: rgba(255,255,255,0.4); }
+    .spec-meta { font-size: 13px; color: rgba(255,255,255,0.4); line-height: 1.7; max-width: 720px; }
+
+    .spec-notes { margin-top: 20px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+
+    .spec-note { background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08); border-radius: 8px; padding: 14px 16px; }
+    .spec-note-label { font-size: 10px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: #6B9FD4; margin-bottom: 6px; }
+    .spec-note p { font-size: 12.5px; color: rgba(255,255,255,0.5); line-height: 1.6; }
+
+    /* ─── APP FRAME ─── */
+
+    .app-frame { background: var(--cream); border-radius: 16px; overflow: hidden; box-shadow: 0 32px 80px rgba(0,0,0,0.5); }
+
+    /* ─── TOP BAR ─── */
+
+    .topbar {
+      background: white;
+      border-bottom: 1px solid var(--grey-light);
+      padding: 14px 32px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .topbar-back {
+      width: 32px; height: 32px;
+      background: var(--grey-light); border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; flex-shrink: 0;
+    }
+
+    .breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 13px;
+    }
+
+    .breadcrumb-link { color: var(--concrete); font-weight: 500; cursor: pointer; }
+    .breadcrumb-link:hover { color: var(--black); }
+    .breadcrumb-sep { color: var(--grey); font-size: 11px; }
+    .breadcrumb-current { color: var(--black); font-weight: 600; }
+
+    /* ─── PROFILE HERO ─── */
+
+    .profile-hero {
+      background: white;
+      border-bottom: 1px solid var(--grey-light);
+      padding: 36px 40px;
+      display: flex;
+      gap: 28px;
+      align-items: flex-start;
+    }
+
+    .profile-photo {
+      width: 100px;
+      height: 100px;
+      border-radius: 50%;
+      background: var(--terracotta);
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      flex-shrink: 0;
+      overflow: hidden;
+      border: 3px solid white;
+      box-shadow: 0 0 0 1px var(--grey-light);
+    }
+
+    .profile-photo svg { display: block; }
+
+    .profile-info { flex: 1; }
+
+    .profile-name {
+      font-size: 24px;
+      font-weight: 800;
+      color: var(--black);
+      letter-spacing: -0.02em;
+      line-height: 1.1;
+      margin-bottom: 4px;
+    }
+
+    .profile-credentials {
+      font-size: 13px;
+      color: var(--concrete);
+      margin-bottom: 8px;
+    }
+
+    .profile-meta-row {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 14px;
+    }
+
+    .profile-meta-item {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 12.5px;
+      color: var(--concrete);
+    }
+
+    .profile-meta-item svg { flex-shrink: 0; }
+
+    .profile-domains {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+
+    .domain-tag {
+      display: inline-block;
+      font-size: 11px; font-weight: 600; letter-spacing: 0.03em;
+      padding: 3px 10px; border-radius: 4px;
+    }
+
+    .tag-people { background: var(--people-bg); color: var(--people-text); border: 1px solid var(--people-border); }
+    .tag-ops    { background: var(--ops-bg);    color: var(--ops-text);    border: 1px solid var(--ops-border); }
+    .tag-strat  { background: var(--strat-bg);  color: var(--strat-text);  border: 1px solid var(--strat-border); }
+    .tag-self   { background: var(--self-bg);   color: var(--self-text);   border: 1px solid var(--self-border); }
+
+    .profile-hero-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      flex-shrink: 0;
+      align-items: flex-end;
+    }
+
+    .hero-btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 9px 18px;
+      border-radius: 8px;
+      font-size: 13px; font-weight: 600;
+      cursor: pointer; border: none;
+      white-space: nowrap;
+    }
+
+    .hero-btn.primary { background: var(--wave-dark); color: white; }
+    .hero-btn.secondary { background: var(--grey-light); color: var(--black); }
+
+    .partner-since {
+      font-size: 11.5px;
+      color: var(--concrete);
+      text-align: right;
+      margin-top: 4px;
+    }
+
+    /* ─── BODY ─── */
+
+    .profile-body {
+      display: grid;
+      grid-template-columns: 1fr 280px;
+      gap: 0;
+      min-height: 600px;
+    }
+
+    /* ─── MAIN COLUMN ─── */
+
+    .profile-main {
+      padding: 32px 36px;
+      border-right: 1px solid var(--grey-light);
+      display: flex;
+      flex-direction: column;
+      gap: 36px;
+    }
+
+    .section-label {
+      font-size: 11px; font-weight: 700; letter-spacing: 0.12em;
+      text-transform: uppercase; color: var(--concrete); margin-bottom: 14px;
+    }
+
+    /* About */
+
+    .about-text {
+      font-size: 14px;
+      color: var(--black);
+      line-height: 1.7;
+    }
+
+    .about-text p + p { margin-top: 14px; }
+
+    /* Content cards */
+
+    .content-cards { display: flex; flex-direction: column; gap: 14px; }
+
+    .content-card {
+      background: white;
+      border: 1px solid var(--grey-light);
+      border-radius: 12px;
+      padding: 20px 22px;
+      display: flex;
+      gap: 18px;
+      align-items: flex-start;
+    }
+
+    .content-type-marker {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .marker-practice { background: var(--green-light); }
+    .marker-story    { background: var(--wave-light); }
+    .marker-guide    { background: var(--terra-light); }
+
+    .content-card-body { flex: 1; }
+
+    .content-type-label {
+      font-size: 10.5px; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; color: var(--concrete); margin-bottom: 4px;
+    }
+
+    .content-title {
+      font-size: 16px; font-weight: 700; color: var(--black);
+      letter-spacing: -0.01em; line-height: 1.2; margin-bottom: 6px;
+    }
+
+    .content-desc {
+      font-size: 13px; color: var(--concrete); line-height: 1.55; margin-bottom: 12px;
+    }
+
+    .content-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 12px;
+      border-top: 1px solid var(--grey-light);
+    }
+
+    .content-engagement {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 12px;
+      color: var(--concrete);
+    }
+
+    .content-engagement strong { color: var(--black); font-weight: 700; }
+
+    .content-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      background: var(--green-light);
+      color: var(--green-dark);
+      font-size: 12.5px; font-weight: 600;
+      padding: 7px 14px; border-radius: 6px;
+      cursor: pointer; border: none;
+    }
+
+    .content-cta.story-cta { background: var(--wave-light); color: var(--wave-dark); }
+
+    /* ─── SIDEBAR ─── */
+
+    .profile-sidebar {
+      background: var(--off-white);
+      padding: 28px 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 24px;
+    }
+
+    .sidebar-card {
+      background: white;
+      border: 1px solid var(--grey-light);
+      border-radius: 10px;
+      padding: 16px 18px;
+    }
+
+    /* Stats */
+
+    .stats-list { display: flex; flex-direction: column; gap: 10px; }
+
+    .stat-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .stat-row-label { font-size: 12.5px; color: var(--concrete); }
+    .stat-row-value { font-size: 14px; font-weight: 700; color: var(--black); }
+
+    /* Connect */
+
+    .connect-btns { display: flex; flex-direction: column; gap: 8px; }
+
+    .connect-btn {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: var(--grey-light);
+      border: none;
+      border-radius: 8px;
+      padding: 10px 14px;
+      font-size: 13px; font-weight: 600;
+      color: var(--black);
+      cursor: pointer;
+      width: 100%;
+      text-align: left;
+    }
+
+    .connect-btn.linkedin { background: var(--wave-light); color: var(--wave-dark); }
+    .connect-btn svg { flex-shrink: 0; }
+
+    /* Related partners */
+
+    .related-list { display: flex; flex-direction: column; gap: 10px; }
+
+    .related-card {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      cursor: pointer;
+    }
+
+    .related-avatar {
+      width: 36px; height: 36px;
+      border-radius: 50%;
+      display: flex; align-items: flex-end; justify-content: center;
+      overflow: hidden; flex-shrink: 0;
+    }
+
+    .ra-wave   { background: var(--wave-dark); }
+    .ra-forest { background: var(--forest); }
+
+    .related-info { flex: 1; min-width: 0; }
+    .related-name { font-size: 13px; font-weight: 600; color: var(--black); }
+    .related-sub  { font-size: 11.5px; color: var(--concrete); margin-top: 1px; }
+
+    .related-arrow { color: var(--concrete); flex-shrink: 0; }
+
+    /* ─── ANNOTATION ─── */
+
+    .annotation {
+      background: rgba(255,222,115,0.08); border: 1px solid rgba(255,222,115,0.2);
+      border-radius: 8px; padding: 12px 16px; margin-top: 16px;
+      font-size: 12.5px; color: rgba(255,255,255,0.5); line-height: 1.6;
+    }
+
+    .annotation strong { color: #FFDE73; font-weight: 600; }
+
+    svg { display: block; }
+  </style>
+</head>
+<body>
+<div class="spec-wrapper">
+
+  <!-- ── Spec Header ── -->
+  <div class="spec-header">
+    <div class="spec-eyebrow">Stones — Design Spec</div>
+    <div class="spec-title">Partner Profile — Leader View</div>
+    <div class="spec-tags">
+      <span class="spec-tag">In-App Page</span>
+      <span class="spec-tag">Leader-Facing</span>
+      <span class="spec-tag neutral">Linked from Directory</span>
+      <span class="spec-tag neutral">June 2026</span>
+    </div>
+    <div class="spec-meta">
+      Shown when a leader taps "View Profile" from the directory. Gives a richer picture of who the partner is, what they've contributed to Stones, and how to reach them. No earnings data is visible here — this is a leader experience.
+    </div>
+    <div class="spec-notes">
+      <div class="spec-note">
+        <div class="spec-note-label">Content cards</div>
+        <p>Each card links to the live piece of Stones content — Practice opens in the Practices flow, Story opens inline. Leaders can start or continue the content directly from this page.</p>
+      </div>
+      <div class="spec-note">
+        <div class="spec-note-label">Engagement counts</div>
+        <p>The leader-visible stat is completions and views — not earnings. Frames the partner as high-impact and well-regarded without surfacing anything commercial.</p>
+      </div>
+      <div class="spec-note">
+        <div class="spec-note-label">Enquiry path</div>
+        <p>LinkedIn and website open in browser. No in-app message flow — Stones connects the dots; the relationship is the partner's to close. Consider adding an "Enquire" mailto link at a later stage.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── App Frame ── -->
+  <div class="app-frame">
+
+    <!-- Top Bar -->
+    <div class="topbar">
+      <div class="topbar-back">
+        <svg width="14" height="14" fill="none" stroke="#878786" stroke-width="2.5" viewBox="0 0 24 24"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      </div>
+      <div class="breadcrumb">
+        <span class="breadcrumb-link">Partner Network</span>
+        <span class="breadcrumb-sep">›</span>
+        <span class="breadcrumb-current">Sarah Mitchell</span>
+      </div>
+    </div>
+
+    <!-- Profile Hero -->
+    <div class="profile-hero">
+
+      <div class="profile-photo">
+        <svg width="74" height="74" viewBox="0 0 74 74" fill="rgba(255,255,255,0.5)" xmlns="http://www.w3.org/2000/svg">
+          <circle cx="37" cy="26" r="15"/>
+          <path d="M1 74c0-19.9 16.1-36 36-36s36 16.1 36 36"/>
+        </svg>
+      </div>
+
+      <div class="profile-info">
+        <div class="profile-name">Sarah Mitchell</div>
+        <div class="profile-credentials">ICF-PCC · Professional Certified Coach · Facilitator</div>
+        <div class="profile-meta-row">
+          <div class="profile-meta-item">
+            <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"/><circle cx="12" cy="11" r="3"/></svg>
+            Auckland, New Zealand
+          </div>
+          <div class="profile-meta-item">
+            <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+            2 pieces on Stones
+          </div>
+        </div>
+        <div class="profile-domains">
+          <span class="domain-tag tag-people">Communication &amp; Influence</span>
+          <span class="domain-tag tag-people">Navigating Conflict</span>
+        </div>
+      </div>
+
+      <div class="profile-hero-actions">
+        <a class="hero-btn primary">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="white"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+          LinkedIn
+        </a>
+        <a class="hero-btn secondary">
+          <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>
+          Website
+        </a>
+        <div class="partner-since">Stones partner since March 2025</div>
+      </div>
+
+    </div>
+    <!-- /profile-hero -->
+
+    <!-- Body -->
+    <div class="profile-body">
+
+      <!-- Main Column -->
+      <div class="profile-main">
+
+        <!-- About -->
+        <div>
+          <div class="section-label">About Sarah</div>
+          <div class="about-text">
+            <p>Sarah Mitchell has spent 15 years helping leaders and teams communicate with clarity and confidence in the moments that matter most. Her work sits at the intersection of communication science and practical leadership — drawing on research in influence, trust, and interpersonal psychology to help leaders navigate the conversations they've been avoiding, resolve disagreement without damaging relationships, and build the kind of candour that makes teams genuinely effective.</p>
+            <p>Before moving into coaching and facilitation, Sarah spent a decade in senior communications roles across financial services and technology. That background gives her work a pragmatism her clients find refreshing: less theory, more language you can actually use on Monday morning.</p>
+            <p>She is a Professional Certified Coach (ICF-PCC) and a trained facilitator. She works with individual leaders through her private practice and with leadership teams across New Zealand and Australia.</p>
+          </div>
+        </div>
+
+        <!-- Content on Stones -->
+        <div>
+          <div class="section-label">Sarah's content on Stones</div>
+          <div class="content-cards">
+
+            <!-- Practice card -->
+            <div class="content-card">
+              <div class="content-type-marker marker-practice">
+                <svg width="18" height="18" fill="none" stroke="#506B56" stroke-width="2" viewBox="0 0 24 24"><path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4"/></svg>
+              </div>
+              <div class="content-card-body">
+                <div class="content-type-label">Practice</div>
+                <div class="content-title">Having Difficult Conversations</div>
+                <div class="content-desc">A structured practice for navigating the conversations leaders avoid most. Covers how to open without ambush, stay grounded when it gets hard, and close in a way that moves the relationship forward — not just the issue.</div>
+                <div class="content-footer">
+                  <div class="content-engagement">
+                    <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+                    <strong>1,847 leaders</strong>&nbsp;have completed this Practice
+                  </div>
+                  <button class="content-cta">
+                    Start Practice
+                    <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Story card -->
+            <div class="content-card">
+              <div class="content-type-marker marker-story">
+                <svg width="18" height="18" fill="none" stroke="#255C9B" stroke-width="2" viewBox="0 0 24 24"><path d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+              </div>
+              <div class="content-card-body">
+                <div class="content-type-label">Story</div>
+                <div class="content-title">The Trust Equation</div>
+                <div class="content-desc">Sarah unpacks why trust erodes in leadership relationships — often without either person realising it's happening — and what leaders can do to rebuild it. Grounded in the work of Charles Feltman and David Maister.</div>
+                <div class="content-footer">
+                  <div class="content-engagement">
+                    <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/><path d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/></svg>
+                    <strong>1,590</strong>&nbsp;views
+                  </div>
+                  <button class="content-cta story-cta">
+                    Read now
+                    <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+      <!-- /profile-main -->
+
+      <!-- Sidebar -->
+      <div class="profile-sidebar">
+
+        <!-- Impact stats -->
+        <div class="sidebar-card">
+          <div class="section-label">Impact this quarter</div>
+          <div class="stats-list">
+            <div class="stat-row">
+              <span class="stat-row-label">Content views</span>
+              <span class="stat-row-value">4,830</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-row-label">Practices completed</span>
+              <span class="stat-row-value">1,847</span>
+            </div>
+            <div class="stat-row">
+              <span class="stat-row-label">Profile visits</span>
+              <span class="stat-row-value">428</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Connect -->
+        <div class="sidebar-card">
+          <div class="section-label">Connect with Sarah</div>
+          <div class="connect-btns">
+            <button class="connect-btn linkedin">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="#255C9B"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+              View LinkedIn profile
+              <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="margin-left:auto"><path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+            </button>
+            <button class="connect-btn">
+              <svg width="14" height="14" fill="none" stroke="#878786" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>
+              Visit website
+              <svg width="11" height="11" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24" style="margin-left:auto"><path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <!-- Also in the network -->
+        <div class="sidebar-card">
+          <div class="section-label">Also in the network</div>
+          <div class="related-list">
+
+            <div class="related-card">
+              <div class="related-avatar ra-wave">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="rgba(255,255,255,0.5)"><circle cx="12" cy="8" r="5"/><path d="M1 23c0-6.1 4.9-11 11-11s11 4.9 11 11"/></svg>
+              </div>
+              <div class="related-info">
+                <div class="related-name">James Okafor</div>
+                <div class="related-sub">Stakeholder Relationships</div>
+              </div>
+              <svg class="related-arrow" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+            </div>
+
+            <div class="related-card">
+              <div class="related-avatar ra-forest">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="rgba(255,255,255,0.5)"><circle cx="12" cy="8" r="5"/><path d="M1 23c0-6.1 4.9-11 11-11s11 4.9 11 11"/></svg>
+              </div>
+              <div class="related-info">
+                <div class="related-name">Dr Priya Sharma</div>
+                <div class="related-sub">Building High-Performing Teams</div>
+              </div>
+              <svg class="related-arrow" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+            </div>
+
+          </div>
+        </div>
+
+      </div>
+      <!-- /sidebar -->
+
+    </div>
+    <!-- /profile-body -->
+
+  </div>
+  <!-- /app-frame -->
+
+  <div class="annotation">
+    <strong>Design notes for Campbell + Mike</strong> — The profile photo uses the same coloured placeholder approach as the directory cards (terracotta for Sarah). When a real photo is uploaded by the partner, it replaces the silhouette. The breadcrumb at the top is the back-navigation path. The "2 pieces on Stones" count in the hero meta row updates dynamically. Impact stats (views, completions, profile visits) are scoped to the current quarter to keep the numbers live-feeling. "Also in the network" should surface 2 partners from overlapping subdomains — algorithmic, not editorial. LinkedIn and website buttons open in browser.
+  </div>
+
+</div>
+</body>
+</html>
