@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stones — Ways to Contribute</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Georgia', serif;
+      background: #F4F1EA;
+      color: #3C3C3B;
+      min-height: 100vh;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: 48px 24px;
+    }
+
+    .page {
+      width: 100%;
+      max-width: 860px;
+    }
+
+    /* Header */
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      border-bottom: 1.5px solid #506B56;
+      padding-bottom: 20px;
+      margin-bottom: 32px;
+    }
+
+    .header-left h1 {
+      font-size: 28px;
+      font-weight: 400;
+      letter-spacing: -0.3px;
+      color: #3C3C3B;
+      line-height: 1.2;
+    }
+
+    .header-left p {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 13px;
+      color: #878786;
+      margin-top: 6px;
+    }
+
+    .logo {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 18px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      color: #506B56;
+      text-transform: uppercase;
+    }
+
+    /* Intro */
+    .intro {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 14px;
+      line-height: 1.7;
+      color: #3C3C3B;
+      max-width: 620px;
+      margin-bottom: 32px;
+    }
+
+    /* Contribution grid */
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-bottom: 28px;
+    }
+
+    .card {
+      background: #FCFAFA;
+      border: 1px solid #C6C6C5;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .card.featured {
+      border-color: #506B56;
+    }
+
+    .card-header {
+      padding: 14px 18px 12px;
+      border-bottom: 1px solid #C6C6C5;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+
+    .card.featured .card-header {
+      border-bottom-color: #C6C6C5;
+      background: #F4F1EA;
+    }
+
+    .card-header-left h2 {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 14px;
+      font-weight: 600;
+      color: #3C3C3B;
+      margin-bottom: 2px;
+    }
+
+    .card.featured .card-header-left h2 {
+      color: #506B56;
+    }
+
+    .card-header-left p {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 11px;
+      color: #878786;
+    }
+
+    .effort {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 10px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #878786;
+      background: #F4F1EA;
+      border: 1px solid #C6C6C5;
+      border-radius: 2px;
+      padding: 3px 7px;
+      white-space: nowrap;
+      margin-left: 10px;
+      flex-shrink: 0;
+    }
+
+    .card.featured .effort {
+      background: #EBF0EC;
+      border-color: #C6C6C5;
+      color: #506B56;
+    }
+
+    .card-body {
+      padding: 14px 18px 16px;
+    }
+
+    .card-body p {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 13px;
+      line-height: 1.65;
+      color: #3C3C3B;
+      margin-bottom: 12px;
+    }
+
+    .formats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+    }
+
+    .format-tag {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 11px;
+      color: #3C3C3B;
+      background: #F4F1EA;
+      border: 1px solid #C6C6C5;
+      border-radius: 2px;
+      padding: 2px 8px;
+    }
+
+    .card.featured .format-tag {
+      background: #EBF0EC;
+      border-color: #C6D5CE;
+      color: #506B56;
+    }
+
+    /* Process note */
+    .process {
+      background: #506B56;
+      border-radius: 4px;
+      padding: 20px 24px;
+      margin-bottom: 28px;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 20px;
+    }
+
+    .process-step {
+      display: flex;
+      gap: 12px;
+      align-items: flex-start;
+    }
+
+    .step-num {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 20px;
+      font-weight: 300;
+      color: #F4F1EA;
+      opacity: 0.35;
+      line-height: 1;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .step-text h3 {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 12px;
+      font-weight: 600;
+      color: #F4F1EA;
+      margin-bottom: 4px;
+    }
+
+    .step-text p {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 12px;
+      color: #F4F1EA;
+      opacity: 0.75;
+      line-height: 1.5;
+    }
+
+    /* Note */
+    .note {
+      background: #FCFAFA;
+      border: 1px solid #C6C6C5;
+      border-left: 3px solid #506B56;
+      border-radius: 0 4px 4px 0;
+      padding: 14px 18px;
+      margin-bottom: 28px;
+    }
+
+    .note p {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 13px;
+      line-height: 1.65;
+      color: #3C3C3B;
+    }
+
+    .note p strong {
+      color: #506B56;
+    }
+
+    /* Footer */
+    .footer {
+      border-top: 1px solid #C6C6C5;
+      padding-top: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .footer p {
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      font-size: 11px;
+      color: #878786;
+      line-height: 1.6;
+    }
+
+    .footer a {
+      color: #506B56;
+      text-decoration: none;
+    }
+
+    @media print {
+      body { padding: 24px; background: white; }
+      .page { max-width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+
+    <!-- Header -->
+    <div class="header">
+      <div class="header-left">
+        <h1>Ways to Contribute</h1>
+        <p>Appendix — Stones for Partners</p>
+      </div>
+      <div class="logo">Stones</div>
+    </div>
+
+    <!-- Intro -->
+    <p class="intro">
+      There is no single template for what partner contribution looks like. The format should suit your expertise and how your knowledge lands best. What matters is that what you contribute is useful to a leader in a real moment. Below is a guide to the contribution types available, what each involves, and the effort typically required.
+    </p>
+
+    <!-- Contribution Cards -->
+    <div class="grid">
+
+      <div class="card featured">
+        <div class="card-header">
+          <div class="card-header-left">
+            <h2>Practices</h2>
+            <p>Structured learning pathways — the core content type</p>
+          </div>
+          <span class="effort">Higher effort</span>
+        </div>
+        <div class="card-body">
+          <p>A Practice is a structured learning pathway covering a specific leadership skill, behaviour, or situation. Built to last, returned to repeatedly by leaders over time. A Practice might take a leader through understanding a concept, reflecting on their own behaviour, and applying a tool or framework in a real moment.</p>
+          <div class="formats">
+            <span class="format-tag">Video</span>
+            <span class="format-tag">Audio</span>
+            <span class="format-tag">Written guide</span>
+            <span class="format-tag">Reflection prompts</span>
+            <span class="format-tag">Mixed format</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-header-left">
+            <h2>Video modules</h2>
+            <p>Standalone recorded expertise</p>
+          </div>
+          <span class="effort">Moderate effort</span>
+        </div>
+        <div class="card-body">
+          <p>A recorded video — typically 5 to 20 minutes — where you share your perspective, explain a concept, walk through a framework, or respond to a question leaders frequently bring to you. Can sit inside a Practice or stand alone. Recorded remotely via Google Meet or Riverside; edited and produced by Stones.</p>
+          <div class="formats">
+            <span class="format-tag">Recorded remotely</span>
+            <span class="format-tag">Stones-produced</span>
+            <span class="format-tag">No studio required</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-header-left">
+            <h2>Toolkits and frameworks</h2>
+            <p>Practical resources for immediate use</p>
+          </div>
+          <span class="effort">Low to moderate</span>
+        </div>
+        <div class="card-body">
+          <p>Something a leader picks up and uses right now. Checklists, decision guides, conversation scripts, planning templates, assessment tools, reframe cards. The format varies — what matters is that it makes a hard moment easier. Many partners already have these; contribution is as simple as sharing what you already use with clients.</p>
+          <div class="formats">
+            <span class="format-tag">PDF or document</span>
+            <span class="format-tag">Checklist</span>
+            <span class="format-tag">Script</span>
+            <span class="format-tag">Template</span>
+            <span class="format-tag">Decision guide</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card featured">
+        <div class="card-header">
+          <div class="card-header-left">
+            <h2>Leadership Exchange</h2>
+            <p>Monthly live sessions with the Stones community</p>
+          </div>
+          <span class="effort">Low effort</span>
+        </div>
+        <div class="card-body">
+          <p>A monthly live session hosted by Stones and led by a partner expert. Typically 60 minutes — part short input, part Q&A with leaders who are navigating the situations you know well. Topics are agreed in advance and tied to what's most relevant for leaders right now. Facilitated by Stones; you bring the knowledge.</p>
+          <div class="formats">
+            <span class="format-tag">Live via Zoom or Riverside</span>
+            <span class="format-tag">Facilitated by Stones</span>
+            <span class="format-tag">Recorded for library</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-header-left">
+            <h2>Expert Q&amp;As</h2>
+            <p>Direct answers to live leader questions</p>
+          </div>
+          <span class="effort">Low effort</span>
+        </div>
+        <div class="card-body">
+          <p>Short, focused responses to questions submitted by leaders in the Stones community. You answer from your area of expertise — in writing, on video, or live. This is the most conversational contribution type and often the one that generates the warmest leads, because leaders experience your thinking in response to their specific situation.</p>
+          <div class="formats">
+            <span class="format-tag">Written response</span>
+            <span class="format-tag">Short video</span>
+            <span class="format-tag">Live session</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <div class="card-header-left">
+            <h2>Written content</h2>
+            <p>Blogs, micro-lessons, and newsroom pieces</p>
+          </div>
+          <span class="effort">Low effort</span>
+        </div>
+        <div class="card-body">
+          <p>Shorter written pieces for leaders who need a direct answer, a quick reframe, or a focused piece of thinking on a timely topic. A blog post, a micro-lesson, a perspective piece — typically 400 to 800 words. Lightly edited by Stones and published under your name. A good starting point for new partners finding their contribution style.</p>
+          <div class="formats">
+            <span class="format-tag">Blog post</span>
+            <span class="format-tag">Micro-lesson</span>
+            <span class="format-tag">Perspective piece</span>
+            <span class="format-tag">Topical update</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+    <!-- Process -->
+    <div class="process">
+      <div class="process-step">
+        <div class="step-num">01</div>
+        <div class="step-text">
+          <h3>Content brief</h3>
+          <p>We work with you to identify the best format and topic for your first contribution, based on your area of expertise and what leaders in Stones need right now.</p>
+        </div>
+      </div>
+      <div class="process-step">
+        <div class="step-num">02</div>
+        <div class="step-text">
+          <h3>Shaping and production</h3>
+          <p>The expertise is yours. The shaping, editing, and production is a shared process — we handle what needs to be handled so the output reflects your knowledge, not our workload.</p>
+        </div>
+      </div>
+      <div class="process-step">
+        <div class="step-num">03</div>
+        <div class="step-text">
+          <h3>Live and surfaced</h3>
+          <p>Your content is published under your name and surfaced to leaders in the moments it is most relevant to what they are navigating.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Note -->
+    <div class="note">
+      <p><strong>Not sure where to start?</strong> Most partners begin with a written piece or a Leadership Exchange session — lower effort, immediate visibility, and a good way to see how your knowledge lands with the Stones community before investing in a Practice or video series.</p>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <p>Part of the Stones for Partners pack. Full contribution terms in the Stones Partner Terms and Conditions.<br>Questions: <a href="mailto:emily@leadwithstones.com">emily@leadwithstones.com</a></p>
+      <p>leadwithstones.com</p>
+    </div>
+
+  </div>
+</body>
+</html>
