@@ -1,0 +1,849 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Your Stones Partner Profile — Content Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --green:        #506B56;
+      --green-dark:   #3A5040;
+      --green-light:  #EBF0EC;
+      --cream:        #F4F1EA;
+      --off-white:    #FCFAFA;
+      --black:        #3C3C3B;
+      --concrete:     #878786;
+      --grey:         #C6C6C5;
+      --grey-light:   #EBEBEA;
+      --sunset:       #FFDE73;
+      --wave-dark:    #255C9B;
+      --wave-light:   #D1E1F5;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: var(--cream);
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+      -webkit-font-smoothing: antialiased;
+      color: var(--black);
+    }
+
+    /* ── PAGE HEADER ── */
+
+    .page-header {
+      background: var(--green-dark);
+      padding: 48px 40px 40px;
+    }
+
+    .page-header-inner {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .stones-wordmark {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.45);
+      margin-bottom: 20px;
+    }
+
+    .page-title {
+      font-size: 30px;
+      font-weight: 800;
+      color: #fff;
+      letter-spacing: -0.025em;
+      line-height: 1.15;
+      margin-bottom: 14px;
+    }
+
+    .page-subtitle {
+      font-size: 15px;
+      color: rgba(255,255,255,0.6);
+      line-height: 1.65;
+      max-width: 620px;
+    }
+
+    /* ── GUIDE SECTIONS ── */
+
+    .guide-body {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 48px 40px 80px;
+    }
+
+    /* ── SECTION INTRO ── */
+
+    .section-intro {
+      margin-bottom: 40px;
+      padding: 24px 28px;
+      background: white;
+      border-radius: 12px;
+      border: 1px solid var(--grey-light);
+    }
+
+    .section-intro p {
+      font-size: 14px;
+      color: var(--concrete);
+      line-height: 1.7;
+    }
+
+    .section-intro p + p {
+      margin-top: 10px;
+    }
+
+    /* ── PROFILE MOCKUP ── */
+
+    .profile-mockup {
+      background: white;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid var(--grey-light);
+      box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+      margin-bottom: 48px;
+    }
+
+    /* Hero banner */
+    .profile-hero {
+      background: var(--green-dark);
+      padding: 36px 36px 0;
+      position: relative;
+    }
+
+    .profile-hero-inner {
+      display: flex;
+      align-items: flex-end;
+      gap: 20px;
+      padding-bottom: 0;
+    }
+
+    .profile-photo-wrap {
+      position: relative;
+      flex-shrink: 0;
+      margin-bottom: -24px;
+    }
+
+    .profile-photo {
+      width: 88px;
+      height: 88px;
+      border-radius: 50%;
+      background: #8aaa8f;
+      border: 3px solid white;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    .photo-verified {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 22px;
+      height: 22px;
+      background: var(--green);
+      border-radius: 50%;
+      border: 2px solid white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .profile-name-block {
+      padding-bottom: 20px;
+    }
+
+    .profile-org-name {
+      font-size: 22px;
+      font-weight: 800;
+      color: white;
+      letter-spacing: -0.02em;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 3px;
+    }
+
+    .profile-individual-name {
+      font-size: 13px;
+      color: rgba(255,255,255,0.65);
+      margin-bottom: 10px;
+    }
+
+    .specialty-tag {
+      display: inline-block;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: rgba(255,255,255,0.85);
+      font-size: 11.5px;
+      font-weight: 500;
+      padding: 4px 12px;
+      border-radius: 20px;
+    }
+
+    /* Profile body */
+    .profile-body {
+      background: var(--cream);
+      display: grid;
+      grid-template-columns: 1fr 280px;
+      min-height: 400px;
+    }
+
+    .profile-main {
+      padding: 32px 32px;
+      border-right: 1px solid var(--grey-light);
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+
+    .profile-sidebar {
+      padding: 24px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      background: white;
+    }
+
+    .section-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 12px;
+    }
+
+    .about-text {
+      font-size: 14px;
+      color: var(--black);
+      line-height: 1.7;
+    }
+
+    .about-text p + p { margin-top: 12px; }
+
+    .about-list {
+      list-style: none;
+      margin-top: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+    }
+
+    .about-list li {
+      font-size: 14px;
+      color: var(--black);
+      line-height: 1.55;
+      padding-left: 16px;
+      position: relative;
+    }
+
+    .about-list li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 9px;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--concrete);
+    }
+
+    /* Credentials */
+    .credentials-label {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 12px;
+    }
+
+    /* Module cards */
+    .module-card {
+      background: var(--cream);
+      border: 1px solid var(--grey-light);
+      border-radius: 10px;
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+
+    .module-play {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      background: var(--green);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .module-info { flex: 1; }
+
+    .module-title {
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--black);
+      line-height: 1.3;
+      margin-bottom: 3px;
+    }
+
+    .module-meta {
+      font-size: 11.5px;
+      color: var(--concrete);
+    }
+
+    .module-arrow {
+      color: var(--concrete);
+      flex-shrink: 0;
+    }
+
+    /* Sidebar divider */
+    .sidebar-divider {
+      height: 1px;
+      background: var(--grey-light);
+      margin: 4px 0;
+    }
+
+    /* Get in touch */
+    .contact-row {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 13px;
+      color: var(--concrete);
+      margin-bottom: 8px;
+    }
+
+    .linkedin-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: var(--grey-light);
+      border: none;
+      border-radius: 8px;
+      padding: 9px 14px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--black);
+      cursor: pointer;
+      width: 100%;
+      margin-top: 4px;
+    }
+
+    /* Services */
+    .service-item {
+      border-bottom: 1px solid var(--grey-light);
+      padding: 12px 0;
+    }
+
+    .service-item:last-child { border-bottom: none; }
+
+    .service-name-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 3px;
+    }
+
+    .service-name {
+      font-size: 13.5px;
+      font-weight: 700;
+      color: var(--black);
+    }
+
+    .service-price {
+      font-size: 12px;
+      color: var(--concrete);
+    }
+
+    /* ── ANNOTATION BADGES ── */
+
+    .annotated-section {
+      position: relative;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--sunset);
+      color: var(--black);
+      font-size: 11px;
+      font-weight: 800;
+      flex-shrink: 0;
+      margin-right: 6px;
+      position: relative;
+      top: -1px;
+    }
+
+    /* ── CONTENT GUIDE ── */
+
+    .guide-heading {
+      font-size: 19px;
+      font-weight: 800;
+      color: var(--black);
+      letter-spacing: -0.02em;
+      margin-bottom: 6px;
+    }
+
+    .guide-subheading {
+      font-size: 13.5px;
+      color: var(--concrete);
+      line-height: 1.6;
+      margin-bottom: 32px;
+    }
+
+    .guide-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .guide-card {
+      background: white;
+      border: 1px solid var(--grey-light);
+      border-radius: 12px;
+      padding: 24px 28px;
+    }
+
+    .guide-card-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .guide-card-title {
+      font-size: 15px;
+      font-weight: 800;
+      color: var(--black);
+      letter-spacing: -0.01em;
+    }
+
+    .word-count-pill {
+      display: inline-block;
+      background: var(--green-light);
+      color: var(--green-dark);
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      padding: 3px 9px;
+      border-radius: 20px;
+      margin-left: auto;
+    }
+
+    .guide-card-body {
+      font-size: 13.5px;
+      color: var(--black);
+      line-height: 1.7;
+    }
+
+    .guide-card-body p + p {
+      margin-top: 10px;
+    }
+
+    .guide-card-body ul {
+      list-style: none;
+      margin-top: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .guide-card-body ul li {
+      padding-left: 16px;
+      position: relative;
+      color: var(--black);
+    }
+
+    .guide-card-body ul li::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 8px;
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: var(--green);
+    }
+
+    .tone-note {
+      margin-top: 14px;
+      padding: 12px 16px;
+      background: var(--green-light);
+      border-radius: 8px;
+      font-size: 12.5px;
+      color: var(--green-dark);
+      line-height: 1.6;
+    }
+
+    .tone-note strong {
+      display: block;
+      font-weight: 700;
+      margin-bottom: 3px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .example-box {
+      margin-top: 14px;
+      padding: 14px 16px;
+      background: var(--cream);
+      border-radius: 8px;
+      border: 1px solid var(--grey-light);
+      font-size: 12.5px;
+      color: var(--concrete);
+      line-height: 1.65;
+      font-style: italic;
+    }
+
+    .example-box em {
+      font-style: normal;
+      font-weight: 700;
+      color: var(--black);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      display: block;
+      margin-bottom: 6px;
+      font-style: normal;
+    }
+
+    .footer-note {
+      margin-top: 40px;
+      padding: 20px 24px;
+      background: var(--green-dark);
+      border-radius: 12px;
+      font-size: 13.5px;
+      color: rgba(255,255,255,0.75);
+      line-height: 1.65;
+    }
+
+    .footer-note a {
+      color: var(--sunset);
+      text-decoration: none;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+
+<!-- ── Page Header ── -->
+<div class="page-header">
+  <div class="page-header-inner">
+    <div class="stones-wordmark">Stones · Partner Guide</div>
+    <div class="page-title">Your partner profile</div>
+    <div class="page-subtitle">What your profile looks like inside the Stones app, and what to include in each section to make a strong impression on the leaders who find you there.</div>
+  </div>
+</div>
+
+<!-- ── Body ── -->
+<div class="guide-body">
+
+  <div class="section-intro">
+    <p>Your profile is how leaders get to know you before they start your content or reach out. It sits behind every Practice and Story you contribute to Stones, so leaders who engage with your work will often visit it.</p>
+    <p>The numbered markers below correspond to the content guide at the bottom of this page.</p>
+  </div>
+
+  <!-- ── Profile Mockup ── -->
+  <div class="profile-mockup">
+
+    <!-- Hero -->
+    <div class="profile-hero">
+      <div class="profile-hero-inner">
+        <div class="profile-photo-wrap">
+          <div class="profile-photo">
+            <svg width="66" height="66" viewBox="0 0 66 66" fill="rgba(255,255,255,0.45)" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="33" cy="23" r="13"/>
+              <path d="M1 66c0-17.7 14.3-32 32-32s32 14.3 32 32"/>
+            </svg>
+          </div>
+          <div class="photo-verified">
+            <svg width="11" height="11" fill="none" stroke="white" stroke-width="2.5" viewBox="0 0 24 24"><path d="M20 6L9 17l-5-5"/></svg>
+          </div>
+        </div>
+        <div class="profile-name-block">
+          <!-- Badge 1 -->
+          <div class="profile-org-name">
+            <span class="badge">1</span> Naked Audience
+            <svg width="13" height="13" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="2" viewBox="0 0 24 24"><path d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/></svg>
+          </div>
+          <div class="profile-individual-name">Miriam Chancellor</div>
+          <span class="specialty-tag">Coaching &amp; Growing People</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Profile body -->
+    <div class="profile-body">
+
+      <!-- Main column -->
+      <div class="profile-main">
+
+        <!-- About -->
+        <div class="annotated-section">
+          <div class="section-label"><span class="badge" style="background:var(--sunset)">2</span> About</div>
+          <div class="about-text">
+            <p>Miriam Chancellor is the founder of Naked Audience, New Zealand's leading executive public speaking and presentation coaching consultancy. Miriam coaches clients to overcome the challenges of public speaking to enable them to achieve their professional goals. She works with a range of clients, from entrepreneurs to leaders of global organisations. As well as running workshops for corporates, Miriam coaches several of New Zealand's leading C-Suite executives.</p>
+            <p>Through her years of training, Miriam has identified the small changes that make an enormous improvement to a person's presenting style. She now seeks to share that knowledge with you.</p>
+            <p>Some of the reasons clients work with Naked Audience is because they have teams or individuals needing help with:</p>
+            <ul class="about-list">
+              <li>Crafting clear and concise messages, pitched at the right level of detail</li>
+              <li>Building confidence and managing nerves and public speaking anxiety</li>
+              <li>Coming across as credible when speaking off the cuff and on panels</li>
+              <li>Developing high-stakes presentations (board or conference presentations)</li>
+              <li>Creating impact with their delivery (body language and the voice)</li>
+              <li>Developing an executive presence</li>
+              <li>To understand what makes a great presentation as the individual may not have received training previously and is increasingly being asked to present at work</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Credentials -->
+        <div class="annotated-section">
+          <div class="credentials-label"><span class="badge" style="background:var(--sunset)">3</span> Credentials &amp; experience</div>
+          <ul class="about-list">
+            <li>Bachelor of Communications, majoring in Public Relations, AUT</li>
+            <li>Auckland Toastmasters: Past President</li>
+            <li>Trinity College London: ATCL Diploma in Speech &amp; Drama</li>
+            <li>Living Wisdom: Life Skills &amp; Counselling, Levels 1 &amp; 2</li>
+          </ul>
+        </div>
+
+      </div>
+      <!-- /profile-main -->
+
+      <!-- Sidebar -->
+      <div class="profile-sidebar">
+
+        <!-- Modules -->
+        <div class="annotated-section">
+          <div class="section-label"><span class="badge" style="background:var(--sunset)">4</span> Modules</div>
+          <div class="module-card">
+            <div class="module-play">
+              <svg width="14" height="14" fill="white" viewBox="0 0 24 24"><path d="M5 3l14 9-14 9V3z"/></svg>
+            </div>
+            <div class="module-info">
+              <div class="module-title">What does your body language say about you?</div>
+              <div class="module-meta">33 min · 11 lessons</div>
+            </div>
+            <div class="module-arrow">
+              <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+            </div>
+          </div>
+          <div class="module-card">
+            <div class="module-play">
+              <svg width="14" height="14" fill="white" viewBox="0 0 24 24"><path d="M5 3l14 9-14 9V3z"/></svg>
+            </div>
+            <div class="module-info">
+              <div class="module-title">Presenting with Presence: Real-World Public Speaking Q&amp;A</div>
+              <div class="module-meta">41 min · 24 lessons</div>
+            </div>
+            <div class="module-arrow">
+              <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"/></svg>
+            </div>
+          </div>
+        </div>
+
+        <div class="sidebar-divider"></div>
+
+        <!-- Get in touch -->
+        <div class="annotated-section">
+          <div class="section-label"><span class="badge" style="background:var(--sunset)">5</span> Get in touch</div>
+          <div class="contact-row">
+            <svg width="14" height="14" fill="none" stroke="var(--concrete)" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            miriam@nakedaudience.co.nz
+          </div>
+          <div class="contact-row">
+            <svg width="14" height="14" fill="none" stroke="var(--concrete)" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 010 20M12 2a15.3 15.3 0 000 20"/></svg>
+            Naked Audience
+          </div>
+          <button class="linkedin-btn">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="#255C9B"><path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/></svg>
+            LinkedIn
+          </button>
+        </div>
+
+        <div class="sidebar-divider"></div>
+
+        <!-- Services -->
+        <div class="annotated-section">
+          <div class="section-label"><span class="badge" style="background:var(--sunset)">6</span> Services</div>
+          <div class="service-item">
+            <div class="service-name-row">
+              <div class="service-name">1:1 Coaching</div>
+              <svg width="14" height="14" fill="none" stroke="var(--concrete)" stroke-width="2" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"/></svg>
+            </div>
+            <div class="service-price">Sessions are $580 + GST. 2-4 sessions is typical.</div>
+          </div>
+          <div class="service-item">
+            <div class="service-name-row">
+              <div class="service-name">Executive Presentation Mastery Masterclasses</div>
+              <svg width="14" height="14" fill="none" stroke="var(--concrete)" stroke-width="2" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"/></svg>
+            </div>
+            <div class="service-price">$4,300 + GST</div>
+          </div>
+          <div class="service-item">
+            <div class="service-name-row">
+              <div class="service-name">Corporate Training</div>
+              <svg width="14" height="14" fill="none" stroke="var(--concrete)" stroke-width="2" viewBox="0 0 24 24"><path d="M19 9l-7 7-7-7"/></svg>
+            </div>
+            <div class="service-price">Approximately $17,000 + GST for a three-part programme that trains up to seven participants.</div>
+          </div>
+        </div>
+
+      </div>
+      <!-- /profile-sidebar -->
+
+    </div>
+    <!-- /profile-body -->
+
+  </div>
+  <!-- /profile-mockup -->
+
+
+  <!-- ── Content Guide ── -->
+  <div class="guide-heading">What to include in each section</div>
+  <div class="guide-subheading">Use the numbered markers above as a reference. Each section is optional except your About bio.</div>
+
+  <div class="guide-grid">
+
+    <!-- 1. Header -->
+    <div class="guide-card">
+      <div class="guide-card-header">
+        <span class="badge">1</span>
+        <span class="guide-card-title">Header — name, photo, and specialty</span>
+        <span class="word-count-pill">Provided by you</span>
+      </div>
+      <div class="guide-card-body">
+        <p>Your profile photo and the name we display are set up when you onboard. Your specialty tag (the pill under your name) describes the broad area your work sits in, for example: <em>Coaching &amp; Growing People</em> or <em>Leadership Communication</em>.</p>
+        <p>We will ask you for these when setting up your profile. A professional headshot works best — square crop, good light, clear face.</p>
+      </div>
+    </div>
+
+    <!-- 2. About -->
+    <div class="guide-card">
+      <div class="guide-card-header">
+        <span class="badge">2</span>
+        <span class="guide-card-title">About</span>
+        <span class="word-count-pill">100–200 words</span>
+      </div>
+      <div class="guide-card-body">
+        <p><strong>Structure:</strong> three short paragraphs works well.</p>
+        <ul>
+          <li><strong>Paragraph 1:</strong> Who you are and what you specialise in. Keep it specific. Name your organisation if you have one, your focus area, and who you work with.</li>
+          <li><strong>Paragraph 2:</strong> Your approach or origin story. What shaped how you work? What do you believe about the problem you solve?</li>
+          <li><strong>Paragraph 3 (optional):</strong> A lead-in to your bullet list. If you want to list the specific situations clients come to you for, open with a sentence like "Clients come to me when they need help with..." and follow with your list.</li>
+        </ul>
+        <div class="tone-note">
+          <strong>Tone</strong>
+          Write in first person or third person consistently — either works. Sound like yourself, not like a bio you'd submit to a conference. Skip the generic credentials-speak: "passionate about helping leaders unlock their potential" tells a leader nothing. Say something specific that makes them feel understood.
+        </div>
+        <div class="example-box">
+          <em>What works</em>
+          "I work with leaders who are technically brilliant but find the people side of the job hard — difficult conversations, under-performers, team dynamics that are quietly draining everyone. I help them find language that's honest without being brutal, and approaches that move things forward without damaging what matters."
+        </div>
+      </div>
+    </div>
+
+    <!-- 3. Credentials -->
+    <div class="guide-card">
+      <div class="guide-card-header">
+        <span class="badge">3</span>
+        <span class="guide-card-title">Credentials &amp; experience</span>
+        <span class="word-count-pill">3–6 bullet points</span>
+      </div>
+      <div class="guide-card-body">
+        <p>List formal qualifications, professional accreditations, and notable past roles. Keep each item brief: institution or body, credential or role, that's it.</p>
+        <ul>
+          <li>Formal qualifications (degree, diploma, certification)</li>
+          <li>Professional body memberships (ICF level, HRINZ, etc.)</li>
+          <li>Past roles worth naming (especially if they ground your expertise)</li>
+          <li>Published work or media if highly relevant</li>
+        </ul>
+        <div class="tone-note">
+          <strong>Tone</strong>
+          Short and factual. No interpretation or explanation needed — the credential speaks for itself.
+        </div>
+      </div>
+    </div>
+
+    <!-- 4. Modules -->
+    <div class="guide-card">
+      <div class="guide-card-header">
+        <span class="badge">4</span>
+        <span class="guide-card-title">Modules (your Stones content)</span>
+        <span class="word-count-pill">Generated automatically</span>
+      </div>
+      <div class="guide-card-body">
+        <p>This section populates automatically from the content you contribute to Stones. Each Practice or Story you create appears here as a card, with the title, duration, and lesson count pulled from your content.</p>
+        <p>The module title is the most important thing leaders see here. It should describe the specific leadership moment the content addresses, not the topic in the abstract.</p>
+        <div class="example-box">
+          <em>Compare</em>
+          "Public speaking skills" — too generic. A leader scanning won't know if it's for them.<br><br>
+          "What does your body language say about you?" — specific, makes the leader the subject.
+        </div>
+        <p style="margin-top:12px">We will work with you on your content title and brief when you submit your first module.</p>
+      </div>
+    </div>
+
+    <!-- 5. Get in touch -->
+    <div class="guide-card">
+      <div class="guide-card-header">
+        <span class="badge">5</span>
+        <span class="guide-card-title">Get in touch</span>
+        <span class="word-count-pill">Provided by you</span>
+      </div>
+      <div class="guide-card-body">
+        <p>Your email address, website URL, and LinkedIn profile. All three are optional but we recommend including at least one contact path.</p>
+        <p>Leaders who engage with your content will visit your profile. This is how they take the next step with you directly. Stones connects the dots; the relationship is yours to close.</p>
+      </div>
+    </div>
+
+    <!-- 6. Services -->
+    <div class="guide-card">
+      <div class="guide-card-header">
+        <span class="badge">6</span>
+        <span class="guide-card-title">Services</span>
+        <span class="word-count-pill">Optional</span>
+      </div>
+      <div class="guide-card-body">
+        <p>List the services you offer outside of Stones — coaching packages, workshops, corporate programmes. Include pricing where you are comfortable sharing it. A price gives a leader enough to know whether to reach out, and saves time on both sides.</p>
+        <ul>
+          <li>Service name (short, plain English)</li>
+          <li>One-line description of what it covers or who it is for</li>
+          <li>Price or price range (optional but recommended)</li>
+        </ul>
+        <div class="tone-note">
+          <strong>Tone</strong>
+          Plain and direct. "1:1 coaching — $580 per session, 2–4 sessions typical" is exactly right.
+        </div>
+      </div>
+    </div>
+
+  </div>
+  <!-- /guide-grid -->
+
+  <div class="footer-note">
+    Ready to submit your content? Send your About bio, credentials, contact details, and any services to <a href="mailto:emily@leadwithstones.com">emily@leadwithstones.com</a> and we will get your profile set up. If you have any questions, reach out to Emily directly.
+  </div>
+
+</div>
+<!-- /guide-body -->
+
+</body>
+</html>
